@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ErrorHandler } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -18,12 +18,11 @@ import * as firebase from 'firebase';
   selector: "page-create-account",
   templateUrl: "create-account.html"
 })
-export class CreateAccountPage implements ErrorHandler {
+export class CreateAccountPage implements ErrorHandler{
    handleError(error: any): void {
     throw new Error("Method not implemented.");
   }
 
-  
   validacao_form: FormGroup;
   uid;
   constructor(
@@ -58,23 +57,25 @@ export class CreateAccountPage implements ErrorHandler {
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]))
     }, (validacao_form: FormGroup) => {
-        return PasswordValidator.areEqual(validacao_form);
+      return PasswordValidator.areEqual(validacao_form);
     });
   }
 
   register() {
-    this.loadingProvider.present().then(() =>{
+    this.loadingProvider.present().then(() => {
       let data = this.validacao_form.value;
       /* Puxando do provedor o metodo de registro*/
       this.authProvider
 
-      .register(data)
+        .register(data)
 
         //Success
         .then(res => {
           this.uid = res.user.uid;
-          
           this.createUserOnFirestore();
+
+          let user = firebase.auth().currentUser;
+          user.sendEmailVerification();
           console.log("ok")
 
           this.loadingProvider.dismiss();
@@ -83,20 +84,20 @@ export class CreateAccountPage implements ErrorHandler {
             subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
-          
         })
         //Error
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           this.loadingProvider.dismiss();
           this.alertCtrl.create({
             title: "Ops",
-            subTitle: "Algo deu errado. Por favor, tente mais uma vez.",
+            subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
         });
     });
   }
- 
+
   //Criando o usuario no firebase
   createUserOnFirestore = () => {
     const data = {
@@ -120,33 +121,6 @@ export class CreateAccountPage implements ErrorHandler {
       });
     });
   }
-  validation_messages = {
-    'name': [
-      { type: 'required', message: 'O nome é necessário.' }
-    ],
-    'email': [
-      { type: 'required', message: 'Digite seu e-mail.' },
-      { type: 'pattern', message: 'Entre com um e-mail válido.' }
-    ],
-    'phone': [
-      { type: 'required', message: 'Phone is required.' },
-      { type: 'validCountryPhone', message: 'Phone incorrect for the country selected' }
-    ],
-    'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
-    ],
-    'confirm_password': [
-      { type: 'required', message: 'Confirm password is required' }
-    ],
-    'matching_passwords': [
-      { type: 'areEqual', message: 'Password mismatch' }
-    ],
-    'terms': [
-      { type: 'pattern', message: 'You must accept terms and conditions.' }
-    ],
-  };
   /**
    Se o usuario ja tiver uma conta ele retornará a pag de login
    */
