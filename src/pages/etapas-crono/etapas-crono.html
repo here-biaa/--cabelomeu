@@ -1,0 +1,66 @@
+<!--
+  Generated template for the EtapasCronoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Etapas cronograma</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="mostrarHidratacao()" (click)="mostrarHidratacao()">
+        Hidratação
+      </ion-segment-button>
+      <ion-segment-button value="mostrarNutricao()" (click)="mostrarNutricao()">
+        Nutrição
+      </ion-segment-button>
+      <ion-segment-button value="mostrarReconstrucao()" (click)="mostrarReconstrucao()">
+        Reconstrução
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="mg-top-30-percent page-etapas-crono" *ngIf="hidratacao" padding>
+  <div class="backCor" padding>
+    <h1 class="title bold">Hidratação</h1>
+    <img src="./assets/icon/hidratacao.png">
+    <div>
+      <p class="texto">Fase mais conhecida do cronograma por tirar o ressecamento. É responsável por repor água e
+        nutrientes
+        essenciais
+        que são perdidos todos os dias livrando os fios de opacidez e ressecamento fazendo com que eles voltem a ser
+        brilhosos e hidratados.</p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content class="mg-top-30-percent page-etapas-crono" *ngIf="nutricao" padding>
+  <div class="backCor" padding>
+    <h1 class="title bold">Nutrição</h1>
+    <img src="./assets/icon/nutricao.png">
+    <p class="texto">Fase utilizada quando os fios estão secos e sem definição, serve para repor os nutrientes dos fios
+      que são os
+      denominados lipídios. Os lipídios são moléculas gordurosas produzidas pelo couro cabeludo com a finalidade de
+      proteger
+      os fios, deixando-os saudáveis.</p>
+  </div>
+</ion-content>
+
+<ion-content class="mg-top-30-percent  page-etapas-crono" *ngIf="reconstrucao" padding>
+  <div class="backCor" padding>
+    <h1 class="title bold">Reconstrução</h1>
+    <img src="./assets/icon/recontrucao.png">
+    <p class="texto">Fase em que os fios estão elásticos e quebradiços geralmente por conta de produtos químicos. E
+      então
+      há
+      necessidade
+      de
+      reconstruí-los para adicionar proteínas. É recomendado ser feito a cada quinze dias, pois há casos de efeito
+      contrário
+      em que os fios chegam a cair.</p>
+  </div>
+</ion-content>

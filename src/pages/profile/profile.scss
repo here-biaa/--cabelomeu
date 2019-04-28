@@ -1,0 +1,82 @@
+page-profile {
+    // iPhone X
+    @media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+        .scroll-content {
+            padding-top: 40px !important
+        }
+    }
+    .back {
+        background: $imperial !important;
+    }
+    .bg-mimi{
+        background: $mimi !important;
+    }
+    .bg-light{
+        background:#f4f5f8 !important;
+    }
+    #footer {
+        position : absolute;
+        bottom : 0;
+        height : 40px;
+        margin-top : 40px;
+    }
+
+    .close {
+        width: 3%;
+        margin-bottom: 20px;
+    }
+    .btnEditar{
+        float: right;
+        background-image:url("../../assets/icon/pencil-edit-button.png")!important;
+     }
+    .bgButton {
+        background: $green
+    }
+    .loginCta {
+        width: 100%;
+        height:40px;
+        padding: 5px 0px;
+        text-align: center;
+        background-color: $mimi;
+        color: $preto !important;
+        border-radius: 100px;
+        border: 1.5px solid $eggshell;
+    }
+    .btnLogin {
+        height: 20px
+    }
+
+
+    .avatar {
+        background-color:#ffffff;
+    }
+
+    .avatarPos {
+        background-size: cover;
+        background-position: center center;
+        height: 150px;
+        width: 150px;
+        border: 3px solid $mimi;
+        border-radius: 100px;
+    }
+
+    // INPUTS
+    .item-ios.item-block .item-inner {
+        border-bottom: 1.5px solid ;
+        border-left: none;
+    }
+    .item-md.item-block .item-inner {
+        border-bottom: 1.5px solid ;
+        border-left: none;
+    
+    }
+    .btnRight{
+        float: right;
+    }
+    .btnLeft{
+        float: left;
+    }
+}

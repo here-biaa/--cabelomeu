@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Meu cronograma</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <!-- REFRESH -->
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- FAB CART BUTTON -->
+  <ion-fab right bottom (click)="openCart()">
+    <button ion-fab class="bgButton">
+      <ion-icon class="eggshell" name="md-chatbubbles"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <!-- FEATURES TEXT -->
+  <div class="padding-20  padding-bottom-0">
+    <img *ngIf="modal" src="assets/imgs/close-black.png" class="close" (click)="close()">
+    <!--<h2 class="black bold no-margin">
+      Cronograma Capilar
+    </h2>-->
+  </div>
+ </ion-content>

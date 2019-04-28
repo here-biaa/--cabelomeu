@@ -1,0 +1,29 @@
+page-temporizador {
+   /* .bg
+    {
+        background-image: radial-gradient(circle, #f2d7ee, #c4a0bf, #976b91, #6c3966, #42033d) !important; 
+        border: 2px dotted white;
+        border-radius:30%;  
+    }*/
+    .circleTemp{
+        width:80%;
+        height:80%;
+        margin-left: 5%;
+        justify-content: center;
+        text-align: center;
+    }
+    .btnTemp{
+        width: 70px;
+        height: 50px;
+        margin-bottom: 20px;
+        padding:3%;
+        margin-left: 5%;
+         margin-bottom: 20px;
+         }
+    .left{
+        float: left;
+    }
+    .right{
+        float: right;
+    }
+}

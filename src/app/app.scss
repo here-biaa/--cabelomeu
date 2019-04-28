@@ -1,0 +1,299 @@
+// GLOBAL FONT
+@import url('https://fonts.googleapis.com/css?family=Tajawal:400,500,700');
+* {
+  font-family: 'Tajawal', sans-serif;
+}
+//minhas cores
+.red{
+  color:red;
+}
+.white{
+  color:#ffffff;
+}
+.mimi {
+  color: $mimi
+}
+.rosa {
+  color: $rosa
+}
+
+.imperial {
+  color:$imperial
+}
+
+.preto {
+  color: $preto
+}
+//
+.gray {
+  color: $gray
+}
+
+
+.green {
+  color: $green
+}
+
+.eggshell {
+  color: $eggshell
+}
+
+.black {
+  color: $black
+}
+
+
+//Font style
+.bold {
+  font-weight: 700
+}
+
+.regular {
+  font-weight: 400
+}
+.font-14{
+  font-size: 14px
+}
+.font-18{
+  font-size: 18px
+}
+
+//Text align
+.center {
+  text-align: center
+}
+
+//Margin
+.no-margin {
+  margin: 0px !important
+}
+.mg-top-10-percent {
+  margin-top: 10%
+}
+
+.mg-top-20-percent {
+  margin-top: 20%
+}
+
+.mg-top-30-percent {
+  margin-top: 30%
+}
+
+.mg-top-40-percent {
+  margin-top: 40%
+}
+
+.mg-top-0 {
+  margin: 0px
+}
+
+.mg-top-5 {
+  margin-left: 5px
+}
+
+.mg-top-10 {
+  margin-top: 10px
+}
+
+.mg-top-15 {
+  margin-top: 15px
+}
+
+.mg-top-20 {
+  margin-top: 20px
+}
+
+.mg-top-40 {
+  margin-top: 40px
+}
+
+.mg-top-60 {
+  margin-top: 60px
+}
+
+.mg-top-30 {
+  margin-top: 30px
+}
+
+.mg-left-10 {
+  margin-left: 10px
+}
+
+.mg-left-20 {
+  margin-left: 20px
+}
+.mg-left-10-percent{
+  margin-left: 10%
+}
+
+.mg-left-50-percent{
+  margin-left: 50%
+}
+
+.mg-bottom-40{
+  margin-bottom: 40px
+
+}
+//Padding
+.no-padding {
+  padding: 0px !important
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-top-5 {
+  padding-top: 5px !important;
+}
+
+.padding-bottom-0 {
+  padding-bottom: 0px !important
+}
+
+//Background color
+.transparent-bg {
+  background: transparent !important
+}
+
+//Loading spinner
+.loading-md .loading-wrapper {
+  box-shadow: none
+}
+
+.loading-wrapper {
+  background-color: transparent !important
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.double-bounce1,
+.double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: $eggshell;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0.0)
+  }
+  50% {
+    -webkit-transform: scale(1.0)
+  }
+}
+
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  }
+  50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+// Form for dark background
+.form-bg-dark {
+  .item {
+    .item-inner {
+      .label[stacked] {
+        font-size: 1.7rem;
+      }
+    }
+    &.input-has-focus {
+      .item-inner {
+        .label[stacked] {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+// Animate CSS
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+  animation-duration: .75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+// for for light background
+.form-bg-light {
+  .item {
+    .item-inner {
+      .label[stacked] {
+        font-size: 1.7rem;
+        color: gray;
+      }
+    }
+    &.input-has-focus {
+      .item-inner {
+        .label[stacked] {
+          color: #333;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<ion-content padding class="animated fadeIn loginBackground">
+  <!-- Nosso logo maravilhoso -->
+
+  <div class="center mg-top-10-percent">
+    <img src="./assets/imgs/brand-logo.png" class="logo-white-login">
+  </div>
+
+  <div class="mg-top-10-percent">
+    <h2 class="mimi bold center">
+      Seja bem-vindo
+     </h2>
+    <p class="snow eggshell center light no-margin mg-top-5">
+      Entre com sua conta para continuar
+    </p>
+  </div>
+
+  <div class="mg-top-20 customInputsPadding">
+    <form [formGroup]="form" (ngSubmit)="login()" class="">
+      <!-- EMAIL -->
+      <ion-item class="transparent-bg no-padding">
+        <ion-label floating class="eggshell">
+         <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          <b>E-mail</b>
+        </ion-label>
+        <ion-input formControlName="email" type="email" class="eggshell bold"></ion-input>
+      </ion-item>
+
+      <!-- SENHA -->
+      <ion-item class="transparent-bg no-padding mg-top-20">
+        <ion-label floating class="eggshell">
+            <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+            <b>Senha</b>
+        </ion-label>
+
+        <ion-input formControlName="pass" type="password" class="eggshell bold"></ion-input>
+      </ion-item>
+
+      <!-- Botao -->
+      <div class="loginCta mg-top-40">
+        <button class="preto no-padding btnLogin padding-top-5" ion-button clear [disabled]="!form.valid" type="submit">
+         <b>Entrar</b>
+        </button>
+      </div>
+      </form>
+    
+      <div class="mg-top-20 font-18 center mimi bold" (click)="createAccount()">
+        Não tenho uma conta
+      </div>
+      <div class="mg-top-20 bold mimi center">
+        <button ion-button class="transparent-bg" icon-left (click)="loginFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          Facebook
+        </button>
+      </div>
+  </div>
+</ion-content>

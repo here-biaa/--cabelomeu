@@ -1,0 +1,129 @@
+<!-- Essa parte é para ter um quiz quando o  usuario logar pela primeira vez  -->
+<!-- <ion-content class="slides" *ngIf="inicio">
+  <div class=" slideCronograma-subheader">
+    <p class="eggshell center font-18 bold">
+      Inicie seu cronograma
+    </p>
+  </div>
+  <ion-slides class="backCronograma" autoplay="3000" (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <div class="outer">
+            <div class="inner">
+              <h3 class="txt ">Qual o seu tipo de cabelo?
+                <br />
+                <br />
+              </h3>
+            </div>
+          </div>
+        </ion-row>
+        <div class=" center inners">
+          <lottie-animation-view [options]="lottieConfig" [width]="400" [height]="600"
+            (animCreated)="handleAnimation($event)">
+          </lottie-animation-view>
+        </div>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <div class="outer">
+              <div class="inner">
+                <h3 class="txt">Encontre o produto adequado para seus cabelos
+                  <br />
+                  <br />
+                  <br />
+                </h3>
+                <button color="eggshell" type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
+               class=" btn_go_login">Começar</button>
+              </div>
+              <div class="inner">
+                <lottie-animation-view [options]="lottieConfig2" [width]="300" [height]="600"
+                  (animCreated)="handleAnimation2($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <div class="outer">
+              <div class="inner">
+                <h3 class="txt">
+                  Encontre os melhores salões próximos a você
+                  <br />
+                  <br />
+                </h3>
+              </div>
+              <div class="inner">
+                <lottie-animation-view [options]="lottieConfig3" [width]="300" [height]="600"
+                  (animCreated)="handleAnimation3($event)">
+                </lottie-animation-view>
+              </div>
+              <button color="eggshell" type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
+                class=" btn_go_login">Começar</button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+-->
+<!-- Quando o usuario responder o quiz e apertar em começar vai aparecer essa parte com todo o conteudo  -->
+<ion-header *ngIf="conteudo" >
+
+  <ion-navbar>
+    <ion-title>CabeloMeu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content class="card-background-page" >
+  
+  <ion-card class="imperial" (click)="abrirHidratacao()">
+    <img src="./assets/imgs/card1.png" />
+    <div class="card-title-hidratação">Hidratação</div>
+    <div class="card-subtitle-hidratação">Hidratar os fios</div>
+  </ion-card>
+
+  <button class="btnProd" ion-button icon-only (click)="abrirProdutos()">
+    <img src="./assets/icon/product.png" />
+    <div class="Prod-subtitle">Encontre produtos</div>
+  </button>
+
+  <button class="btnTempo" (click)="abrirTemporizador()" ion-button icon-only>
+    <img src="./assets/icon/tempo.png" />
+    <div class="Tempo-subtitle">Temporizador</div>
+  </button>
+
+  <ion-card class="rosa" (click)="abrirNutricao()">
+    <img class="mg-top-10" src="./assets/imgs/card2.png" />
+    <div class="card-title-nutrição">Nutrição</div>
+    <div class="card-subtitle-nutrição">Nutrir os fios</div>
+  </ion-card>
+
+  <button class="btnPerfil" ion-button icon-only (click)="abrirPerfil()">
+    <img src="./assets/icon/perfil.png" />
+    <div class="Tempo-subtitle">Perfil</div>
+  </button>
+
+  <button class="btnCronograma" (click)="abrirCronograma()" ion-button icon-only>
+    <img src="./assets/icon/calendar.png" />
+    <div class="Prod-subtitle">Meu cronograma</div>
+  </button>
+
+  <ion-card class="roxo" (click)="abrirReconstrucao()">
+    <img src="./assets/imgs/card3.png" />
+    <div class="card-title-reconstrução">Reconstrução</div>
+    <div class="card-subtitle-reconstrução">Reconstruir os fios</div>
+  </ion-card>
+
+</ion-content>
