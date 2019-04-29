@@ -5,7 +5,6 @@ import {
 } from "angularfire2/firestore";
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
-
 @Injectable()
 export class FirebaseProvider {
   constructor(private afs: AngularFirestore) { }

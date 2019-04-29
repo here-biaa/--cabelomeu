@@ -1,4 +1,4 @@
-import { Component, ErrorHandler } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -11,20 +11,16 @@ import { FirebaseProvider } from "../../providers/firebase";
 import { LoadingProvider } from "../../providers/loading";
 import { Storage } from "@ionic/storage";
 import { PasswordValidator } from '../../validacao/senha.validacao';
-import * as firebase from 'firebase';
-
+import { firebase } from '@firebase/app';
 @IonicPage()
 @Component({
   selector: "page-create-account",
   templateUrl: "create-account.html"
 })
-export class CreateAccountPage implements ErrorHandler{
-   handleError(error: any): void {
-    throw new Error("Method not implemented.");
-  }
-
+export class CreateAccountPage {
   validacao_form: FormGroup;
   uid;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -57,41 +53,43 @@ export class CreateAccountPage implements ErrorHandler{
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]))
     }, (validacao_form: FormGroup) => {
-      return PasswordValidator.areEqual(validacao_form);
+        return PasswordValidator.areEqual(validacao_form);
     });
   }
 
-  register() {
-    this.loadingProvider.present().then(() => {
+  registrar() {
+    if (this.validacao_form.valid) {
+         this.validacao_form.controls['name'].value,
+        this.validacao_form.controls['email'].value,
+        this.validacao_form.controls['pass'].value;
+      }
+    this.loadingProvider.present().then(() =>{
       let data = this.validacao_form.value;
       /* Puxando do provedor o metodo de registro*/
       this.authProvider
-
         .register(data)
-
         //Success
         .then(res => {
+          console.log(res);
           this.uid = res.user.uid;
+          console.log("ok");
           this.createUserOnFirestore();
-
-          let user = firebase.auth().currentUser;
-          user.sendEmailVerification();
-          console.log("ok")
-
+          
           this.loadingProvider.dismiss();
           this.alertCtrl.create({
             title: "Verifique seu email",
             subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
+        
         })
         //Error
         .catch((err) => {
-          console.log(err)
+          console.log(err);
           this.loadingProvider.dismiss();
           this.alertCtrl.create({
             title: "Ops",
-            subTitle: "Enviamos um e-mail de autenticação para você.",
+            subTitle: "Esse e-mail ja está cadastrado, entre com um e-mail válido.",
             buttons: ["Ok"]
           }).present();
         });
@@ -108,7 +106,7 @@ export class CreateAccountPage implements ErrorHandler{
     };
 
     this.firebaseProvider.postUser(data).then(res => {
-      this.getAndSaveCurrentUser();
+      this.navCtrl.setRoot('LoginPage')
     });
   }
 
@@ -121,6 +119,7 @@ export class CreateAccountPage implements ErrorHandler{
       });
     });
   }
+  
   /**
    Se o usuario ja tiver uma conta ele retornará a pag de login
    */

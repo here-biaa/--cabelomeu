@@ -24,7 +24,7 @@ import { firebaseConfig } from '../configs/firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabase} from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth';
 import { ImagesUpload } from '../providers/image-upload';
 import { FirebaseProvider } from '../providers/firebase';
@@ -94,6 +94,8 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
     AngularFireDatabase,
     LoadingProvider,
     ImagesUpload,
+    AngularFireAuth,
+
     //temporizador
     Insomnia,
     NavigationBar,

@@ -11,26 +11,26 @@
   </div>
   <!-- INPUTS AND CTA -->
   <div class="mg-top-30 customInputsPadding">
-    <form [formGroup]="validacao_form" (ngSubmit)="register(validacao_form.value)" class="">
+    <form [formGroup]="validacao_form"  class="">
       <!-- NAME -->
       <ion-item class="transparent-bg no-padding">
         <ion-label stacked class="eggshell">Seu nome</ion-label>
-        <ion-input formControlName="name" type="text" class="bold white"></ion-input>
+        <ion-input formControlName="name" [(ngModel)]="validacao_form.name" type="text" class="bold white"></ion-input>
       </ion-item>
 
       <!-- EMAIL -->
       <ion-item class="transparent-bg no-padding mg-top-20">
         <ion-label stacked class="eggshell">Seu e-mail</ion-label>
-        <ion-input formControlName="email" type="email" class="eggshell bold "></ion-input>
+        <ion-input formControlName="email" [(ngModel)]="validacao_form.email" type="email" class="eggshell bold "></ion-input>
       </ion-item>
-      <div *ngIf="!validacao_form.controls.email.valid" class="validator-error red bold">
+      <div *ngIf="!validacao_form.controls.email.valid " class="validator-error red light">
         Entre com um e-mail válido.
       </div>
 
       <!-- PASS -->
       <ion-item class="transparent-bg no-padding mg-top-20">
         <ion-label stacked class="eggshell">Sua senha</ion-label>
-        <ion-input formControlName="pass" type="password" class="eggshell bold"></ion-input>
+        <ion-input formControlName="pass" [(ngModel)]="validacao_form.pass" type="password" class="eggshell bold"></ion-input>
       </ion-item>
       <div *ngIf="!validacao_form.controls.pass.valid" class="validator-error red light">
         Sua senha deve conter 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.
@@ -44,7 +44,8 @@
 
       <!-- CTA -->
       <div class="registerCta mg-top-30">
-        <button class="preto no-padding btnLogin padding-top-5" ion-button clear [disabled]="!validacao_form.valid" type="submit">
+        <button class="preto no-padding btnLogin padding-top-5" ion-button clear [disabled]="!validacao_form.valid"
+          (click)="registrar()">
           <b>Cadastrar</b>
         </button>
       </div>

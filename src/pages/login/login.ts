@@ -47,7 +47,7 @@ export class LoginPage implements ErrorHandler{
         .then((res) => {
   
             // Se o usuario verificar o email ele vai logar
-           res.user = firebase.auth().currentUser;
+           res.user.uid = firebase.auth().currentUser;
           if (res.user.emailVerified) {
             console.log("email verified");
             this.getAndSaveCurrentUser(res.user.uid);
