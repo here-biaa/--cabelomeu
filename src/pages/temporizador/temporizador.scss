@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
 page-temporizador {
    /* .bg
     {
@@ -13,13 +14,20 @@ page-temporizador {
         text-align: center;
     }
     .btnTemp{
+        background-color:$rosa!important;
         width: 70px;
         height: 50px;
+        border-radius:2px;
         margin-bottom: 20px;
-        padding:3%;
         margin-left: 5%;
-         margin-bottom: 20px;
-         }
+        margin-bottom: 20px;
+    }
+    p.bold {
+        font-size:19px;
+        color:$rosa;
+        text-align:center;
+        font-family: "Patrick Hand", cursive !important;
+    }
     .left{
         float: left;
     }

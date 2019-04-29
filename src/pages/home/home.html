@@ -79,15 +79,17 @@
 </ion-content>
 -->
 <!-- Quando o usuario responder o quiz e apertar em começar vai aparecer essa parte com todo o conteudo  -->
-<ion-header *ngIf="conteudo" >
+<ion-header *ngIf="conteudo">
 
   <ion-navbar>
-    <ion-title>CabeloMeu</ion-title>
+    <ion-title>
+    <small class="Logotipo no-padding bold center">CabeloMeu</small>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
-<ion-content class="card-background-page" >
-  
+<ion-content class="card-background-page">
+
   <ion-card class="imperial" (click)="abrirHidratacao()">
     <img src="./assets/imgs/card1.png" />
     <div class="card-title-hidratação">Hidratação</div>
