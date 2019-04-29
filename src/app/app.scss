@@ -1,5 +1,6 @@
 // GLOBAL FONT
 @import url('https://fonts.googleapis.com/css?family=Tajawal:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Questrial');
 * {
   font-family: 'Tajawal', sans-serif;
 }
@@ -41,7 +42,11 @@
 .black {
   color: $black
 }
-
+.Logotipo{
+  font-family: 'Questrial', sans-serif;
+  font-size:20px;
+  color:$imperial;
+}
 
 //Font style
 .bold {

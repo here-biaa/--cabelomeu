@@ -1,43 +1,65 @@
+<ion-header>
+
+  <ion-navbar color="rosa">
+    <ion-title>Temporizador</ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content padding>
   <ion-refresher (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div class=" mg-top-40">
-    <circle-progress color="primary" class="circleTemp" (click)="startTimer()" [percent]="percent"
-      [backgroundColor]="'#A5668B'" [radius]="60" [maxPercent]="200" [unitsColor]="'#A5668B'" [outerStrokeWidth]="5"
-      [outerStrokeColor]="'#ffffff'" [innerStrokeColor]="'#ffffff'" [showSubtitle]="false" [title]="remainingTime"
-      [titleFontSize]="22" [showUnits]="false" [renderOnClick]="false" [showZeroOuterStroke]="true"
-      [showInnerStroke]="false" [clockwise]="false" [animation]="false" [outerStrokeGradientStopColor]="'#FF00CB'">
-    </circle-progress>  </div>
-      <ion-item class="mg-top-40">
-        <ion-label>Tempo de duração:</ion-label>
-        <ion-datetime placeholde="Iniciar" placeholder="Iniciar" 
-        displayFormat="HH:mm:ss" #myPicker (ionChange)="updateMyDate(myPicker.value)"
-        cancelText ="Cancelar" doneText="Ok"
-        [(ngModel)]="fullTime"></ion-datetime>
-      </ion-item>
-    <div  padding class="no-margin">
-      <ion-grid padding>
-        <ion-row  >
-        
-          <div class="btnTemp " >
-            <button   class="btnTemp transparent-bg bg " (click)="startTimer()">
-              <ion-icon name="play"></ion-icon>
-            </button>
-          </div>
+  <div class="texto">
+    <p class="bold">
+      Retire seus produtos na hora correta com o timer do <small class="Logotipo">CabeloMeu</small>
+    </p>
+  </div>
+  <div class=" mg-top-20">
+    <circle-progress color="imperial" class="circleTemp" (click)="startTimer()" [percent]="percent"
+      [backgroundPadding]="'7'"
+      [maxPercent]="200"
+      [radius]="'60'"
+      [space]="'-2'"
+      [outerStrokeWidth]="'2'"
+      [outerStrokeColor]="'#A5668B'"
+      [innerStrokeColor]="'#F2D7EE'"
+      [innerStrokeWidth]="'2'"
+      [titleFontSize]="'12'"
+      [subtitleFontSize]="'20'"
+      [animateTitle]="'false'"
+      [animationDuration]="'1000'"
+      [showUnits]="'false'"
+      [clockwise]="'false'">
+    </circle-progress>
+  </div>
+  <ion-item class="mg-top-40">
+    <ion-label>Tempo de duração:</ion-label>
+    <ion-datetime placeholde="Iniciar" placeholder="Iniciar" displayFormat="HH:mm:ss" #myPicker
+      (ionChange)="updateMyDate(myPicker.value)" cancelText="Cancelar" doneText="Ok" [(ngModel)]="fullTime">
+    </ion-datetime>
+  </ion-item>
+  <div padding class="no-margin">
+    <ion-grid padding>
+      <ion-row>
 
-          <div class="btnTemp "  >
-            <button  class="btnTemp transparent-bg bg " (click)="resumeTimer()">
-              <ion-icon name="refresh"></ion-icon>
-            </button>
-          </div>
+        <div class="btnTemp ">
+          <button class="btnTemp transparent-bg bg " (click)="startTimer()">
+            <ion-icon color="light" name="play"></ion-icon>
+          </button>
+        </div>
 
-          <div class="btnTemp "  #running>
-            <button class="btnTemp transparent-bg bg " (click)="stopTimer()">
-              <ion-icon name="square"></ion-icon>
-            </button>
-          </div>
-        </ion-row>
-      </ion-grid>
-    </div>
+        <div class="btnTemp ">
+          <button class="btnTemp transparent-bg bg " (click)="resumeTimer()">
+            <ion-icon color="light" name="refresh"></ion-icon>
+          </button>
+        </div>
+
+        <div class="btnTemp " #running>
+          <button class="btnTemp transparent-bg bg " (click)="stopTimer()">
+            <ion-icon color="light" name="square"></ion-icon>
+          </button>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -11,7 +11,7 @@
 }
 .title{
     font-size:29px;
-    color:#42033D;
+    color:$rosa;
     font-family: 'Patrick Hand', cursive;
 }
 .texto{
@@ -19,5 +19,11 @@
     font-size: 1.4em;
     text-align: justify;
     font-family: 'Handlee', cursive;
+}
+.backCor.fixed {
+    background-color: #fff;
+    width: 100%;
+    height: 73%;
+    position: relative;
 }
 }
