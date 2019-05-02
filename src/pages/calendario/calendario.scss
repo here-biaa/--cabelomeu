@@ -8,7 +8,39 @@ page-calendario {
             padding-top: 40px !important
         }
     }
+    a.active {
+        background-color: $mimi;
+        }
 
+        #calendar-container {
+            max-width: 300px !important;
+            margin:0;
+         
+        }
+        .grid-calendar{
+          justify-content: space-around !important;
+        }
+        .calendar-days {
+            background: $mimi;
+            border: 3px solid #c2c2c2;
+        }
+
+        .inactive {
+            opacity: 0.5;
+        }
+
+        .selected {
+            background: peru;
+            opacity: 0.6;
+        }
+
+        .today {
+            color: red;
+        }
+
+        .reserved {
+            color: blueviolet;
+    }
     .categorie {
         background-color: $mimi;
         padding: 10px 20px
@@ -25,4 +57,241 @@ page-calendario {
         width: 3%;
         margin-bottom: 20px;
     }
+    input:not([type]):hover:not([readonly]),
+input[type='text']:hover:not([readonly]),
+input[type='password']:hover:not([readonly]),
+input[type='email']:hover:not([readonly]),
+input[type='url']:hover:not([readonly]),
+input[type='time']:hover:not([readonly]),
+input[type='date']:hover:not([readonly]),
+input[type='datetime']:hover:not([readonly]),
+input[type='datetime-local']:hover:not([readonly]),
+input[type='tel']:hover:not([readonly]),
+input[type='number']:hover:not([readonly]),
+input[type='search']:hover:not([readonly]) {
+    border: 2px solid #777;
+}
+input:not([type]),
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='url'],
+input[type='time'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='tel'],
+input[type='number'],
+input[type='search'] {
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0 0 0 2px;
+    box-shadow: none;
+    box-sizing: content-box;
+    margin-top: 5px;
+}
+
+.input-underline {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.input-underline:hover {
+    border-bottom: 2px solid #777777 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+}
+
+// input:not([type]):focus:not([readonly]),
+// input[type=text]:focus:not([readonly]),
+// input[type=password]:focus:not([readonly]),
+// input[type=email]:focus:not([readonly]),
+// input[type=url]:focus:not([readonly]),
+// input[type=time]:focus:not([readonly]),
+// input[type=date]:focus:not([readonly]),
+// input[type=datetime]:focus:not([readonly]),
+// input[type=datetime-local]:focus:not([readonly]),
+// input[type=tel]:focus:not([readonly]),
+// input[type=number]:focus:not([readonly]),
+// input[type=search]:focus:not([readonly]) {
+//     border-bottom: 1px solid #777;
+//     box-shadow: none;
+// }
+// input:not([type]):focus:not([readonly])+label,
+// input[type=text]:focus:not([readonly])+label,
+// input[type=password]:focus:not([readonly])+label,
+// input[type=email]:focus:not([readonly])+label,
+// input[type=url]:focus:not([readonly])+label,
+// input[type=time]:focus:not([readonly])+label,
+// input[type=date]:focus:not([readonly])+label,
+// input[type=datetime]:focus:not([readonly])+label,
+// input[type=datetime-local]:focus:not([readonly])+label,
+// input[type=tel]:focus:not([readonly])+label,
+// input[type=number]:focus:not([readonly])+label,
+// input[type=search]:focus:not([readonly])+label,
+// {
+//     color: #FE7F4C;
+// }
+a {
+    color: #0d5389 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid #0d5389;
+    letter-spacing: 0.88px !important;
+}
+
+a:hover,
+a:focus {
+    color: #08395e;
+    text-decoration: none;
+}
+
+a.visited {
+    color: #666;
+}
+
+a.directional {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+a.directional .icon {
+    transition: margin-left 0.5s ease;
+    margin-left: 10px;
+}
+
+a.directional:hover .icon {
+    margin-left: 15px;
+}
+
+a.simple {
+    color: #0d5389;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+button,
+.button {
+    background: #fff;
+    border-radius: 0;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    padding: 15px 45px;
+    box-shadow: inset 0 0 0 2px transparent;
+    transition: all 0.5 ease-in-out;
+    letter-spacing: 0.88px;
+}
+
+.button:hover,
+button:hover,
+button:focus,
+.button:focus {
+    outline: none;
+}
+
+button.underline,
+.button.underline {
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+button.underline:hover,
+.button.underline:hover {
+    color: #b19378;
+}
+
+button.primary,
+.button.primary {
+    color: #b19378;
+    border-color: #b19378;
+}
+
+button.primary:hover,
+.button.primary:hover {
+    color: #b19378;
+    border-color: #b19378;
+    box-shadow: inset 0 0 0 2px #b19378;
+}
+
+button.secondary,
+.button.secondary {
+    color: #666;
+    border-color: #666;
+}
+
+button.secondary:hover,
+.button.secondary:hover {
+    color: #666;
+    border-color: #666;
+    box-shadow: inset 0 0 0 2px #666;
+}
+
+button:disabled,
+.button:disabled {
+    color: #dfdbd8;
+    border-color: transparent;
+}
+
+button:hover:disabled,
+.button:hover:disabled {
+    border-color: transparent;
+}
+
+button.bordered:disabled,
+.button.bordered:disabled {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #dfdbd8;
+}
+
+button:hover:disabled,
+.button:hover:disabled {
+    box-shadow: inset 0 0 0 2px transparent;
+    color: #dfdbd8;
+}
+
+.block {
+    width: 100%;
+}
+
+.inline-button,
+.form-group label.inline-button,
+.dropzone-download-button {
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+    height: auto;
+}
+
+.dropzone-download-button {
+    font-family: 'open_sansregular';
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    color: #666;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.inline-button:hover,
+.form-group label.inline-button:hover,
+.inline-button:focus,
+.form-group label.inline-button:focus {
+    background-color: transparent;
+    color: #b19378;
+}
+
+.icon-button {
+    border: 0;
+    text-decoration: none;
+}
+
 }

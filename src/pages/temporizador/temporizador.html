@@ -15,8 +15,8 @@
     </p>
   </div>
   <div class=" mg-top-20">
-    <circle-progress color="imperial" class="circleTemp" (click)="startTimer()" [percent]="percent"
-      [backgroundPadding]="'7'"
+    <circle-progress color="imperial" class="circleTemp" (click)="startTimer()" 
+      [percent]="percent"
       [maxPercent]="200"
       [radius]="'60'"
       [space]="'-2'"
@@ -24,12 +24,12 @@
       [outerStrokeColor]="'#A5668B'"
       [innerStrokeColor]="'#F2D7EE'"
       [innerStrokeWidth]="'2'"
-      [titleFontSize]="'12'"
+      [showSubtitle]="true"
       [subtitleFontSize]="'20'"
-      [animateTitle]="'false'"
-      [animationDuration]="'1000'"
-      [showUnits]="'false'"
-      [clockwise]="'false'">
+      [showTitle]="false"
+      [renderOnClick]="false"
+      [subtitle]="remainingTime"
+      >
     </circle-progress>
   </div>
   <ion-item class="mg-top-40">

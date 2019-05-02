@@ -5,24 +5,75 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content>
+<ion-content padding>
   <!-- REFRESH -->
   <ion-refresher (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
-  <!-- FAB CART BUTTON -->
+  <!-- FAB BUTTON -->
   <ion-fab right bottom (click)="openCart()">
     <button ion-fab class="bgButton">
       <ion-icon class="eggshell" name="md-chatbubbles"></ion-icon>
     </button>
   </ion-fab>
-
-  <!-- FEATURES TEXT -->
   <div class="padding-20  padding-bottom-0">
     <img *ngIf="modal" src="assets/imgs/close-black.png" class="close" (click)="close()">
     <!--<h2 class="black bold no-margin">
       Cronograma Capilar
     </h2>-->
-  </div>
+  </div> 
+    <div class="flex-container flex-center no-margin">
+      <div id="calendar-container" class="flex-container  flex-column">
+        <div class="mg-left-20" >
+          <form [formGroup]="dateForm" class="flex-container  flex-center">
+            <input type="text" name="dateFrom" formControlName="dateFrom" placeholder="From Date">
+            <div class=""></div>
+            <input type="text" placeholder="To Date" name="dateTo" formControlName="dateTo">
+            <div class=""></div>
+            <button class="" (click)="alterar()">Alterar</button>
+          </form>
+        </div>
+        <br/>
+        <div *ngIf="isReserved" class="reserved">
+          {{isReserved}}
+        </div>
+        <div class="flex-container flex-center-horz" >
+          <div class="fa fa-chevron-left " (click)="previousMonth() "></div>
+          <div>{{date.format('MMMM ')}} {{date.format('YYYY ')}}</div>
+          <div class="fa fa-chevron-right" (click)="nextMonth()" ></div>
+        </div>
+        <ion-grid   >
+          <ion-row class="grid-calendar">
+            <ion-col>
+                <div class="calendar-days">Seg</div>
+            </ion-col>
+            <ion-col>
+                <div class="calendar-days">Ter</div>
+            </ion-col>
+            <ion-col>
+                <div class="calendar-days">Qua</div>
+            </ion-col>
+            <ion-col>
+                <div  class="calendar-days">Qui</div>
+            </ion-col>
+            <ion-col>
+                <div  class="calendar-days">Sex</div>
+            </ion-col>
+            <ion-col>
+                <div class="calendar-days">Sab</div>
+            </ion-col>
+            <ion-col>
+                <div  class="calendar-days">Dom</div>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+        <div  padding class="flex-container flex-wrap ">
+          <div *ngFor="let day of daysArr">
+            <div class="calendar-days flex-container flex-center"  (click)="selectedDate(day)"
+              ng-Class="{'inactive':!day, 'selected':isSelected(day), 'today':todayCheck(day)}">{{day?.date()}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
  </ion-content>

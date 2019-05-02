@@ -74,7 +74,7 @@ export class CreateAccountPage {
           this.uid = res.user.uid;
           console.log("ok");
           this.createUserOnFirestore();
-          
+       
           this.loadingProvider.dismiss();
           this.alertCtrl.create({
             title: "Verifique seu email",
