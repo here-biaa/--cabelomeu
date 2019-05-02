@@ -10,32 +10,18 @@
     </h2>
   </div>
   <!-- INPUTS AND CTA -->
-<<<<<<< HEAD
-  <div class="mg-top-20 customInputsPadding">
-    <form [formGroup]="validacao_form" (ngSubmit)="register(validacao_form.value)" class="">
-      <!-- NAME -->
-      <ion-item class="transparent-bg no-padding">
-        <ion-label floating stacked class="eggshell">Seu nome</ion-label>
-        <ion-input formControlName="name" type="text" class="bold white"></ion-input>
-=======
   <div class="mg-top-30 customInputsPadding">
     <form [formGroup]="validacao_form"  class="">
       <!-- NAME -->
       <ion-item class="transparent-bg no-padding">
         <ion-label stacked class="eggshell">Seu nome</ion-label>
         <ion-input formControlName="name" [(ngModel)]="validacao_form.name" type="text" class="bold white"></ion-input>
->>>>>>> e0315a59bdb92495f638a138a9b1400446fcbde7
       </ion-item>
 
       <!-- EMAIL -->
       <ion-item class="transparent-bg no-padding mg-top-20">
-<<<<<<< HEAD
-        <ion-label floating stacked class="eggshell">Seu e-mail</ion-label>
-        <ion-input formControlName="email" type="email" class="eggshell bold "></ion-input>
-=======
         <ion-label stacked class="eggshell">Seu e-mail</ion-label>
         <ion-input formControlName="email" [(ngModel)]="validacao_form.email" type="email" class="eggshell bold "></ion-input>
->>>>>>> e0315a59bdb92495f638a138a9b1400446fcbde7
       </ion-item>
       <div *ngIf="!validacao_form.controls.email.valid " class="validator-error red light">
         Entre com um e-mail válido.
@@ -43,13 +29,8 @@
 
       <!-- PASS -->
       <ion-item class="transparent-bg no-padding mg-top-20">
-<<<<<<< HEAD
-        <ion-label floating stacked class="eggshell">Sua senha</ion-label>
-        <ion-input formControlName="pass" type="password" class="eggshell bold"></ion-input>
-=======
         <ion-label stacked class="eggshell">Sua senha</ion-label>
         <ion-input formControlName="pass" [(ngModel)]="validacao_form.pass" type="password" class="eggshell bold"></ion-input>
->>>>>>> e0315a59bdb92495f638a138a9b1400446fcbde7
       </ion-item>
       <div *ngIf="!validacao_form.controls.pass.valid" class="validator-error red light">
         Sua senha deve conter 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.

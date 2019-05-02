@@ -13,16 +13,24 @@ page-calendario {
         }
 
         #calendar-container {
-            max-width: 300px !important;
+            max-width: 400px !important;
             margin:0;
          
         }
         .grid-calendar{
           justify-content: space-around !important;
+            
         }
         .calendar-days {
-            background: $mimi;
-            border: 3px solid #c2c2c2;
+            width: 32px;
+            margin-bottom:5px;
+        }
+        .calendar-day {
+            width:41px;
+            margin-left:0;
+            margin-bottom:5px;
+            font-size: 14px;
+     
         }
 
         .inactive {

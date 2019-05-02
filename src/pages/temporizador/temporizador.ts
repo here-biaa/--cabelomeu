@@ -38,6 +38,10 @@ export class TemporizadorPage{
     m: '00',
     s: '00'
   };
+  start: boolean = true;
+  stop: boolean = false;
+  resume: boolean = false;
+
   remainingTime = `${this.timeLeft.h}:${this.timeLeft.m}:${this.timeLeft.s}`;
   constructor(
     public navCtrl: NavController,
@@ -61,12 +65,13 @@ export class TemporizadorPage{
     this.navigationBar.setUp(autoHide);
      
    }  
-  refresh(refresher) {
+   refresh(refresher) {
     refresher.complete();
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
+
   startTimer() {
-   
+    
     if(!this.countDownTimer){
       setInterval(this.timer);
       setInterval(this.countDownTimer);
@@ -137,6 +142,9 @@ export class TemporizadorPage{
     clearInterval(this.countDownTimer);
     clearInterval(this.timer);
     clearInterval(this.overallTimer);
+    this.audio.pause();
+    this.audio = null;
+
     this.countDownTimer = false;
     this.overallTimer = false;
     this.timer = false;

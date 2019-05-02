@@ -16,20 +16,22 @@
   </div>
   <div class=" mg-top-20">
     <circle-progress color="imperial" class="circleTemp" (click)="startTimer()" 
-      [percent]="percent"
-      [maxPercent]="200"
-      [radius]="'60'"
-      [space]="'-2'"
-      [outerStrokeWidth]="'2'"
-      [outerStrokeColor]="'#A5668B'"
-      [innerStrokeColor]="'#F2D7EE'"
-      [innerStrokeWidth]="'2'"
-      [showSubtitle]="true"
-      [subtitleFontSize]="'20'"
-      [showTitle]="false"
-      [renderOnClick]="false"
-      [subtitle]="remainingTime"
-      >
+    [percent]="percent"
+    [maxPercent]="200"
+    [radius]="60"
+    [space]="'-2'"
+    [showTitle]="false"  
+    [showSubtitle]="true"
+    [subtitle]="remainingTime"
+    [subtitleFontSize]="20"
+    [showUnits]="false"
+    [outerStrokeWidth]="'2'"
+    [outerStrokeColor]="'#A5668B'"
+    [innerStrokeColor]="'#F2D7EE'"
+    [innerStrokeWidth]="'2'"
+    [renderOnClick]="false"
+    [animationDuration]="10"
+    >
     </circle-progress>
   </div>
   <ion-item class="mg-top-40">
@@ -40,10 +42,10 @@
   </ion-item>
   <div padding class="no-margin">
     <ion-grid padding>
-      <ion-row>
+      <ion-row [ngClass]="{class:isenabled,class2:!isenabled}">
 
         <div class="btnTemp ">
-          <button class="btnTemp transparent-bg bg " (click)="startTimer()">
+          <button class="btnTemp transparent-bg bg "  (click)="startTimer()">
             <ion-icon color="light" name="play"></ion-icon>
           </button>
         </div>
@@ -55,7 +57,7 @@
         </div>
 
         <div class="btnTemp " #running>
-          <button class="btnTemp transparent-bg bg " (click)="stopTimer()">
+          <button class="btnTemp transparent-bg bg "(click)="stopTimer()">
             <ion-icon color="light" name="square"></ion-icon>
           </button>
         </div>
