@@ -121,11 +121,11 @@ export class HomePage {
       })
   }
 //-----------HOME-----------//
-abrirHidratacao = () => this.navCtrl.setRoot('EtapasCronoPage');
-abrirNutricao = () => this.navCtrl.setRoot('EtapasCronoPage');
-abrirReconstrucao = () => this.navCtrl.setRoot('EtapasCronoPage');
-abrirCronograma = () => this.navCtrl.setRoot('calendarioPage');
-abrirPerfil = () => this.navCtrl.setRoot('ProfilePage'); 
-abrirProdutos = () => this.navCtrl.setRoot('ProdutoPage'); 
-abrirTemporizador = () => this.navCtrl.setRoot('TemporizadorPage'); 
+abrirHidratacao = () => this.navCtrl.push('EtapasCronoPage');
+abrirNutricao = () => this.navCtrl.push('EtapasCronoPage');
+abrirReconstrucao = () => this.navCtrl.push('EtapasCronoPage');
+abrirCronograma = () => this.navCtrl.push('calendarioPage');
+abrirPerfil = () => this.navCtrl.push('ProfilePage'); 
+abrirProdutos = () => this.navCtrl.push('ProdutoPage'); 
+abrirTemporizador = () => this.navCtrl.push('TemporizadorPage'); 
 }

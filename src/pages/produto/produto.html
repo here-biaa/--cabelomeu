@@ -6,13 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="imperial">
     <ion-title>Lista de produtos</ion-title>
   </ion-navbar>
-
+  <ion-searchbar placeholder="Pesquisar" (ionInput)="getItems($event)"></ion-searchbar>
+  <!--<ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+-->
 </ion-header>
 
 
 <ion-content padding>
-
-</ion-content>
+    <ion-list>
+        <button ion-item *ngFor="let item of lista" (click)="abreDetalhe(item)">
+          {{ item.titulo }}<br>
+          {{ item.tipo }}<br>
+          {{ item.marca }}
+          <ion-icon color="imperial" name="md-eye" item-end></ion-icon>
+        </button>
+      </ion-list>
+</ion-content> 
