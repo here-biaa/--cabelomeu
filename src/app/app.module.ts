@@ -48,7 +48,7 @@ import { EtapasCronoPageModule } from '../pages/etapas-crono/etapas-crono.module
 import { TemporizadorPageModule } from '../pages/temporizador/temporizador.module';
 import { CadastrarProdutosPageModule } from '../pages/cadastrar-produtos/cadastrar-produtos.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
-
+import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-produto.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -68,6 +68,7 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
     TemporizadorPageModule,
     CadastrarProdutosPageModule,
     ProfilePageModule,
+    DetalhesProdutoPageModule,
 
     //Calendario
     DaterangepickerModule,

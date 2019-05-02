@@ -9,7 +9,7 @@ page-profile {
         }
     }
     .back {
-        background: $imperial !important;
+        background: $mimi!important;
     }
     .bg-mimi{
         background: $mimi !important;
@@ -51,7 +51,7 @@ page-profile {
 
 
     .avatar {
-        background-color:#ffffff;
+        background-color:$mimi;
     }
 
     .avatarPos {
@@ -59,7 +59,7 @@ page-profile {
         background-position: center center;
         height: 150px;
         width: 150px;
-        border: 3px solid $mimi;
+        border: 3px solid $rosa;
         border-radius: 100px;
     }
 
