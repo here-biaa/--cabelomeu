@@ -6,68 +6,55 @@
     <ion-title>Perfil</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content *ngIf="user">
+<ion-content *ngIf="user" padding>
   <!-- REFRESH -->
   <ion-refresher (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
+
   <div class="no-padding">
     <img *ngIf="modal" src="assets/imgs/close-black.png" class="close" (click)="close()">
   </div>
 
-  <div class="padding-20 back">
+  <div class="padding-20">
     <div class="center">
       <img *ngIf="!user.avatar" class="avatarPos avatar">
       <img *ngIf="user.avatar" class="avatarPos" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')'}">
-      <br />
-      <label class="rosa font-18 bold" (click)="changeAvatar()">Editar</label>
+      <button class="center"color="imperial" ion-fab mini (click)="changeAvatar()">
+        <ion-icon padding name="md-camera"></ion-icon>
+      </button>
     </div>
   </div>
   <!-- FORMS -->
-  <ion-grid padding class="mg-top-30 form-bg-light">
-    <ion-row class="no-padding">
-      <ion-item class="transparent-bg no-padding">
-        <ion-icon name="person" color="rosa" item-start class="text-primary"></ion-icon>
-        <ion-input [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
-      </ion-item>
-    </ion-row>
-  
-    <ion-row class="no-padding mg-top-20">
-      <ion-item class="transparent-bg no-padding">
-        <ion-icon name="call" color="rosa" item-start class="text-primary"></ion-icon>
-        <ion-input [(ngModel)]="user.telefone" type="text" class=" bold"></ion-input>
-      </ion-item>
-    </ion-row>
-  
-    <ion-row class="no-padding mg-top-20">
-      <ion-item class="transparent-bg no-padding">
-          <ion-icon name="mail" color="rosa" item-start class="text-primary"></ion-icon>
-        <ion-input [(ngModel)]="user.email" type="text" class=" bold"></ion-input>
-      </ion-item>
-    </ion-row>
-  
-    <ion-row class="no-padding mg-top-20">
-      <ion-item class="transparent-bg no-padding">
-        <ion-icon name="lock" color="rosa" item-start class="text-primary"></ion-icon>
-        <ion-input [(ngModel)]="user.pass" type="password" class=" bold"></ion-input>
-      </ion-item>
-    </ion-row>
-  </ion-grid>
- </ion-content>
- 
-<ion-footer  class="transparent-bg bg-light ">
-  <div  class="mg-left-10-percent "> 
-    <ion-label padding class="no-margin  btnLeft  ">
-        <ion-icon name="close" item-start class="text-primary " ></ion-icon>
-      <b>Cancelar</b>
-    </ion-label>
-   </div>
-   <div class="mg-left-50-percent" (click)="save()">
-      <ion-label padding class="no-margin  btRight">
-        <ion-icon name="done-all" item-end class="text-primary  " ></ion-icon>
-        <b>Salvar</b>
-      </ion-label>
+  <ion-list class="mg-top-20">
+    <ion-item padding>
+      <ion-icon name="person" color="rosa" item-start></ion-icon>
+      <ion-input [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
 
-   </div>
-</ion-footer>
+  <ion-list class="no-margin">
+    <ion-item padding>
+      <ion-icon name="call" color="rosa" item-start></ion-icon>
+      <ion-input  placeholder="Celular" [(ngModel)]="user.telefone" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="no-margin">
+    <ion-item padding>
+      <ion-icon name="mail" color="rosa" item-start></ion-icon>
+      <ion-input [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-list class="no-margin">
+    <ion-item padding>
+      <ion-icon name="lock" color="rosa" item-start></ion-icon>
+      <ion-input [(ngModel)]="user.pass" type="password" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+  <button class="mg-top-20 center" color="imperial" ion-button round (click)="save()">Salvar</button>
+</ion-content>
