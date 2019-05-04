@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateAccountPage,
   ],
   imports: [
-    IonicPageModule.forChild(CreateAccountPage),
+    IonicPageModule.forChild(CreateAccountPage, ),
     FormsModule,
     ReactiveFormsModule
   ],

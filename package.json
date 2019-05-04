@@ -26,6 +26,7 @@
     "@ionic-native/core": "4.7.0",
     "@ionic-native/facebook": "^5.4.0",
     "@ionic-native/insomnia": "^5.5.0",
+    "@ionic-native/local-notifications": "^5.5.1",
     "@ionic-native/native-audio": "^5.5.0",
     "@ionic-native/native-storage": "^5.4.0",
     "@ionic-native/navigation-bar": "^5.5.0",
@@ -43,12 +44,14 @@
     "angularfire2": "^5.0.0-rc.6",
     "cordova-android": "8.0.0",
     "cordova-ios": "4.5.4",
+    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-nativeaudio": "3.0.9",
     "cordova-plugin-nativestorage": "2.3.2",
     "cordova-plugin-navigationbar": "1.0.31",
@@ -94,7 +97,8 @@
       "cordova-plugin-navigationbar": {},
       "cordova-plugin-insomnia": {},
       "cordova-plugin-nativeaudio": {},
-      "cordova-plugin-streaming-media": {}
+      "cordova-plugin-streaming-media": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "ios",

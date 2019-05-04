@@ -19,18 +19,18 @@ page-calendario {
         }
         .grid-calendar{
           justify-content: space-around !important;
+            background: $rosa;
             
         }
         .calendar-days {
-            width: 32px;
-            margin-bottom:5px;
+            width: 30px;
+            font-weight: bold;
         }
         .calendar-day {
-            width:41px;
-            margin-left:0;
-            margin-bottom:5px;
+            width:42px;
+            padding:3px;
+            margin-bottom:3px;
             font-size: 14px;
-     
         }
 
         .inactive {
@@ -38,12 +38,12 @@ page-calendario {
         }
 
         .selected {
-            background: peru;
+            background:$mimi;
             opacity: 0.6;
         }
 
         .today {
-            color: red;
+            color: $imperial;
         }
 
         .reserved {

@@ -18,6 +18,7 @@ import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { StreamingMedia, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 //Firebase config
@@ -72,6 +73,7 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
 
     //Calendario
     DaterangepickerModule,
+    
     //Outros
     CommonModule,
     HttpClientModule,
@@ -97,7 +99,6 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
     LoadingProvider,
     ImagesUpload,
     AngularFireAuth,
-
     //calendario
 
     //temporizador
