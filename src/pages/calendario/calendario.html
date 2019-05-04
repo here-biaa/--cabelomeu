@@ -22,9 +22,9 @@
       Cronograma Capilar
     </h2>-->
   </div> 
-    <div class="flex-container flex-center no-margin">
+    <div class="flex-container bg-mimi flex-center no-margin">
       <div id="calendar-container" class="flex-container  flex-column">
-        <div class="mg-left-20" >
+        <!--<div class="mg-left-20" >
           <form [formGroup]="dateForm" class="flex-container  flex-center">
             <input type="text" name="dateFrom" formControlName="dateFrom" placeholder="From Date">
             <div class=""></div>
@@ -36,7 +36,7 @@
         <br/>
         <div *ngIf="isReserved" class="reserved">
           {{isReserved}}
-        </div>
+        </div>-->
         <div class="flex-container flex-center-horz" >
           <div class="fa fa-chevron-left " (click)="previousMonth() "></div>
           <div>{{date.format('MMMM ')}} {{date.format('YYYY ')}}</div>
@@ -44,6 +44,9 @@
         </div>
         <ion-grid  >
           <ion-row class="grid-calendar">
+            <ion-col>
+               <div class="calendar-days">Dom</div>
+            </ion-col>
             <ion-col>
                 <div class="calendar-days">Seg</div>
             </ion-col>
@@ -62,25 +65,38 @@
             <ion-col>
                 <div class="calendar-days">Sab</div>
             </ion-col>
-            <ion-col>
-                <div  class="calendar-days">Dom</div>
-            </ion-col>
           </ion-row>
-      </ion-grid>
-              <div  class="flex-container flex-wrap ">
-                <div *ngFor="let day of daysArr">
-                  <div  class="calendar-day"(click)="selectedDate(day)"
-                    ng-Class="{'inactive':!day, 'selected':isSelected(day), 'today':todayCheck(day)}">
-                    <ion-row>
-                      <ion-col class=" ">{{day?.date()}}</ion-col>
-                    
+        </ion-grid>
+        <div padding class="flex-container flex-wrap ">
+            <div *ngFor="let day of daysArr">
+                <div  class=""(click)="selectedDate(day)"    
+                  ng-Class="{'inactive':!day, 'selected':isSelected(day.$event), 'today':todayCheck(day)}">
+                    <ion-row class="calendar-day">
+                      <ion-col  >                      
+                        {{day?.date()}}
+                      </ion-col>
                     </ion-row>
                   </div>
-                </div>
-              </div>
-           
-       </div>
+            </div>
+        </div>
+        <div class="mg-left-20">
+          <div *ngIf="isReserved" class="reserved">
+            {{isReserved}}
+          </div>
+          <form [formGroup]="dateForm" class="flex-container  flex-center">
+            <input type="text" name="dateFrom" formControlName="dateFrom" placeholder="From Date">
+            <div class=""></div>
+            <input type="text" placeholder="To Date" name="dateTo" formControlName="dateTo">
+            <div class=""></div>
+            <button class="" (click)="reserve()">Alterar</button>
+          </form>
+        </div>
+      </div>
     </div>
+<<<<<<< HEAD
   
     
  </ion-content>
+=======
+</ion-content>
+>>>>>>> 32c4d84cf803941df67189b851f349de31ba9f9d

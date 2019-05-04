@@ -10,7 +10,7 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController } 
 import { FirebaseProvider } from '../../providers/firebase';
 import { LoadingProvider } from '../../providers/loading';
 import { AppState } from '../../app/app.service';
-
+import{colors} from '../calendario/colors';
 @IonicPage()
 @Component({
   selector: 'page-calendario',
@@ -43,6 +43,7 @@ export class calendarioPage implements OnInit {
     this.getProducts();
     this.loadingProvider.present();
     this.modal = this.navParams.get('modal');
+    this.date.locale('pt-br');
   }
 //formulario
   public initDateRange() {
@@ -59,10 +60,11 @@ export class calendarioPage implements OnInit {
 
 public  createCalendar(month) {
     let firstDay = moment(month).startOf('M');
+    moment.locale('pt-br')
     let days = Array.apply(null, { length: month.daysInMonth() })
       .map(Number.call, Number)
       .map(n => {
-        return moment(firstDay).add(n, 'd');
+        return moment(firstDay).locale('pt-br').add(n, 'd');
       });
 
     for (let n = 0; n < firstDay.weekday(); n++) {
@@ -74,7 +76,7 @@ public  createCalendar(month) {
     if (!day) {
       return false;
     }
-    return moment().format('L') === day.format('L');
+    return moment().format('L') === day.format('L').locale('pt-br');
   }
 
   public reserve() {
@@ -98,7 +100,7 @@ public  createCalendar(month) {
       );
     }
     if (this.dateForm.get('dateFrom').valid) {
-      return dateFromMoment.isSame(day);
+      return dateFromMoment.locale('pt-br').isSame(day);
     }
   }
 
@@ -114,6 +116,8 @@ public  createCalendar(month) {
       this.dateForm.get('dateTo').patchValue(dayFormatted);
     }
   }
+
+
   //Refresh page
   refresh(refresher) {
     refresher.complete();
