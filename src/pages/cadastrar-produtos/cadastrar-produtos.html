@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="rosa">
     <ion-title>Cadastrar produtos</ion-title>
   </ion-navbar>
 
@@ -15,4 +15,35 @@
 
 <ion-content padding>
 
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Nome do produto</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Marca</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="primary" stacked>Observação</ion-label>
+        <ion-input type="textarea"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Tipo</ion-label>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="hidratacao">Hidratação</ion-option>
+        <ion-option value="nutricao">Nutrição</ion-option>
+        <ion-option value="reconstrucao">Reconstrução</ion-option>
+        <ion-option value="finalizacao">Finalização</ion-option>
+        <ion-option value="outros">Outros</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+  
+  <button class="mg-top-40 center" color="imperial" ion-button block (click)="cadastrar()">Cadastrar</button>
 </ion-content>

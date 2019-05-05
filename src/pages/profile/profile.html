@@ -20,41 +20,60 @@
     <div class="center">
       <img *ngIf="!user.avatar" class="avatarPos avatar">
       <img *ngIf="user.avatar" class="avatarPos" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')'}">
-      <button class="center"color="imperial" ion-fab mini (click)="changeAvatar()">
+      <button class="center" color="imperial" ion-fab mini (click)="changeAvatar()">
         <ion-icon padding name="md-camera"></ion-icon>
       </button>
     </div>
   </div>
   <!-- FORMS -->
-  <ion-list class="mg-top-20">
+  <ion-list >
     <ion-item padding>
       <ion-icon name="person" color="rosa" item-start></ion-icon>
-      <ion-input [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+      <ion-input placeholder="Nome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
-  <ion-list class="no-margin">
+  <ion-list>
     <ion-item padding>
       <ion-icon name="call" color="rosa" item-start></ion-icon>
-      <ion-input  placeholder="Celular" [(ngModel)]="user.telefone" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+      <ion-input placeholder="Celular" [(ngModel)]="user.telefone" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
-  <ion-list class="no-margin">
+  <ion-list>
     <ion-item padding>
       <ion-icon name="mail" color="rosa" item-start></ion-icon>
-      <ion-input [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+      <ion-input placeholder="Email"[(ngModel)]="user.email" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
-  <ion-list class="no-margin">
+
+  <ion-item padding center>
+    <ion-label center>Tipo de cabelo</ion-label>
+    <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="toppings" multiple="true" >
+      <ion-option>1A</ion-option>
+      <ion-option>1B</ion-option>
+      <ion-option>1C</ion-option>
+      <ion-option>2A</ion-option>
+      <ion-option>2B</ion-option>
+      <ion-option>2C</ion-option>
+      <ion-option>3A</ion-option>
+      <ion-option>3B</ion-option>
+      <ion-option>3C</ion-option>
+      <ion-option>4A</ion-option>
+      <ion-option>4B</ion-option>
+      <ion-option>4C</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
     <ion-item padding>
       <ion-icon name="lock" color="rosa" item-start></ion-icon>
-      <ion-input [(ngModel)]="user.pass" type="password" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="roxo" item-end></ion-icon>
+      <ion-input placeholder="Senha" [(ngModel)]="user.pass" type="password" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
-  <button class="mg-top-20 center" color="imperial" ion-button round (click)="save()">Salvar</button>
+  <button class="mg-top-20 center" color="imperial" ion-button block (click)="save()">Salvar</button>
 </ion-content>

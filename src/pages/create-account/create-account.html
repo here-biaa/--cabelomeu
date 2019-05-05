@@ -4,14 +4,17 @@
     <img src="./assets/imgs/brand-logo-branco.png" class="logo-white-login">
   </div>
 
-  <div class="mg-top-20-">
+  <div class="mg-top-20">
     <h2 class="mimi bold center">
       Vamos lá
     </h2>
+    <div class="center mimi font-18">
+      <small>Insira suas informações para começar</small>
+    </div>
   </div>
   <!-- INPUTS AND CTA -->
-  <div class="mg-top-30 customInputsPadding">
-    <form [formGroup]="validacao_form"  class="">
+  <div class="mg-top-10 customInputsPadding">
+    <form [formGroup]="validacao_form" class="">
       <!-- NAME -->
       <ion-item class="transparent-bg no-padding">
         <ion-label stacked class="eggshell">Seu nome</ion-label>
@@ -21,7 +24,8 @@
       <!-- EMAIL -->
       <ion-item class="transparent-bg no-padding mg-top-20">
         <ion-label stacked class="eggshell">Seu e-mail</ion-label>
-        <ion-input formControlName="email" [(ngModel)]="validacao_form.email" type="email" class="eggshell bold "></ion-input>
+        <ion-input formControlName="email" [(ngModel)]="validacao_form.email" type="email" class="eggshell bold ">
+        </ion-input>
       </ion-item>
       <div *ngIf="!validacao_form.controls.email.valid " class="validator-error red light">
         Entre com um e-mail válido.
@@ -30,7 +34,8 @@
       <!-- PASS -->
       <ion-item class="transparent-bg no-padding mg-top-20">
         <ion-label stacked class="eggshell">Sua senha</ion-label>
-        <ion-input formControlName="pass" [(ngModel)]="validacao_form.pass" type="password" class="eggshell bold"></ion-input>
+        <ion-input formControlName="pass" [(ngModel)]="validacao_form.pass" type="password" class="eggshell bold">
+        </ion-input>
       </ion-item>
       <div *ngIf="!validacao_form.controls.pass.valid" class="validator-error red light">
         Sua senha deve conter 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.
@@ -38,13 +43,13 @@
 
       <!-- PASS -->
       <ion-item class="transparent-bg no-padding mg-top-20">
-        <ion-label floating stacked class="eggshell">Confirme a senha</ion-label>
+        <ion-label stacked class="eggshell">Confirme a senha</ion-label>
         <ion-input formControlName="confirmPass" type="password" class="eggshell bold"></ion-input>
       </ion-item>
 
       <!-- CTA -->
       <div class="registerCta mg-top-30">
-        <button class="preto no-padding btnLogin padding-top-5" ion-button clear [disabled]="!validacao_form.valid"
+        <button class="no-padding btnLogin padding-top-5" ion-button clear [disabled]="!validacao_form.valid"
           (click)="registrar()">
           <b>Cadastrar</b>
         </button>
