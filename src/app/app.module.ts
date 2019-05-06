@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, ModalController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
@@ -9,7 +9,7 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 import { CommonModule } from '@angular/common';
 
 //Calendario
-import { CalendarService } from '../pages/calendario/calendar.service';
+import * as moment from 'moment';
 
 //Temporizador
 import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
@@ -95,7 +95,6 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
     ImagesUpload,
     AngularFireAuth,
     //calendario
-    CalendarService,
     //temporizador
     Insomnia,
     NavigationBar,
