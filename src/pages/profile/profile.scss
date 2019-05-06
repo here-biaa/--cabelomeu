@@ -48,7 +48,10 @@ page-profile {
     .btnLogin {
         height: 20px
     }
-
+    button.center.fab.fab-md {
+        margin-left: 180px;
+        margin-top: -38px;
+    }
 
     .avatar {
         background-color:$mimi;
@@ -79,4 +82,9 @@ page-profile {
     .btnLeft{
         float: left;
     }
+    .button-md-imperial {
+        margin-left: 20%;
+        width:200px;
+    }
+ 
 }

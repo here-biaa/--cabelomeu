@@ -36,7 +36,7 @@
   </div>
   <ion-item class="mg-top-40">
     <ion-label>Tempo de duração:</ion-label>
-    <ion-datetime placeholde="Iniciar" placeholder="Iniciar" displayFormat="HH:mm:ss" #myPicker
+    <ion-datetime placeholder="Definir" displayFormat="HH:mm:ss" #myPicker
       (ionChange)="updateMyDate(myPicker.value)" cancelText="Cancelar" doneText="Ok" [(ngModel)]="fullTime">
     </ion-datetime>
   </ion-item>
