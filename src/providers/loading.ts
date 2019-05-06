@@ -12,14 +12,7 @@ export class LoadingProvider {
    */
   present = (): Promise<any> => {
     this.loading = this.loadingCtrl.create({
-      spinner: "hide",
-      content: `
-          <div class="custom-spinner-container">
-          <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-          </div>
-          </div>`
+      spinner: "crescent"  
     });
 
     return this.loading.present();

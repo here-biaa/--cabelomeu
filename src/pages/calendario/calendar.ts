@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
 import { CalendarService } from './calendar.service';
-import {FormBuilder,FormControl,FormGroup,Validators} from '@angular/forms';
-import * as moment from 'moment';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
-import { FirebaseProvider } from '../../providers/firebase';
-import { LoadingProvider } from '../../providers/loading';
 
 export interface IEvent {
     allDay: boolean;
@@ -118,6 +114,7 @@ export interface IDateFormatter {
     formatDayViewTitle?: { (date:Date): string; };
     formatDayViewHourColumn?: { (date:Date): string; };
 }
+
 export type CalendarMode = 'day' | 'month' | 'week';
 
 export type QueryMode = 'local' | 'remote';
@@ -127,12 +124,148 @@ export enum Step {
     HalfHour = 30,
     Hour = 60
 }
-@IonicPage()
+
 @Component({
-  selector: 'page-calendario',
-  templateUrl: 'calendario.html',
+    selector: 'calendar',
+    template: `
+        <ng-template #monthviewDefaultDisplayEventTemplate let-view="view" let-row="row" let-col="col">
+            {{view.dates[row*7+col].label}}
+        </ng-template>
+        <ng-template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+            <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+                <ion-item *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
+                        <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}}
+                            -
+                            {{event.endTime|date: 'HH:mm'}}
+                        </span>
+                    <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">{{allDayLabel}}</span>
+                    <span class="event-detail">  |  {{event.title}}</span>
+                </ion-item>
+                <ion-item *ngIf="selectedDate?.events.length==0">
+                    <div class="no-events-label">{{noEventsLabel}}</div>
+                </ion-item>
+            </ion-list>
+        </ng-template>
+        <ng-template #defaultAllDayEventTemplate let-displayEvent="displayEvent">
+            <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
+        </ng-template>
+        <ng-template #defaultNormalEventTemplate let-displayEvent="displayEvent">
+            <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
+        </ng-template>
+        <div [ngSwitch]="calendarMode" class="{{calendarMode}}view-container">
+            <monthview *ngSwitchCase="'month'"
+                [formatDay]="formatDay"
+                [formatDayHeader]="formatDayHeader"
+                [formatMonthTitle]="formatMonthTitle"
+                [startingDayMonth]="startingDayMonth"
+                [showEventDetail]="showEventDetail"
+                [noEventsLabel]="noEventsLabel"
+                [autoSelect]="autoSelect"
+                [eventSource]="eventSource"
+                [markDisabled]="markDisabled"
+                [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate||monthviewDefaultDisplayEventTemplate"
+                [monthviewInactiveDisplayEventTemplate]="monthviewInactiveDisplayEventTemplate||monthviewDefaultDisplayEventTemplate"
+                [monthviewEventDetailTemplate]="monthviewEventDetailTemplate||monthviewDefaultEventDetailTemplate"
+                [locale]="locale"
+                [dateFormatter]="dateFormatter"
+                [dir]="dir"
+                [lockSwipeToPrev]="lockSwipeToPrev"
+                [lockSwipes]="lockSwipes"
+                [spaceBetween]="spaceBetween"       
+                (onRangeChanged)="rangeChanged($event)"
+                (onEventSelected)="eventSelected($event)"
+                (onTimeSelected)="timeSelected($event)"
+                (onTitleChanged)="titleChanged($event)">
+            </monthview>
+            <weekview *ngSwitchCase="'week'"
+                [formatWeekTitle]="formatWeekTitle"
+                [formatWeekViewDayHeader]="formatWeekViewDayHeader"
+                [formatHourColumn]="formatHourColumn"
+                [startingDayWeek]="startingDayWeek"
+                [allDayLabel]="allDayLabel"
+                [hourParts]="hourParts"
+                [eventSource]="eventSource"
+                [markDisabled]="markDisabled"
+                [weekviewAllDayEventTemplate]="weekviewAllDayEventTemplate||defaultAllDayEventTemplate"
+                [weekviewNormalEventTemplate]="weekviewNormalEventTemplate||defaultNormalEventTemplate"
+                [locale]="locale"
+                [dateFormatter]="dateFormatter"
+                [dir]="dir"
+                [scrollToHour]="scrollToHour"
+                [preserveScrollPosition]="preserveScrollPosition"
+                [lockSwipeToPrev]="lockSwipeToPrev"
+                [lockSwipes]="lockSwipes"
+                [startHour]="startHour"
+                [endHour]="endHour"
+                [spaceBetween]="spaceBetween"
+                (onRangeChanged)="rangeChanged($event)"
+                (onEventSelected)="eventSelected($event)"
+                (onTimeSelected)="timeSelected($event)"
+                (onTitleChanged)="titleChanged($event)">
+            </weekview>
+            <dayview *ngSwitchCase="'day'"
+                [formatDayTitle]="formatDayTitle"
+                [formatHourColumn]="formatHourColumn"
+                [allDayLabel]="allDayLabel"
+                [hourParts]="hourParts"
+                [eventSource]="eventSource"
+                [markDisabled]="markDisabled"
+                [dayviewAllDayEventTemplate]="dayviewAllDayEventTemplate||defaultAllDayEventTemplate"
+                [dayviewNormalEventTemplate]="dayviewNormalEventTemplate||defaultNormalEventTemplate"
+                [locale]="locale"
+                [dateFormatter]="dateFormatter"
+                [dir]="dir"
+                [scrollToHour]="scrollToHour"
+                [preserveScrollPosition]="preserveScrollPosition"
+                [lockSwipeToPrev]="lockSwipeToPrev"
+                [lockSwipes]="lockSwipes"
+                [startHour]="startHour"
+                [endHour]="endHour"
+                [spaceBetween]="spaceBetween"
+                (onRangeChanged)="rangeChanged($event)"
+                (onEventSelected)="eventSelected($event)"
+                (onTimeSelected)="timeSelected($event)"
+                (onTitleChanged)="titleChanged($event)">
+            </dayview>
+        </div>
+    `,
+    styles: [`
+        :host > div { height: 100%; }
+        .event-detail-container {
+          border-top: 2px darkgrey solid;
+        }
+        .no-events-label {
+          font-weight: bold;
+          color: darkgrey;
+          text-align: center;
+        }
+        .event-detail {
+          cursor: pointer;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .monthview-eventdetail-timecolumn {
+          width: 110px;
+          overflow: hidden;
+        }
+        .calendar-event-inner {
+          overflow: hidden;
+          background-color: #3a87ad;
+          color: white;
+          height: 100%;
+          width: 100%;
+          padding: 2px;
+          line-height: 15px;
+        }
+        @media (max-width: 750px) {
+          .calendar-event-inner {
+            font-size: 12px;
+          }
+        }
+    `],
+    providers: [CalendarService]
 })
-export class calendarioPage {
+export class CalendarComponent implements OnInit {
     @Input()
     get currentDate():Date {
         return this._currentDate;
@@ -194,8 +327,7 @@ export class calendarioPage {
     private hourParts = 1;
     private currentDateChangedFromChildrenSubscription:Subscription;
 
-    constructor(
-      private calendarService:CalendarService, @Inject(LOCALE_ID) private appLocale:string) {
+    constructor(private calendarService:CalendarService, @Inject(LOCALE_ID) private appLocale:string) {
         this.locale = appLocale;
     }
 

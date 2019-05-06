@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler, ApplicationRef } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -9,10 +9,8 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 import { CommonModule } from '@angular/common';
 
 //Calendario
-import { AppState, InternalStateType } from './app.service';
-import * as moment from 'moment';
-import { NgCalendarModule } from 'ionic2-calendar/index';
-import { DaterangepickerModule} from 'angular-2-daterangepicker'
+import { CalendarService } from '../pages/calendario/calendar.service';
+
 //Temporizador
 import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
@@ -53,7 +51,7 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
 @NgModule({
   declarations: [
     MyApp,
-  ],
+    ],
   imports: [
     //Pages
     LoginPageModule,
@@ -72,8 +70,6 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
     DetalhesProdutoPageModule,
 
     //Calendario
-    DaterangepickerModule,
-    
     //Outros
     CommonModule,
     HttpClientModule,
@@ -88,7 +84,6 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    
   ],
   providers: [
     StatusBar,
@@ -100,7 +95,7 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
     ImagesUpload,
     AngularFireAuth,
     //calendario
-
+    CalendarService,
     //temporizador
     Insomnia,
     NavigationBar,
@@ -111,7 +106,5 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
   ]
 })
 export class AppModule  {
- constructor(public appRef: ApplicationRef) {}
-
  
 }
