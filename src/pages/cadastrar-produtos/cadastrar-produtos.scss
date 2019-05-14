@@ -1,3 +1,9 @@
 page-cadastrar-produtos {
-
+    .produto {
+        background-size: cover;
+        background-position: center center;
+        height: 150px;
+        width: 100%;
+        border-bottom: 3px solid $rosa;
+    }
 }

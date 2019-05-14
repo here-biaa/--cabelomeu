@@ -29,24 +29,16 @@
   <ion-list >
     <ion-item padding>
       <ion-icon name="person" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Nome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item padding>
-      <ion-icon name="call" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Celular" [(ngModel)]="user.telefone" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
+      <ion-input placeholder="Nome" [disabled]="!editarNome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" (click)="alterarNome()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
   <ion-list>
     <ion-item padding>
       <ion-icon name="mail" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Email"[(ngModel)]="user.email" type="text" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
+      <ion-input placeholder="Email" [disabled]="!editaEmail" [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
+      <ion-icon name="md-create" (click)="alterarEmail()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
@@ -71,8 +63,8 @@
   <ion-list>
     <ion-item padding>
       <ion-icon name="lock" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Senha" [(ngModel)]="user.pass" type="password" class="black bold"></ion-input>
-      <ion-icon name="md-create" color="imperial" item-end></ion-icon>
+      <ion-input placeholder="Senha" [disabled]="!editarSenha" [(ngModel)]="user.pass" type="password" class="black bold"></ion-input>
+      <ion-icon name="md-create" color="imperial" (click)="alterarSenha()" item-end></ion-icon>
     </ion-item>
   </ion-list>
   <button class="mg-top-20 center" color="imperial" ion-button block (click)="save()">Salvar</button>

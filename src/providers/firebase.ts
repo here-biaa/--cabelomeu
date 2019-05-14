@@ -22,7 +22,7 @@ export class FirebaseProvider {
       .collection("Users")
       .doc(data.uid)
       .set(data);
-
+  
   //Create order on firestore
   postOrder = data => this.afs.collection("Orders").add(data);
 
@@ -42,11 +42,12 @@ export class FirebaseProvider {
       });
     return collection$;
   };
-
-  //Get products
-  getProducts = () => {
+  
+  //buscar produtos
+  getProdutos = uid => {
     const collection: AngularFirestoreCollection<any> = this.afs.collection(
-      "Products"
+      "Produtos",
+      ref => ref.where("uid", "==", uid)
     );
     const collection$: Observable<any> = collection
       .snapshotChanges()
@@ -57,5 +58,20 @@ export class FirebaseProvider {
         }));
       });
     return collection$;
+  };
+  //Salvar produtos
+  saveProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .doc(data.$key)
+      .set(data);
+
+  //Criar produtos no firestore
+  postProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .doc(data.uid)
+      .set(data);
   }
-}
+
+  
