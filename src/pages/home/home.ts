@@ -14,8 +14,8 @@ export class HomePage {
   user;
 
   //paginas
-  inicio =false;
-  conteudo =true;
+  inicio =true;
+  conteudo =false;
   //slides
   public lottieConfig;
   lottieConfig2;
@@ -94,9 +94,9 @@ export class HomePage {
 
   }
   inicioSlides(slide) {
-    this.inicio = false;
-    this.conteudo = true; 
-    this.slides.slideTo(slide, 1000, true);
+    this.inicio = true;
+    this.conteudo = false; 
+    this.slides.slideTo(slide, 1500, true);
     this.getAndSaveCurrentUser(this.user.uid);
    }
   //Refresh page
