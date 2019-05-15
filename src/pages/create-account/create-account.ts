@@ -74,7 +74,9 @@ export class CreateAccountPage {
           this.uid = res.user.uid;
           console.log("ok");
           this.createUserOnFirestore();
-       
+
+          let user = firebase.auth().currentUser;
+          user.sendEmailVerification();
           this.loadingProvider.dismiss();
           this.alertCtrl.create({
             title: "Verifique seu email",

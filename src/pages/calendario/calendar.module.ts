@@ -1,5 +1,3 @@
-import { IonicPageModule } from 'ionic-angular';
-import { calendarioPage } from './calendario';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CalendarController } from './calendar.controller';
 import { IonicModule, ModalController } from 'ionic-angular';
@@ -12,16 +10,10 @@ export function calendarController(modalCtrl: ModalController,
 }
 
 @NgModule({
-  declarations: [
-    calendarioPage,
-    CALENDAR_COMPONENTS
-   ],
+  imports: [IonicModule],
+  declarations: CALENDAR_COMPONENTS,
   exports: CALENDAR_COMPONENTS,
   entryComponents: CALENDAR_COMPONENTS,
- 
-  imports: [
-    IonicPageModule.forChild(calendarioPage), 
-  ],
   providers: [
     CalendarService,
     {
@@ -31,4 +23,5 @@ export function calendarController(modalCtrl: ModalController,
     }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class calendarioPageModule {}
+export class CalendarModule {
+}

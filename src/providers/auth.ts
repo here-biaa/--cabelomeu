@@ -19,7 +19,10 @@ export class AuthProvider {
     console.log(errorMessage);
     // ...
   });
+
   //Login
   login = (data) => this.afAuth.auth.signInWithEmailAndPassword(data.email, data.pass);
   sair = (data) => this.afAuth.auth.signOut();
-}
+  password = (data) => this.afAuth.auth.sendPasswordResetEmail(data.email);
+
+ }

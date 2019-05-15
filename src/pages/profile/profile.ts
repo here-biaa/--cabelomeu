@@ -19,13 +19,14 @@ export class ProfilePage {
     name: '',
     email:'',
     pass:'',
-    telefone:'',
     uid: '',
     avatar: ''
   };
   bigImg = null;
   smallImg = null;
-
+  editarNome= false;
+  editarEmail =false;
+  editarSenha =false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,7 +40,13 @@ export class ProfilePage {
   ) {
     this.getCurrentUser();
   }
+  alterarNome(){
+    this.editarNome = true;
+  }
+ alterarSenha(){
+   this.editarSenha = true;
 
+  }
   //Atualizar a pagina
   refresh(refresher) {
     refresher.complete();

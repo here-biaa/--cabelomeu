@@ -17,7 +17,25 @@ export class LoginPage implements ErrorHandler{
     throw new Error("Method not implemented.");
   }
 
+
   form: FormGroup;
+  formEmail: FormGroup;
+
+  loggin = true;
+  password = false;
+
+
+  //Exibir form de login
+  exibirLogin() {
+    this.password = false;
+    this.loggin = true;
+  }
+
+  //Exibir form de recupercao de senha
+  exibirPassword() {
+    this.password = true;
+    this.loggin = false;
+  }
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +48,7 @@ export class LoginPage implements ErrorHandler{
     private storage: Storage
   ) {
     this.buildForm();
+    
   }
 
   buildForm() {
@@ -37,8 +56,10 @@ export class LoginPage implements ErrorHandler{
       email: ['', Validators.required],
       pass: ['', Validators.required],
     })
+    this.formEmail = this.formBuilder.group({
+      email: ['', Validators.required],
+    })
   }
-
   login() {
     this.loadingProvider.present().then(() =>{
       let data = this.form.value;
@@ -56,6 +77,9 @@ export class LoginPage implements ErrorHandler{
             // Senão ele vai receber um alerta
             console.log("email not verified");
             this.loadingProvider.dismiss();
+
+            let user = firebase.auth().currentUser;
+            user.sendEmailVerification();
             this.alertCtrl.create({
               title: "Verifique e confirme seu email",
               subTitle: "É necessário a confirmação do e-mail de autenticação.",
@@ -77,7 +101,39 @@ export class LoginPage implements ErrorHandler{
         })
     });
   } 
+  passwordReset(){
+    this.loadingProvider.present().then(() => {
+      let data = this.formEmail.value;
+      this.authProvider.password(data)
+           .then((res) => {
+             console.log(res);
+             res.user = firebase.auth().currentUser;
+             this.firebaseProvider.postUser(data).then(res => {
+               this.storage.set('user_cabelomeu', data).then(() => {
+                 this.loadingProvider.dismiss();
+                 this.navCtrl.setRoot('TabsPage');
+               });
 
+             });
+
+             this.alertCtrl.create({
+              title: "Verifique e confirme seu email",
+              subTitle: "Enviamos um link de redefinição de senha no seu email.",
+              buttons: ["Ok"]
+            }).present();
+           })
+           .catch ((err) => {
+             console.log(err);
+        // Se o usuario digitar um email ou senha incorreta
+        this.loadingProvider.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Algo deu errado. ',
+          subTitle: 'Usuário não enconrado.',
+          buttons: ['Ok']
+        });
+        alert.present();
+      })      
+    })}
   getAndSaveCurrentUser(uid){
     this.firebaseProvider.getCurrentUser(uid)
     .subscribe((res) => {

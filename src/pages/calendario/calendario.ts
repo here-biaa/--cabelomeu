@@ -1,153 +1,38 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, ToastController } from 'ionic-angular';
+import { CalendarComponentOptions, DayConfig, CalendarModalOptions} from '../calendario/calendar.model';
+import {CalendarModal} from '../calendario/components/calendar.modal';
 import * as moment from 'moment';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
-import { FirebaseProvider } from '../../providers/firebase';
-import { LoadingProvider } from '../../providers/loading';
-import { AppState } from '../../app/app.service';
-import{colors} from '../calendario/colors';
 @IonicPage()
 @Component({
   selector: 'page-calendario',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: 'calendario.html',
 })
-export class calendarioPage implements OnInit {
-
-  products;
-  modal = false;
-
-  public date = moment();
-  public dateForm: FormGroup;
-
-  public isReserved = null;
-  @Input() ngClass: any;
-  public daysArr;
-
-
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private firebaseProvider: FirebaseProvider,
-    private loadingProvider: LoadingProvider,
-    private modalCtrl: ModalController,
-    private viewCtrl: ViewController,
-    private fb: FormBuilder
-  ) {
-    this.initDateRange();
-    this.getProducts();
-    this.loadingProvider.present();
-    this.modal = this.navParams.get('modal');
-    this.date.locale('pt-br');
-  }
-//formulario
-  public initDateRange() {
-     this.dateForm = this.fb.group({
-      dateFrom: [null, Validators.required],
-      dateTo: [null, Validators.required]
-    });
-  }
-  //calendario a partir da data atual
+export class calendarioPage {
+  date: string;
+  type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   
-  public ngOnInit() {
-    this.daysArr = this.createCalendar(this.date);
+  
+  constructor(public modalCtrl: ModalController, private toastCtrl: ToastController) { moment.locale('pt-br') }
+
+  _toastWrap(event: string, payload: {}) {
+    let toast = this.toastCtrl.create({
+      message: `${event}: ${JSON.stringify(payload, null, 2)}`,
+      duration: 2000,
+    });
+    toast.present()
   }
 
-public  createCalendar(month) {
-    let firstDay = moment(month).startOf('M');
-    moment.locale('pt-br')
-    let days = Array.apply(null, { length: month.daysInMonth() })
-      .map(Number.call, Number)
-      .map(n => {
-        return moment(firstDay).locale('pt-br').add(n, 'd');
-      });
-
-    for (let n = 0; n < firstDay.weekday(); n++) {
-      days.unshift(null);
-    }
-    return days;
-  } 
-  public todayCheck(day) {
-    if (!day) {
-      return false;
-    }
-    return moment().format('L') === day.format('L').locale('pt-br');
+  onChange($event) {
+    console.log('onChange', $event);
+    this._toastWrap('onChange', $event)
   }
 
-  public reserve() {
-    if (!this.dateForm.valid) {
-      return;
-    }
-    let dateFromMoment = this.dateForm.value.dateFrom;
-    let dateToMoment = this.dateForm.value.dateTo;
-    this.isReserved = `Reserved from ${dateFromMoment} to ${dateToMoment}`;
+  onSelect($event) {
+    console.log('onSelect', $event);
+    this._toastWrap('onSelect', $event)
   }
-
-  public isSelected(day) {
-    if (!day) {
-      return false;
-    }
-    let dateFromMoment = moment(this.dateForm.value.dateFrom, 'MM/DD/YYYY');
-    let dateToMoment = moment(this.dateForm.value.dateTo, 'MM/DD/YYYY');
-    if (this.dateForm.valid) {
-      return (
-        dateFromMoment.isSameOrBefore(day) && dateToMoment.isSameOrAfter(day)
-      );
-    }
-    if (this.dateForm.get('dateFrom').valid) {
-      return dateFromMoment.locale('pt-br').isSame(day);
-    }
-  }
-
-  public selectedDate(day) {
-    let dayFormatted = day.format('MM/DD/YYYY');
-    if (this.dateForm.valid) {
-      this.dateForm.setValue({ dateFrom: null, dateTo: null });
-      return;
-    }
-    if (!this.dateForm.get('dateFrom').value) {
-      this.dateForm.get('dateFrom').patchValue(dayFormatted);
-    } else {
-      this.dateForm.get('dateTo').patchValue(dayFormatted);
-    }
-  }
-
-
-  //Refresh page
-  refresh(refresher) {
-    refresher.complete();
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-
-  //Close modal
-  close() {
-    this.viewCtrl.dismiss()
-  }
-
-  //Open product page
-  open(p) {
-    let modal = this.modalCtrl.create('ProductPage', { product: p });
-    modal.present();
-  }
-
-  //Open cart
-  openCart() {
-    let modal = this.modalCtrl.create('CartPage', { modal: true });
-    modal.present();
-  }
-
-  //List all produtcs to slides
-  getProducts() {
-    this.firebaseProvider.getProducts()
-      .subscribe((res) => {
-        this.loadingProvider.dismiss();
-        this.products = res;
-      })
-  }
-
 }
+
+
+
