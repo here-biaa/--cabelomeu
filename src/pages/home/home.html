@@ -1,8 +1,8 @@
 <!-- Essa parte é para ter um quiz quando o  usuario logar pela primeira vez  -->
-<!-- <ion-content class="slides" *ngIf="inicio">
+<ion-content class="slides" *ngIf="inicio">
   <div class=" slideCronograma-subheader">
-    <p class="eggshell center font-18 bold">
-      Inicie seu cronograma
+    <p class="white center font-18 bold">
+      Inicie seu cronograma personalizado
     </p>
   </div>
   <ion-slides class="backCronograma" autoplay="3000" (ionSlideDidChange)="slideChanged()">
@@ -32,18 +32,19 @@
           <ion-col col-12>
             <div class="outer">
               <div class="inner">
-                <h3 class="txt">Encontre o produto adequado para seus cabelos
+                <h3 class="txt mg-top-10">Indentifique seu tipo de cabelo
                   <br />
                   <br />
                   <br />
                 </h3>
-                <button color="eggshell" type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
-               class=" btn_go_login">Começar</button>
-              </div>
+               </div>
               <div class="inner">
                 <lottie-animation-view [options]="lottieConfig2" [width]="300" [height]="600"
                   (animCreated)="handleAnimation2($event)">
                 </lottie-animation-view>
+                <button type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
+                class=" btn_go_login">Criar meu cronograma</button>
+            
               </div>
             </div>
           </ion-col>
@@ -57,19 +58,18 @@
           <ion-col col-12>
             <div class="outer">
               <div class="inner">
-                <h3 class="txt">
-                  Encontre os melhores salões próximos a você
+                <h3 class="txt mg-top-10">
+                  Agora responda o <small class="Logotipo bold">Teste de Purosidade</small> para finalizar
                   <br />
                   <br />
                 </h3>
               </div>
-              <div class="inner">
+              <div class="center inners">
                 <lottie-animation-view [options]="lottieConfig3" [width]="300" [height]="600"
                   (animCreated)="handleAnimation3($event)">
                 </lottie-animation-view>
+                <button ion-button color="imperial" class="mg-top-40"(click)="inicioSlides(1)">Começar</button>
               </div>
-              <button color="eggshell" type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
-                class=" btn_go_login">Começar</button>
             </div>
           </ion-col>
         </ion-row>
@@ -77,18 +77,17 @@
     </ion-slide>
   </ion-slides>
 </ion-content>
--->
 <!-- Quando o usuario responder o quiz e apertar em começar vai aparecer essa parte com todo o conteudo  -->
-<ion-header *ngIf="conteudo">
+<ion-header>
 
   <ion-navbar>
     <ion-title>
-    <small class="Logotipo no-padding bold center">CabeloMeu</small>
+      <small class="Logotipo no-padding bold center">CabeloMeu</small>
     </ion-title>
   </ion-navbar>
 
 </ion-header>
-<ion-content class="card-background-page">
+<ion-content class="card-background-page" *ngIf="conteudo">
 
   <ion-card class="imperial" (click)="abrirHidratacao()">
     <img src="./assets/imgs/card1.png" />
