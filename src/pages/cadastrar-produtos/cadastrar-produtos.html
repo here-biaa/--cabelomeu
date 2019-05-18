@@ -7,19 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-<<<<<<< HEAD
 
-  <div class="padding-20">
-    <div class="center">
-      <img *ngIf="" class="avatarPos avatar">
-      <img *ngIf="" class="avatarPos" [ngStyle]="{ 'background-image': 'url(' +  + ')'}">
-      <button class="center" color="rosa" ion-fab mini (click)="changeAvatar()">
-        <ion-icon padding name="md-camera"></ion-icon>
-      </button>
-    </div>
-  </div>
-
-=======
     <div  class="center">
         <img *ngIf="!produto.imgProduto" class="produto">
         <img *ngIf="produto.imgProduto" class="produto" [ngStyle]="{ 'background-image': 'url(' + produto.imgProduto + ')'}">
@@ -27,28 +15,17 @@
             <ion-icon padding name="md-camera" item-end></ion-icon>
           </button>
     </div>
-<<<<<<< HEAD
   <form [formGroup]="form">
     <ion-list>
       <ion-item>
         <ion-label color="primary" stacked>Nome do produto</ion-label>
         <ion-input type="text" formControlName="nome" [(ngModel)]="form.nome"></ion-input>
       </ion-item>
-=======
->>>>>>> 0a0252d258228b52b9609bcd41de2e70cb8b6f10
-  <ion-list>
-    <ion-item>
-      <ion-label color="primary" stacked>Nome do produto</ion-label>
-      <ion-input type="text" [(ngModel)]="produto.nome"></ion-input>
-    </ion-item>
->>>>>>> 216ab24d72ceef84022ef34eb56ce311eccbc5ee
-
       <ion-item>
         <ion-label color="primary" stacked>Marca</ion-label>
         <ion-input type="text" formControlName="marca" [(ngModel)]="form.marca"></ion-input>
       </ion-item>
 
-<<<<<<< HEAD
       <ion-item>
         <ion-label color="primary">Tipo</ion-label>
         <ion-select formControlName="tipo" [(ngModel)]="form.tipo">
@@ -67,30 +44,4 @@
   </ion-item>
   
   <button class="mg-top-40 center" color="imperial" ion-button block [disabled]="!form.valid" (click)="cadastrar()" >Cadastrar</button>
-=======
-    <ion-item>
-<<<<<<< HEAD
-      <ion-label color="primary" stacked>Observação</ion-label>
-      <ion-input type="textarea"></ion-input>
-=======
-        <ion-label color="primary" stacked>Observação</ion-label>
-        <ion-input type="textarea" [(ngModel)]="produto.obs"></ion-input>
->>>>>>> 0a0252d258228b52b9609bcd41de2e70cb8b6f10
-    </ion-item>
-
-    <ion-item>
-      <ion-label color="primary">Tipo</ion-label>
-      <ion-select [(ngModel)]="produto.tipo">
-        <ion-option value="hidratacao">Hidratação</ion-option>
-        <ion-option value="nutricao">Nutrição</ion-option>
-        <ion-option value="reconstrucao">Reconstrução</ion-option>
-        <ion-option value="finalizacao">Finalização</ion-option>
-        <ion-option value="outros">Outros</ion-option>
-      </ion-select>
-    </ion-item>
-
-  </ion-list>
-
-  <button class="mg-top-40 center" color="imperial" ion-button block (click)="cadastrar()">Cadastrar</button>
->>>>>>> 216ab24d72ceef84022ef34eb56ce311eccbc5ee
 </ion-content>
