@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-<<<<<<< HEAD
 
   <div class="padding-20">
     <div class="center">
@@ -19,15 +18,6 @@
     </div>
   </div>
 
-=======
-    <div  class="center">
-        <img *ngIf="!produto.imgProduto" class="produto">
-        <img *ngIf="produto.imgProduto" class="produto" [ngStyle]="{ 'background-image': 'url(' + produto.imgProduto + ')'}">
-          <button class="center" color="imperial" ion-fab mini (click)="imagemProduto()">
-            <ion-icon padding name="md-camera" item-end></ion-icon>
-          </button>
-    </div>
->>>>>>> 0a0252d258228b52b9609bcd41de2e70cb8b6f10
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>Nome do produto</ion-label>
@@ -40,13 +30,8 @@
     </ion-item>
 
     <ion-item>
-<<<<<<< HEAD
       <ion-label color="primary" stacked>Observação</ion-label>
       <ion-input type="textarea"></ion-input>
-=======
-        <ion-label color="primary" stacked>Observação</ion-label>
-        <ion-input type="textarea" [(ngModel)]="produto.obs"></ion-input>
->>>>>>> 0a0252d258228b52b9609bcd41de2e70cb8b6f10
     </ion-item>
 
     <ion-item>

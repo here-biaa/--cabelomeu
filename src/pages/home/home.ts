@@ -120,11 +120,12 @@ export class HomePage {
         this.storage.set('user_cabelomeu', user);
       })
   }
+
+abrirCronograma = () => this.navCtrl.setRoot('CalendarioPage');
 //-----------HOME-----------//
 abrirHidratacao = () => this.navCtrl.push('EtapasCronoPage');
 abrirNutricao = () => this.navCtrl.push('EtapasCronoPage');
 abrirReconstrucao = () => this.navCtrl.push('EtapasCronoPage');
-abrirCronograma = () => this.navCtrl.setRoot('calendarioPage');
 abrirPerfil = () => this.navCtrl.push('ProfilePage'); 
 abrirProdutos = () => this.navCtrl.push('CadastrarProdutosPage'); 
 abrirTemporizador = () => this.navCtrl.setRoot('TemporizadorPage'); 
