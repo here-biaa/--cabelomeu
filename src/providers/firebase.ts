@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from "angularfire2/firestore";
+import { AngularFirestore,AngularFirestoreCollection} from "angularfire2/firestore";
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
+import { firestore } from 'firebase/app';
+
 @Injectable()
 export class FirebaseProvider {
   constructor(private afs: AngularFirestore) { }
@@ -44,10 +43,9 @@ export class FirebaseProvider {
   };
   
   //buscar produtos
-  getProdutos = uid => {
+  getProdutos = () => {
     const collection: AngularFirestoreCollection<any> = this.afs.collection(
-      "Produtos",
-      ref => ref.where("uid", "==", uid)
+      "Produtos"
     );
     const collection$: Observable<any> = collection
       .snapshotChanges()
@@ -58,7 +56,7 @@ export class FirebaseProvider {
         }));
       });
     return collection$;
-  };
+  }
   //Salvar produtos
   saveProdutos = data =>
     this.afs
