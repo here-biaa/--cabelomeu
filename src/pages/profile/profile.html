@@ -20,8 +20,8 @@
     <div class="center">
       <img *ngIf="!user.avatar" class="avatarPos avatar">
       <img *ngIf="user.avatar" class="avatarPos" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')'}">
-      <button class="center" color="imperial" ion-fab mini (click)="changeAvatar()">
-        <ion-icon padding name="md-camera"></ion-icon>
+      <button class="center" color="imperial" ion-fab  (click)="showactionsheet()">
+        <ion-icon name="md-camera"></ion-icon>
       </button>
     </div>
   </div>
@@ -66,4 +66,5 @@
     </ion-item>
   </ion-list>
   <button class="mg-top-20 center" color="imperial" ion-button block (click)="save()">Salvar</button>
+
 </ion-content>

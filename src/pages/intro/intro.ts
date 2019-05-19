@@ -21,5 +21,5 @@ export class IntroPage {
   }
   
 
-abrirCronograma = () => this.navCtrl.setRoot('calendarioPage');
+abrirCronograma = () => this.navCtrl.setRoot('TabsPage');
 }

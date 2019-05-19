@@ -5,7 +5,8 @@ in<ion-content padding class="animated fadeIn loginBackground"  *ngIf="login">
     <img src="./assets/imgs/brand-logo.png" class="logo-white-login">
   </div>
 
-  <div class="mg-top-10-percent">
+  <div class="mg-top-10">
+    <p class="Meu center no-padding">CabeloMeu</p>
     <h2 class="mimi bold center">
      Adaptando-se aos seus fios
      </h2>
@@ -14,7 +15,7 @@ in<ion-content padding class="animated fadeIn loginBackground"  *ngIf="login">
     </p>
   </div>
 
-  <div class="mg-top-20 customInputsPadding">
+  <div class="mg-top-5 customInputsPadding">
     <form [formGroup]="form" (ngSubmit)="login()" class="">
       <!-- EMAIL -->
       <ion-item class="transparent-bg no-padding">
@@ -67,10 +68,10 @@ in<ion-content padding class="animated fadeIn loginBackground"  *ngIf="login">
 
   <div class="mg-top-10-percent">
     <h2 class="mimi bold center">
-      Adaptando-se aos seus fios
+      Recuperação de senha
     </h2>
     <p class="snow eggshell center light no-margin mg-top-5">
-      Entre com sua conta para redefinir sua senha 
+      Digite seu email para redefinir sua senha 
     </p>
   </div>
 
@@ -92,11 +93,11 @@ in<ion-content padding class="animated fadeIn loginBackground"  *ngIf="login">
         </button>
       </div>
     </form>
-    <div class="mg-top-20 font-18 center mimi bold" (click)="createAccount()">
-      Não tenho uma conta
+    <div class="mg-top-20 font-18 center mimi bold" (click)="exibirLogin()">
+      <small>Voltar</small>
     </div>
-    <div class="mg-top-20  center mimi " (click)="exibirLogin()">
+    <!--<div class="mg-top-20  center mimi " (click)="exibirLogin()">
       Ja tenho uma conta
-    </div>
+    </div>-->
   </div>
 </ion-content>

@@ -127,6 +127,6 @@ abrirNutricao = () => this.navCtrl.push('EtapasCronoPage');
 abrirReconstrucao = () => this.navCtrl.push('EtapasCronoPage');
 abrirPerfil = () => this.navCtrl.push('ProfilePage'); 
 abrirProdutos = () => this.navCtrl.push('CadastrarProdutosPage'); 
-abrirCronograma = () => this.navCtrl.push('CalendarioPage'); 
+abrirCronograma = () => this.navCtrl.push('calendarioPage'); 
 abrirTemporizador = () => this.navCtrl.push('TemporizadorPage'); 
 }

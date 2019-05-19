@@ -49,6 +49,7 @@ import { CadastrarProdutosPageModule } from '../pages/cadastrar-produtos/cadastr
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-produto.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 @NgModule({
   declarations: [
     MyApp,
@@ -96,6 +97,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     LoadingProvider,
     ImagesUpload,
     AngularFireAuth,
+    PhotoViewer,
     //calendario
     //temporizador
     Insomnia,

@@ -7,7 +7,8 @@ import { ImagesUpload } from '../../providers/image-upload';
 import { Camera } from '@ionic-native/camera';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
-
+import { ActionSheetController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -36,7 +37,9 @@ export class ProfilePage {
     public app: App,
     private camera: Camera,
     private storageImages: ImagesUpload,
-    private db:AngularFireDatabase
+    private db:AngularFireDatabase,
+    public actionctrl:ActionSheetController,
+    private toastCtrl: ToastController,
   ) {
     this.getCurrentUser();
   }
@@ -67,9 +70,25 @@ export class ProfilePage {
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
         this.getAndSaveCurrentUser(this.user.uid);
-      })
+        this.presentToast()
+      })  
   }
 
+//quando o usuario salvar as alteraçoes vai aparecer
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Perfil atualizado com sucesso',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+   
 
   //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
@@ -156,4 +175,43 @@ export class ProfilePage {
     }
     image.src = img;
   }
+
+
+//folha de açao com opçoes da foto de perfil//
+  showactionsheet(){
+    let actionsheet = this.actionctrl.create({
+      title: 'Foto de perfil',
+      buttons : [
+        
+        {
+          text:'Selecionar foto de perfil',
+          icon: 'ios-images-outline',
+          handler: () => {
+            this.changeAvatar()
+          }
+        },
+        
+        {
+          text:'Remover foto',
+          icon: 'ios-trash-outline',
+          role:'destructive',
+          handler: () => {
+            console.log("Hey deleted sucessfully")
+          }
+        },
+        {
+          text:'Cancelar',
+          icon:'ios-close-circle-outline',
+          role:'cancel',
+          handler: () => {
+            console.log("Hey cancelled sucessfully")
+          }
+        }
+      ]
+    })
+
+
+    actionsheet.present();
+  }
+
 }
