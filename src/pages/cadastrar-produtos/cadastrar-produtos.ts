@@ -6,6 +6,7 @@ import { FirebaseProvider } from '../../providers/firebase';
 import { ImagesUpload } from '../../providers/image-upload';
 import { Camera } from '@ionic-native/camera';
 import * as firebase from 'firebase';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -13,19 +14,19 @@ import * as firebase from 'firebase';
   templateUrl: 'cadastrar-produtos.html',
 })
 export class CadastrarProdutosPage {
+form: FormGroup;
 bigImg = null;
 smallImg = null;
-  produto = {
-    nome:'',
-    marca:'',
-    obs:'',
-    tipo:'',
-    imgProduto:'',
+amount = 0;
+
+  user = {
     uid: ''
- 
-    };
-  user ={
   };
+  produto ={
+    obs: '',
+    imgProduto: []
+  }
+  produtos=[];
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
@@ -33,21 +34,49 @@ smallImg = null;
     private storage: Storage,
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,
+    private formBuilder: FormBuilder,
+
     public app: App,
     private camera: Camera,
     private storageImages: ImagesUpload,
     ) {
     this.getCurrentUser();
+    this.getProdutos();
+    this.buildForm();
   }
-
+  buildForm() {
+    this.form = this.formBuilder.group({
+      nome: ["", Validators.required],
+      marca: ["", Validators.required],
+      tipo: ["", Validators.required]
+    });
+  }
 
   //Get current user data
   getCurrentUser() {
     this.storage.get('user_cabelomeu')
       .then((user) => {
         this.user = user;
+        this.produto = this.produto;
       })
   }
+  getProdutos() {
+    this.storage.get('user_cabelomeu')
+      .then((res) => {
+        this.produtos = res;
+        this.update();
+      })
+    }
+  
+    update() {
+      //Amount
+      let i = 0;
+      for (i; i < this.produtos.length; i++) {
+        let price = parseFloat(this.produtos[i].produto);
+        this.amount = this.amount + this.produto['imgProduto'+'obs'];
+      }
+    }
+
   //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
@@ -60,11 +89,34 @@ smallImg = null;
 
   //Salvar alterações do usuario
   cadastrar() {
-    this.loadingProvider.present();
-    this.criarProdutoFirebase();
-    
-  }
+    const data = {
+      nome: this.form.value.nome,
+      marca: this.form.value.marca,
+      obs: this.produto.obs,
+      tipo: this.form.value.tipo,
+      imgProduto: this.produto.imgProduto,
+      uid: this.user.uid
 
+    };
+    console.log(data);
+    this.firebaseProvider.postProdutos(data).then(res => {
+      console.log('foi');
+      this.loadingProvider.dismiss();
+      this.alertCtrl.create({
+        title: "Produto cadastrado",
+        subTitle: "Seu produto foi cadastrado com sucesso.",
+        buttons: ["Ok"]
+      }).present();
+      this.update();
+      this.form.value.nome= "";
+      this.form.value.marca = "";
+      this.produto.obs = "";
+      this.form.value.tipo = "";
+      this.produto.imgProduto = [""]; 
+
+    });
+}
+ 
   imagemProduto() {
     this.camera.getPicture({
       quality: 100,
@@ -72,8 +124,8 @@ smallImg = null;
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       correctOrientation: true,
       allowEdit: true,
-      targetWidth: 900,
-      targetHeight: 900
+      targetWidth: 600,
+      targetHeight: 600
     }).then(imageData => {
       let base64data = 'data:image/jpeg;base64,' + imageData;
       this.bigImg = base64data;
@@ -91,9 +143,9 @@ smallImg = null;
       this.smallImg = data;
       let imgToUp = this.smallImg.split(',')[1];
       // console.log(imgToUp);
-      this.storageImages.uploadPhoto(imgToUp, this.produto.imgProduto, 'Produto')
+      this.storageImages.uploadPhoto(imgToUp, this.user.uid, 'Produto')
         .then((savedPicture) => {
-          let storageRef = firebase.storage().ref('Images/' + 'Produto' + '/' + this.produto.imgProduto);
+          let storageRef = firebase.storage().ref('Images/' + 'Produto' + '/' + this.user.uid);
           storageRef.getDownloadURL()
             .then(url => {
               load.dismiss();
@@ -134,29 +186,6 @@ smallImg = null;
       callback(dataUrl)
     }
     image.src = img;
-  }
-  //Criando o usuario no firebase
-  criarProdutoFirebase = () => {
-    const data = {
-      nome:         this.produto.nome,
-      marca:        this.produto.marca,
-      obs:          this.produto.obs,
-      tipo:         this.produto.tipo,
-      imgProduto:   this.produto.imgProduto,
-      uid:          this.produto.uid
-
-    };
-
-    this.firebaseProvider.postProdutos(data).then(res => {
-      console.log('foi');
-      this.loadingProvider.dismiss();
-      this.alertCtrl.create({
-        title: "Produto Cadastrado",
-        subTitle: "Seu produto foi cadastrado com sucesso.",
-        buttons: ["Ok"]
-      }).present();
-
-    });
   }
   
 }

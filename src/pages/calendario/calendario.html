@@ -1,8 +1,13 @@
+<ion-header>
+
+  <ion-navbar color="imperial">
+    <ion-title>
+      Cronograma
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
 <h3 style="text-align: center;">Cronograma</h3>
-<ion-calendar (click)="openCalendar()"
-    [(ngModel)]="date"
-    (onChange)="onChange($event)"
-    [type]="type"
-    [options]="options"
-    format="DD/MM/YYYY">
+<ion-calendar (click)="openCalendar()" [(ngModel)]="date" (onChange)="onChange($event)" [type]="type"
+  [options]="options" format="DD/MM/YYYY">
 </ion-calendar>

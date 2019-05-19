@@ -48,6 +48,7 @@ import { TemporizadorPageModule } from '../pages/temporizador/temporizador.modul
 import { CadastrarProdutosPageModule } from '../pages/cadastrar-produtos/cadastrar-produtos.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-produto.module';
+import { IntroPageModule } from '../pages/intro/intro.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -68,6 +69,7 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
     CadastrarProdutosPageModule,
     ProfilePageModule,
     DetalhesProdutoPageModule,
+    IntroPageModule,
 
     //Calendario
     //Outros

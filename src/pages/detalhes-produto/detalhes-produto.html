@@ -15,20 +15,24 @@
 
 <ion-content padding>
     <ion-card>
-       <img class="container1"[src]="'./assets/imgs/' + produto.img ">
+       <img class="container1" src={{produtos.imgProduto}} >
         <ion-card-content>
             <ion-card-title class="center Logotipo bold">
-                {{ produto.titulo }}
+                {{ produtos.nome }}
             </ion-card-title>
-              <small class="titulo bold">Descrição: </small><p>{{ produto.descricao }}</p>
+              <small class="titulo bold">Descrição: </small><p>{{ produtos.obs }}</p>
              
-              <small class="titulo bold">Marca: </small><p>{{ produto.marca }}</p>
+              <small class="titulo bold">Marca: </small><p>{{ produtos.marca }}</p>
         
-              <small class="titulo bold">Tipo: </small><p>{{ produto.tipo }} </p>
-          <button ion-item>
-            <ion-icon name="ios-heart-outline" item-start></ion-icon>
-            Favoritar
-          </button>
-        </ion-card-content>
+              <small class="titulo bold">Tipo: </small><p>{{ produtos.tipo }} </p>
+              <ion-grid>
+                <ion-row >
+                  <p class="titulo bold">Favoritar</p><br/>
+                  <ion-col class="estrelas bold" *ngFor="let estrela of estrelas; let i = index;" (click)="favoritar(i)" >
+                    <ion-icon [name]="estrela"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+         </ion-card-content>
       </ion-card>
 </ion-content>
