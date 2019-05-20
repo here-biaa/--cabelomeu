@@ -11,7 +11,7 @@ import {
 import {
   CalendarMonth, CalendarModalOptions, CalendarComponentOptions, CalendarDay,
   CalendarComponentPayloadTypes, CalendarComponentMonthChange, CalendarComponentTypeProperty
-} from '../calendar.model';
+} from '../calendar.model'
 import { CalendarService } from "../services/calendar.service";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -34,11 +34,9 @@ export const ION_CAL_VALUE_ACCESSOR: Provider = {
                 ion-button
                 clear
                 class="switch-btn"
-                (click)="switchView()">
+                >
           {{_monthFormat(monthOpt.original.time)}}
-          <ion-icon class="arrow-dropdown"
-                    [name]="_view === 'days' ? 'md-arrow-dropdown' : 'md-arrow-dropup'"></ion-icon>
-        </button>
+          </button>
       </ng-template>
       <ng-template #title>
         <div class="switch-btn">

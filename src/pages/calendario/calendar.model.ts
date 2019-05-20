@@ -6,6 +6,7 @@ export interface CalendarOriginal {
   firstWeek: number;
   howManyDays: number;
 }
+export interface Cronograma{}
 
 export interface CalendarDay {
   time: number;
@@ -78,7 +79,7 @@ export interface CalendarOptions {
   disableWeeks?: Array<number>;
   weekdays?: Array<string>;
   monthFormat?: string;
-  color?: string[];
+  color?: string;
   defaultTitle?: string;
   defaultSubtitle?: string;
   daysConfig?: Array<DayConfig>;

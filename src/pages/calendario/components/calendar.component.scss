@@ -19,7 +19,7 @@ ion-calendar {
       float: left;
       min-height: 32px;
       margin: 0;
-      padding: 0;
+      padding:0;
       font-size: 15px;
     }
 
@@ -43,7 +43,7 @@ ion-calendar {
       width: 100%;
       text-align: center;
       line-height: 32px;
-      color: #757575;
+      color: $rosa;
 
       .arrow-dropdown {
         margin-left: 5px;

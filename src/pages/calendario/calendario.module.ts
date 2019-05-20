@@ -7,7 +7,7 @@ import { CalendarService } from "./services/calendar.service";
 import { CALENDAR_COMPONENTS } from "./components/index";
 
 export function calendarController(modalCtrl: ModalController,
-                                   calSvc: CalendarService) {
+  calSvc: CalendarService) {
   return new CalendarController(modalCtrl, calSvc);
 }
 
@@ -15,12 +15,12 @@ export function calendarController(modalCtrl: ModalController,
   declarations: [
     calendarioPage,
     CALENDAR_COMPONENTS
-   ],
+  ],
   exports: CALENDAR_COMPONENTS,
   entryComponents: CALENDAR_COMPONENTS,
- 
+
   imports: [
-    IonicPageModule.forChild(calendarioPage), 
+    IonicPageModule.forChild(calendarioPage),
   ],
   providers: [
     CalendarService,
@@ -31,4 +31,4 @@ export function calendarController(modalCtrl: ModalController,
     }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class calendarioPageModule {}
+export class calendarioPageModule { }

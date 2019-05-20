@@ -1,8 +1,7 @@
-<h3 style="text-align: center;">Cronograma</h3>
-<ion-calendar (click)="openCalendar()"
-    [(ngModel)]="date"
-    (onChange)="onChange($event)"
-    [type]="type"
-    [options]="options"
-    format="DD/MM/YYYY">
-</ion-calendar>
+<ion-content padding>
+
+<ion-calendar [(ngModel)]="date" (onChange)="onChange($event)" [type]="type" format="DD/MM/YYYY">
+    <button ion-button (click)="openCalendar()">config-days</button>
+
+  </ion-calendar>
+</ion-content>

@@ -222,7 +222,7 @@ export class CalendarService {
     return _array;
   }
 
-  wrapResult(original: CalendarDay[], pickMode: string, ) {
+  wrapResult(original: CalendarDay[], pickMode: string) {
     let result: any;
     switch (pickMode) {
       case pickModes.SINGLE:
