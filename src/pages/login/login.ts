@@ -111,7 +111,7 @@ export class LoginPage implements ErrorHandler{
              this.firebaseProvider.postUser(data).then(res => {
                this.storage.set('user_cabelomeu', data).then(() => {
                  this.loadingProvider.dismiss();
-                 this.navCtrl.setRoot('TabsPage');
+                 this.navCtrl.setRoot('IntroPage');
                });
 
              });
@@ -140,7 +140,7 @@ export class LoginPage implements ErrorHandler{
       let user = res[0];
       this.storage.set('user_cabelomeu', user).then(() =>{
         this.loadingProvider.dismiss();
-        this.navCtrl.setRoot('TabsPage');
+        this.navCtrl.setRoot('IntroPage');
       });
     })
   }

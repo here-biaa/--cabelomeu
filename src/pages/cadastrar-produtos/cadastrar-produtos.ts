@@ -7,7 +7,7 @@ import { ImagesUpload } from '../../providers/image-upload';
 import { Camera } from '@ionic-native/camera';
 import * as firebase from 'firebase';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
+import { ToastController } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-cadastrar-produtos',
@@ -35,7 +35,8 @@ amount = 0;
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,
     private formBuilder: FormBuilder,
-
+    private toastCtrl: ToastController,
+    
     public app: App,
     private camera: Camera,
     private storageImages: ImagesUpload,
@@ -102,11 +103,7 @@ amount = 0;
     this.firebaseProvider.postProdutos(data).then(res => {
       console.log('foi');
       this.loadingProvider.dismiss();
-      this.alertCtrl.create({
-        title: "Produto Cadastrado",
-        subTitle: "Seu produto foi cadastrado com sucesso.",
-        buttons: ["Ok"]
-      }).present();
+      this.presentToast();
       this.update();
       this.form.value.nome= "";
       this.form.value.marca = "";
@@ -115,6 +112,20 @@ amount = 0;
       this.produto.imgProduto = [""]; 
 
     });
+}
+//quando cadastrar o produto aparece 
+presentToast() {
+  let toast = this.toastCtrl.create({
+    message: 'Produto cadastrado',
+    duration: 3000,
+    position: 'top'
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
 }
  
   imagemProduto() {

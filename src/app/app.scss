@@ -1,6 +1,7 @@
 // GLOBAL FONT
 @import url('https://fonts.googleapis.com/css?family=Tajawal:400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Questrial');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Gloria+Hallelujah|Indie+Flower|Macondo+Swash+Caps|Open+Sans+Condensed:300,700|Pacifico|Quicksand&display=swap');@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Macondo+Swash+Caps|Open+Sans+Condensed:300,700|Pacifico|Quicksand&display=swap');@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Macondo+Swash+Caps|Open+Sans+Condensed:300,700|Pacifico&display=swap');
 * {
   font-family: 'Tajawal', sans-serif;
 }
@@ -42,6 +43,14 @@
 .black {
   color: $black
 }
+
+.Meu{
+ font-family: 'Gloria Hallelujah', cursive;
+ color:$mimi;
+ margin-left: 0px;
+ font-size:30px;
+ margin-top: -35px;
+}
 .Logotipo{
   font-family: 'Questrial', sans-serif;
   font-size:20px;
@@ -80,6 +89,9 @@
 }
 .mg-top-menos-20{
   margin-top:-20px;
+}
+.mg-top-5-percent{
+  margin-top:5%
 }
 .mg-top-20-percent {
   margin-top: 20%

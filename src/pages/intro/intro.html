@@ -1,0 +1,116 @@
+<!--
+  Generated template for the IntroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar padding color="imperial">
+    <ion-title>QUIZ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="slides">
+
+  <ion-content padding>
+    <ion-slides pager>
+
+      <ion-slide class="slide_image">
+          <h3 class="txt mg-top-20">Indentifique seu <small class="Logotipo">TIPO</small> de cabelo</h3>
+        <ion-card>
+          <div class="card-title-hidratação">Liso</div>
+          <ion-list>
+            <ion-item>
+              <ion-avatar item-start>
+                <button ion-fab color="imperial">
+                  <ion-icon>1</ion-icon>
+                </button>
+              </ion-avatar>
+              <img src="./assets/imgs/fio-cabelo.png">
+            </ion-item>
+          </ion-list>
+        </ion-card>
+
+        <ion-card>
+          <div class="card-title-hidratação">Ondulado</div>
+          <ion-list>
+            <ion-item>
+              <img src="./assets/imgs/2.1.png">
+              <ion-avatar item-start>
+                <button ion-fab color="imperial">
+                  <ion-icon>2A</ion-icon>
+                </button>
+              </ion-avatar>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+
+        <ion-card>
+          <div class="card-title-hidratação">Ondulado</div>
+          <ion-list>
+            <ion-item>
+              <img src="./assets/imgs/2b.png">
+              <ion-avatar item-start>
+                <button ion-fab color="imperial">
+                  <ion-icon>2B</ion-icon>
+                </button>
+              </ion-avatar>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+
+        <ion-card>
+          <div class="card-title-hidratação">Ondulado</div>
+          <ion-list>
+            <ion-item>
+              <img src="./assets/imgs/2c.png">
+              <ion-avatar item-start>
+                <button ion-fab color="imperial">
+                  <ion-icon>2C</ion-icon>
+                </button>
+              </ion-avatar>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide class="slide_image" padding>
+          <h3 class="txt">Qual o seu <small class="Logotipo">TIPO</small> de cabelo?</h3> 
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Liso</button>
+        </div>
+
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Ondulado</button>
+        </div>
+
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Cacheado</button>
+        </div>
+
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Crespo</button>
+        </div>
+
+        <div>
+          <button  class="mg-top-40" padding ion-button color="secondary" outline>
+            Continuar
+          </button>
+        </div>
+      </ion-slide>
+
+
+      <ion-slide class="slide_image">
+        <h3 class="txt mg-top-40"> Agora responda o <small class="Logotipo bold">Teste de Purosidade</small> para
+          finalizar</h3>
+        <button ion-button color="secondary" outline (click)="abrirCronograma()" class="mg-top-10">
+          Criar meu cronograma
+        </button>
+      </ion-slide>
+
+    </ion-slides>
+  </ion-content>
+</ion-content>
