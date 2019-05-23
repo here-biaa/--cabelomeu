@@ -32,11 +32,6 @@ export class MyApp {
           this.storage.set('slideCompleto',true);
         });
 
-      this.storage.get('facebook_user')
-        .then((data) => {
-          if (data) this.rootPage = 'TabsPage';
-          else this.rootPage = 'LoginPage';
-        });
 
       setTimeout(() => {
         splashScreen.hide();

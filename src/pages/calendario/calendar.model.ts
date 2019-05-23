@@ -6,7 +6,9 @@ export interface CalendarOriginal {
   firstWeek: number;
   howManyDays: number;
 }
-export interface Cronograma{}
+export interface Cronograma{
+  
+}
 
 export interface CalendarDay {
   time: number;
@@ -83,6 +85,10 @@ export interface CalendarOptions {
   defaultTitle?: string;
   defaultSubtitle?: string;
   daysConfig?: Array<DayConfig>;
+  defaultDates?: DefaultDate[];
+  cssClass?: string;
+
+
   /**
   * show last month & next month days fill six weeks
   */

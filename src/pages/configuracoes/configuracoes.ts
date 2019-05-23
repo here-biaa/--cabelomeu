@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, AlertController, Loading } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { SobrePage } from '../sobre/sobre';
 import { CadastrarProdutosPage } from '../cadastrar-produtos/cadastrar-produtos';
@@ -7,6 +7,7 @@ import { LoadingProvider } from '../../providers/loading';
 import { FirebaseProvider } from '../../providers/firebase';
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase';
+import 'firebase/firestore'
 import { AuthProvider } from '../../providers/auth';
 
 @IonicPage()
@@ -16,18 +17,29 @@ import { AuthProvider } from '../../providers/auth';
 })
 export class ConfiguracoesPage {
   rootPage = ProfilePage;
+  public currentUser: any; 
+  public loading: Loading;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, public app: App,
     private authProvider: AuthProvider,
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,
+    private storage: Storage,
+    public alertCtrl: AlertController
   
     ) {
+    this.currentUser = this.authProvider.getCurrentUser();
+    this.alertCtrl.create();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfiguracoesPage');
+  user ={
+    uid: ''
+  }
+  getCurrentUser() {
+    this.storage.get('user_cabelomeu')
+      .then((user) => {
+        this.user = user;
+      })
   }
 
   abrirPerfil(){
@@ -40,8 +52,20 @@ export class ConfiguracoesPage {
     this.navCtrl.push(SobrePage);
   }
   logout() {
+    this.loadingProvider.dismiss()
+      .then((res) => {
+          this.storage.clear();
+          this.app.getRootNav().setRoot('LoginPage');
+          console.log(res);
+          this.storage.set('slideCompleto', res);
 
-    this.app.getRootNav().setRoot('LoginPage');
+        })
+        
+      }  
+  deletarConta(){
+    
   }
+  
 
-}
+
+  }

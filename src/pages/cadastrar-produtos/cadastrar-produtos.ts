@@ -70,7 +70,6 @@ amount = 0;
     }
   
     update() {
-      //Amount
       let i = 0;
       for (i; i < this.produtos.length; i++) {
         let price = parseFloat(this.produtos[i].produto);
@@ -100,7 +99,8 @@ amount = 0;
 
     };
     console.log(data);
-    this.firebaseProvider.postProdutos(data).then(res => {
+    this.firebaseProvider.postProdutos(data)
+    .then(res => {
       console.log('foi');
       this.loadingProvider.dismiss();
       this.presentToast();

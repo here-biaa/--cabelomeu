@@ -27,7 +27,7 @@
     button.days-btn small,
     .days .marked p,
     .days .today p {
-        color: bindColors($background-color);
+        border-radius: 50% solid bindColors($background-color);
     }
     .days .today p {
         font-weight: 700;
@@ -164,12 +164,20 @@ ion-calendar-month {
     }
     .days .marked p {
         font-weight: 500;
+        background:none;
+        border-radius: 50% #000;
+
     }
     .days .on-selected {
         border: none;
         p {
             font-size: 1.3em;
         }
+    }
+    .on-selected {
+     background-color: transparent;
+     color: #000;
+     border-radius: 1px ;
     }
     button.days-btn {
         border-radius: 36px;

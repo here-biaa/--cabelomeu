@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
+
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -8,6 +9,10 @@ export class AuthProvider {
   constructor(
     private afAuth: AngularFireAuth
   ) {
+   
+  }
+  getCurrentUser(): any {
+    return this.afAuth.auth.currentUser;
   }
   //Criar usuario
   register = (data) => this.afAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(data.email, data.pass)
@@ -22,7 +27,6 @@ export class AuthProvider {
 
   //Login
   login = (data) => this.afAuth.auth.signInWithEmailAndPassword(data.email, data.pass);
-  sair = (data) => this.afAuth.auth.signOut();
+  sair = () => this.afAuth.auth.signOut( );
   password = (data) => this.afAuth.auth.sendPasswordResetEmail(data.email);
-
- }
+  }

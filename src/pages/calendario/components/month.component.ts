@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, Input, Output, EventEmitter, forwardRef, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode } from '../calendar.model'
+import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig } from '../calendar.model'
 import { defaults, pickModes } from "../config";
 
 export const MONTH_VALUE_ACCESSOR: any = {
@@ -27,7 +27,8 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.last-month-day]="day.isLastMonth"
                         [class.next-month-day]="day.isNextMonth"
                         [class.on-selected]="isSelected(day.time)"
-                        [disabled]="day.disable">
+                  
+                        >
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
                 </button>
@@ -41,7 +42,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
         <div class="days-box">
           <ng-template ngFor let-day [ngForOf]="month.days" [ngForTrackBy]="trackByTime">
             <div class="days"
-                 [class.startSelection]="isStartSelection(day)"
+                 [class.hidratacao]="isStartSelection(day)"
                  [class.endSelection]="isEndSelection(day)"
                  [class.is-first-wrap]="day?.isFirst"
                  [class.is-last-wrap]="day?.isLast"
@@ -57,6 +58,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.is-first]="day.isFirst"
                         [class.is-last]="day.isLast"
                         [class.on-selected]="isSelected(day.time)"
+                        
                         [disabled]="day.disable">
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
@@ -88,6 +90,8 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   _isInit = false;
   _onChanged: Function;
   _onTouched: Function;
+  date: Date = new Date(2019, 5, 23);
+
 
   get _isRange(): boolean {
     return this.pickMode === pickModes.RANGE
@@ -97,6 +101,8 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
 
   ngAfterViewInit(): void {
     this._isInit = true;
+   
+    
   }
 
   writeValue(obj: any): void {
@@ -209,8 +215,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     if (this.pickMode === pickModes.MULTI) {
 
       const index = this._date.findIndex(e => e !== null && e.time === item.time);
-
-      if (index === -1) {
+       if (index === -1) {
         this._date.push(item);
       } else {
         this._date.splice(index, 1);
@@ -218,5 +223,4 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       this.onChange.emit(this._date.filter(e => e !== null));
     }
   }
-
-}
+  }

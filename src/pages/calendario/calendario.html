@@ -9,8 +9,19 @@
 </ion-header>
 <ion-content padding>
 
-<ion-calendar [(ngModel)]="date" (onChange)="onChange($event)" [type]="type" format="DD/MM/YYYY">
-    <button ion-button (click)="openCalendar()">config-days</button>
-
+<ion-calendar 
+  [(ngModel)]="dateMulti"
+  [options]="optionsMulti"
+  [type]="type" 
+  format="DD/MM/YYYY"
+  (onChange)="onChange($event)"
+  (onSelect)="onSelect($event)"
+  [events]="events"                
+  >
   </ion-calendar>
+  <!-- Mini -->
+  <ion-fab>
+    <button ion-fab mini ><ion-icon name="calendar" ></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
