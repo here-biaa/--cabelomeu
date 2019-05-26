@@ -7,6 +7,7 @@ import { FirebaseProvider } from '../../providers/firebase';
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase';
 
+
 @IonicPage()
 @Component({
   selector: 'page-temporizador',
@@ -51,8 +52,8 @@ export class TemporizadorPage{
     public alertCtrl: AlertController,
     public viewCtrl : ViewController,
     private storage: Storage,
-    public platform: Platform, 
-      )
+    public platform: Platform,
+    )
   {
     this.audio = new Audio();
     this.audio.src = "../../assets/audio/alarm.mp3";
