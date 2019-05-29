@@ -9,6 +9,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { ActionSheetController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { ModalPage } from '../modal/modal';
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -27,7 +29,6 @@ export class ProfilePage {
   smallImg = null;
   editarNome= false;
   editarEmail =false;
-  editarSenha =false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,15 +41,27 @@ export class ProfilePage {
     private db:AngularFireDatabase,
     public actionctrl:ActionSheetController,
     private toastCtrl: ToastController,
+    public modalCtrl: ModalController,
   ) {
     this.getCurrentUser();
+  }
+  alterarEmail(){
+    this.editarEmail = true;
   }
   alterarNome(){
     this.editarNome = true;
   }
- alterarSenha(){
-   this.editarSenha = true;
 
+abrirModal() {
+    let profileModal = this.modalCtrl.create(ModalPage);
+    profileModal.present();
+
+    profileModal.onDidDismiss(data => {  
+      console.log(data);
+    });
+  }
+ alterarSenha(){
+   this.abrirModal();
   }
   alterarEmail(){
     this.editarEmail = true;

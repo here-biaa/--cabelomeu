@@ -27,10 +27,11 @@
     "@ionic-native/facebook": "^5.4.0",
     "@ionic-native/file": "^5.6.0",
     "@ionic-native/insomnia": "^5.5.0",
-    "@ionic-native/local-notifications": "^5.5.1",
+    "@ionic-native/local-notifications": "^5.6.0",
     "@ionic-native/native-audio": "^5.5.0",
     "@ionic-native/native-storage": "^5.4.0",
     "@ionic-native/navigation-bar": "^5.5.0",
+    "@ionic-native/phonegap-local-notification": "^5.6.0",
     "@ionic-native/photo-viewer": "^5.6.0",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
@@ -75,6 +76,7 @@
     "ng-circle-progress": "^1.4.0",
     "ng-lottie": "^0.3.2",
     "ngx-toastr": "^10.0.2",
+    "phonegap-plugin-local-notification": "1.0.1",
     "rxjs": "6.0.0",
     "rxjs-compat": "6.5.1",
     "sw-toolbox": "3.6.0",
@@ -106,7 +108,8 @@
       "cordova-plugin-streaming-media": {},
       "cordova-plugin-local-notification": {},
       "com-sarriaroman-photoviewer": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "phonegap-plugin-local-notification": {}
     },
     "platforms": [
       "ios",

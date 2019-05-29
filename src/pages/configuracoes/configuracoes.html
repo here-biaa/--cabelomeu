@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -8,26 +8,26 @@
     <ion-list>
       <br>
       <button ion-item (click)="abrirPerfil()">
-        <ion-icon item-end name="ios-person-outline"></ion-icon>
+        <ion-icon  item-start name="ios-contact-outline"></ion-icon>
         Perfil
       </button><br>
       <button ion-item (click)="abrirCadastroProduto()">
-        <ion-icon item-end  name="ios-add-circle-outline"></ion-icon>
+        <ion-icon item-start name="ios-add-circle-outline"></ion-icon>
         Cadastro de produtos
       </button><br>
+      <button ion-item (click)="deletarConta()">
+        <ion-icon item-start name="ios-close-circle-outline"></ion-icon>
+        Desativar minha conta
+      </button><br>
       <button ion-item (click)="abrirSobre()">
-        <ion-icon item-end  name="ios-information-circle-outline"></ion-icon>
+        <ion-icon item-start name="ios-information-circle-outline"></ion-icon>
         Sobre
       </button><br>
       <button ion-item (click)="logout()">
-        <ion-icon item-end  name="ios-log-out-outline"></ion-icon>
+        <ion-icon color="red" item-start name="md-log-out"></ion-icon>
         Sair
       </button><br>
-      <button ion-item (click)="deletarConta()">
-        <ion-icon item-end name="ios-trash-outline"></ion-icon>
-        Deletar minha conta
-      </button>
-      
+
     </ion-list>
   </ion-content>
 </ion-menu>

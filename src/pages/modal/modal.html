@@ -1,0 +1,32 @@
+<ion-content padding class="main-view">
+  <div class="overlay" (click)="closeModal()"></div>
+  <div class="modal_content "padding>
+    <div class="circle">
+      <div class="center mg-top-10">
+        <img class="center" src="./assets/imgs/login.png">
+      </div>
+    </div>
+      <h1 class="text mg-top-20 bold">Alterar senha</h1>
+      <!-- PASS -->
+      <ion-item class="transparent-bg no-padding mg-top-20">
+        <ion-label stacked class="eggshell">Sua senha</ion-label>
+        <ion-input type="password" class="eggshell bold">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="transparent-bg no-padding mg-top-20">
+        <ion-label stacked class="eggshell">Nova senha</ion-label>
+        <ion-input type="password" class="eggshell bold">
+        </ion-input>
+      </ion-item>
+
+      <!-- PASS -->
+      <ion-item class="transparent-bg no-padding mg-top-20">
+        <ion-label stacked class="eggshell">Confirme a senha</ion-label>
+        <ion-input type="password" class="eggshell bold"></ion-input>
+      </ion-item>
+
+      <button class="mg-top-20 center" color="rosa" ion-button block outline (click)="alterarSenha()">Alterar</button>
+ 
+  </div>
+</ion-content>

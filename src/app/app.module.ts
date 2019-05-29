@@ -18,7 +18,7 @@ import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { StreamingMedia, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 
 
 //Firebase config
@@ -51,6 +51,7 @@ import { CadastrarProdutosPageModule } from '../pages/cadastrar-produtos/cadastr
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-produto.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
+import { ModalPageModule } from '../pages/modal/modal.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,6 +73,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     ProfilePageModule,
     DetalhesProdutoPageModule,
     IntroPageModule,
+    ModalPageModule,
 
     //Calendario
     //Outros
