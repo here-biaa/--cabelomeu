@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, ToastController, ActionSheetController } from 'ionic-angular';
 import * as moment from 'moment';
 import { CalendarModalOptions, DayConfig, CalendarOptions, CalendarComponentOptions } from './calendar.model';
 
@@ -11,27 +11,24 @@ import { CalendarModal } from './components/calendar.modal';
   templateUrl: 'calendario.html',
 })
 export class calendarioPage  {
-  constructor(public modalCtrl: ModalController, private toastCtrl: ToastController) 
+  btnEditar = true;
+
+  constructor(
+    public navCtrl: NavController,
+    public modalCtrl: ModalController, 
+    private toastCtrl: ToastController, 
+    public actionSheetController: ActionSheetController) 
   { 
     moment.locale('pt-br'); 
   }
-  cronograma = true;
-  templateCronograma = false;
-
   dateMulti: string[];
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
-  events:DayConfig={
-    date : new Date (2019,5,30),
-    marked:true,
-    cssClass: 'hidratacao',
-    subTitle:'H'
-}
   
-    
-  optionsMulti: CalendarOptions = {
-    pickMode: 'multi',
-   };
+  optionsMulti: CalendarComponentOptions = {
+    pickMode: 'multi'
+  };
 
+  
   _toastWrap(event: string, payload: {}) {
     let toast = this.toastCtrl.create({
       message: `${event}: ${JSON.stringify(payload, null, 2)}`,
@@ -40,23 +37,19 @@ export class calendarioPage  {
     toast.present()
     
   }
-
-
+  
   onChange($event) {
     console.log('onChange', $event);
-    this._toastWrap('onChange', $event)
+    this.btnEditar = true; 
   }
-
+  
   onSelect($event) {
     console.log('onSelect', $event);
-    console.log('day' , this.events )
-
-    this._toastWrap('onSelect', $event)
-  }
+    this.presentActionSheet()
+    }
 
   onSelectStart($event) {
     console.log('onSelectStart', $event);
-    this._toastWrap('onSelectStart', $event)
   }
 
   onSelectEnd($event) {
@@ -68,15 +61,46 @@ export class calendarioPage  {
     console.log('monthChange', $event);
     this._toastWrap('monthChange', $event)
   }
-  CronogramaCabelomeu(){
-    this.cronograma = false;
-    this.templateCronograma = true;
-
+   presentActionSheet() {
+    let actionSheet = this.actionSheetController.create({
+      buttons: [{
+        text: 'Meu cronograma',
+        role: 'destructive',
+        icon: 'calendar',
+        handler: () => {
+          this.EventosCalendar()
+        }
+      }/*, {
+        text: 'Share',
+        icon: 'share',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Play (open modal)',
+        icon: 'arrow-dropright-circle',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Favorite',
+        icon: 'heart',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }*/]
+    });
+    actionSheet.present();
   }
-  hidratacao($event){
-    console.log('hidratacao',$event);
-    this._toastWrap('hidratacao', $event)
-  
+  EventosCalendar(){
+    this.navCtrl.push('slideCronogramaPage')
   }
 }
 

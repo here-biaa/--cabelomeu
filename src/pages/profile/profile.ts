@@ -50,6 +50,9 @@ export class ProfilePage {
    this.editarSenha = true;
 
   }
+  alterarEmail(){
+    this.editarEmail = true;
+  }
   //Atualizar a pagina
   refresh(refresher) {
     refresher.complete();
@@ -175,7 +178,9 @@ export class ProfilePage {
     }
     image.src = img;
   }
-
+  deletarFoto(){
+    this.user.avatar = null;
+  }
 
 //folha de açao com opçoes da foto de perfil//
   showactionsheet(){
@@ -187,7 +192,6 @@ export class ProfilePage {
           text:'Selecionar foto de perfil',
           icon: 'ios-images-outline',
           handler: () => {
-            this.changeAvatar()
           }
         },
         
@@ -196,7 +200,7 @@ export class ProfilePage {
           icon: 'ios-trash-outline',
           role:'destructive',
           handler: () => {
-            console.log("Hey deleted sucessfully")
+            this.deletarFoto()
           }
         },
         {

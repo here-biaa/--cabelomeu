@@ -27,10 +27,8 @@
               <small class="titulo bold">Tipo: </small><p>{{ produtos.tipo }} </p>
               <ion-grid>
                 <ion-row >
-                  <p class="titulo bold">Favoritar</p><br/>
-                  <ion-col class="estrelas bold" *ngFor="let estrela of estrelas; let i = index;" (click)="favoritar(i)" >
-                    <ion-icon [name]="estrela"></ion-icon>
-                  </ion-col>
+                  <p class="titulo bold">Apagar</p><br/>
+                    <button (click)="apagar()"><ion-icon name="trash"></ion-icon></button>
                 </ion-row>
               </ion-grid>
          </ion-card-content>

@@ -2,6 +2,8 @@ import { Component, ChangeDetectorRef, Input, Output, EventEmitter, forwardRef, 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig } from '../calendar.model'
 import { defaults, pickModes } from "../config";
+import moment, { Moment } from 'moment';
+import { CalendarController } from '../calendar.controller';
 
 export const MONTH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -27,22 +29,25 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.last-month-day]="day.isLastMonth"
                         [class.next-month-day]="day.isNextMonth"
                         [class.on-selected]="isSelected(day.time)"
-                  
                         >
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                  <b [hidden]="!haveSchedule" [ngStyle]="{'background-color':schedule?.color}"></b>
+
                 </button>
               </ng-container>
             </div>
           </ng-template>
         </div>
+        <button type="button" [disabled]="!hidrata" (click)="hidratacao()" class="days-btn btn-hidratacao" >H</button>
+        <button type="button" [disabled]="reconstroi" class="days-btn btn-reconstrucao" >R</button>
       </ng-template>
 
       <ng-template #rangeBox>
         <div class="days-box">
           <ng-template ngFor let-day [ngForOf]="month.days" [ngForTrackBy]="trackByTime">
             <div class="days"
-                 [class.hidratacao]="isStartSelection(day)"
+                 [class.startSelection]="isStartSelection(day)"
                  [class.endSelection]="isEndSelection(day)"
                  [class.is-first-wrap]="day?.isFirst"
                  [class.is-last-wrap]="day?.isLast"
@@ -58,13 +63,11 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.is-first]="day.isFirst"
                         [class.is-last]="day.isLast"
                         [class.on-selected]="isSelected(day.time)"
-                        
-                        [disabled]="day.disable">
+                        >
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
                 </button>
               </ng-container>
-
             </div>
           </ng-template>
         </div>
@@ -73,6 +76,9 @@ export const MONTH_VALUE_ACCESSOR: any = {
   `
 })
 export class MonthComponent implements ControlValueAccessor, AfterViewInit {
+  hidrata = false;
+  nutri = true;
+  reconstroi= true;
 
   @Input() month: CalendarMonth;
   @Input() pickMode: PickMode;
@@ -80,29 +86,28 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   @Input() id: any;
   @Input() readonly = false;
   @Input() color: string = defaults.COLOR;
+  @Input() date: string;
+  @Input() dateMonth: Moment;
+
 
   @Output() onChange: EventEmitter<CalendarDay[]> = new EventEmitter();
   @Output() onSelect: EventEmitter<CalendarDay> = new EventEmitter();
   @Output() onSelectStart: EventEmitter<CalendarDay> = new EventEmitter();
   @Output() onSelectEnd: EventEmitter<CalendarDay> = new EventEmitter();
+  @Output() onHidratacao: EventEmitter<CalendarDay> = new EventEmitter();
 
   _date: Array<CalendarDay | null> = [null, null];
   _isInit = false;
   _onChanged: Function;
   _onTouched: Function;
-  date: Date = new Date(2019, 5, 23);
-
 
   get _isRange(): boolean {
     return this.pickMode === pickModes.RANGE
   }
 
-  constructor(public ref: ChangeDetectorRef) { }
-
+  constructor(public ref: ChangeDetectorRef, private calendarCtrl: CalendarController) { }
   ngAfterViewInit(): void {
     this._isInit = true;
-   
-    
   }
 
   writeValue(obj: any): void {
@@ -215,7 +220,8 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     if (this.pickMode === pickModes.MULTI) {
 
       const index = this._date.findIndex(e => e !== null && e.time === item.time);
-       if (index === -1) {
+
+      if (index === -1) {
         this._date.push(item);
       } else {
         this._date.splice(index, 1);
@@ -223,4 +229,15 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       this.onChange.emit(this._date.filter(e => e !== null));
     }
   }
+  hidratacao(item: CalendarDay): void{
+    this.hidrata = true;
+    console.log('clickou', this.hidrata)
+    if (this.readonly) return;
+    item.selected = true;
+    this.onHidratacao.emit(item);
+    item.subTitle= 'H'
+    console.log(item)
   }
+  
+
+}

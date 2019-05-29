@@ -34,9 +34,11 @@ export const ION_CAL_VALUE_ACCESSOR: Provider = {
                 ion-button
                 clear
                 class="switch-btn"
-                >
+                (click)="switchView()">
           {{_monthFormat(monthOpt.original.time)}}
-          </button>
+          <ion-icon class="arrow-dropdown"
+                    [name]="_view === 'days' ? 'md-arrow-dropdown' : 'md-arrow-dropup'"></ion-icon>
+        </button>
       </ng-template>
       <ng-template #title>
         <div class="switch-btn">

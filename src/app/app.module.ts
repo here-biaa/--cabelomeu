@@ -8,6 +8,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { CommonModule } from '@angular/common';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { Camera } from '@ionic-native/camera';
 
 //Calendario
 import * as moment from 'moment';
@@ -98,6 +99,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     ImagesUpload,
     AngularFireAuth,
     PhotoViewer,
+    Camera,
     //calendario
     //temporizador
     Insomnia,

@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseProvider } from '../../providers/firebase';
+import { LoadingProvider } from '../../providers/loading';
 
 
 @IonicPage()
@@ -14,31 +16,19 @@ export class DetalhesProdutoPage {
 
   estrelas: string[] =[];
   produtos;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingProvider: LoadingProvider,
+    private firebaseProvider: FirebaseProvider
+  ) {
     this.produtos = this.navParams.get("produtos");
+
  }
-  ngAfterViewInit(){
-    this.calc();
-   }
-   calc(){ 
-     this.estrelas = [];
-     let tmp = this.value;
-     for (let i = 0; i < this.numEstrelas; i++ , tmp--) {
-       if (tmp >= 1) {
-         this.estrelas.push("star");
-       }
-       else if (tmp > 0 && tmp < 1) {
-         this.estrelas.push("star-half");
 
-       }
-       else
-         this.estrelas.push("star-outline");
-     }
-
-   }
-  favoritar(index){
-    this.value= index + 1;
-    this.fav.emit(this.value);
-    this.calc();
+ apagar(){
+   this.firebaseProvider.deletarProdutos(this.produtos)
+     .then(res => {
+       this.loadingProvider.dismiss();
+       this.navCtrl.setRoot('ProdutoPage')
+     });
+ 
   }
-  }
+}

@@ -6,9 +6,6 @@ export interface CalendarOriginal {
   firstWeek: number;
   howManyDays: number;
 }
-export interface Cronograma{
-  
-}
 
 export interface CalendarDay {
   time: number;
@@ -27,7 +24,9 @@ export interface CalendarDay {
   };
   isFirst?: boolean;
   isLast?: boolean;
-}
+  }
+
+
 
 export class CalendarMonth {
   original: CalendarOriginal;
@@ -41,15 +40,24 @@ export interface DayConfig {
   title?: string;
   subTitle?: string;
   cssClass?: string;
-}
 
+}
+export interface Hidratacao {
+  date: string;
+  color: string;
+  defaultDates?: DefaultDate[];
+  
+}
 export interface ModalOptions {
   showBackdrop?: boolean;
   enableBackdropDismiss?: boolean;
   enterAnimation?: string;
   leaveAnimation?: string;
 }
-
+export interface Schedule {
+  date: string;
+  color: string;
+}
 export interface CalendarModalOptions extends CalendarOptions {
   autoDone?: boolean;
   format?: string;
@@ -85,10 +93,6 @@ export interface CalendarOptions {
   defaultTitle?: string;
   defaultSubtitle?: string;
   daysConfig?: Array<DayConfig>;
-  defaultDates?: DefaultDate[];
-  cssClass?: string;
-
-
   /**
   * show last month & next month days fill six weeks
   */
@@ -99,6 +103,8 @@ export interface CalendarComponentOptions extends CalendarOptions {
   showToggleButtons?: boolean;
   showMonthPicker?: boolean;
   monthPickerFormat?: string[];
+  defaultDates?: DefaultDate[];
+  
 }
 
 export class CalendarResult {
@@ -115,9 +121,8 @@ export class CalendarComponentMonthChange {
   oldMonth: CalendarResult;
   newMonth: CalendarResult;
 }
-
 export type DefaultDate = Date | string | number | null;
 export type Colors = 'primary' | 'secondary' | 'danger' | 'light' | 'dark' | string
-export type PickMode = 'multi' | 'single' | 'range'
+export type PickMode = 'multi' | 'single' | 'range' | 'hidratacao' | 'nutricao'| 'reconstrucao'
 export type CalendarComponentTypeProperty = ('string' | 'js-date' | 'moment' | 'time' | 'object');
 export type CalendarComponentPayloadTypes = string | Date | number | {};

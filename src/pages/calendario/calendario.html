@@ -7,21 +7,23 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content padding>
-
+<ion-content  padding>
+ 
 <ion-calendar 
   [(ngModel)]="dateMulti"
   [options]="optionsMulti"
   [type]="type" 
   format="DD/MM/YYYY"
   (onChange)="onChange($event)"
+  (onSelectStart)="onSelectStart($event)"
+  (onSelectEnd)="onSelectEnd($event)"
   (onSelect)="onSelect($event)"
-  [events]="events"                
-  >
-  </ion-calendar>
-  <!-- Mini -->
-  <ion-fab>
-    <button ion-fab mini ><ion-icon name="calendar" ></ion-icon></button>
-  </ion-fab>
+  (monthChange)="monthChange($event)"
 
+  >
+  
+  </ion-calendar>
+  
+  <button>Salvar</button>
+  
 </ion-content>

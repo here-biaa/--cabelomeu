@@ -1,81 +1,20 @@
-<ion-content class="" >
-  <div class="">
-    <!-- ADDRESS -->
-    <p class="center font-18 bold" >
-     Faça com CabeloMeu
-    </p>
-   </div>
-  <ion-slides class="backCronograma" autoplay="3000"  (ionSlideDidChange)="slideChanged()">
-    <ion-slide>
-      <ion-grid>
-        <ion-row>
-          <div class="outer">
-            <div class="inner">
-              <h3 class="txt ">Comece a cuidar dos seus fios
-                <br />
-                <br />
-                <img src="./../assets/imgs/boneca-cacheada.png">
-              </h3>
-            </div>
-          </div>
-        </ion-row>
-          <div class=" center inners">
-            <lottie-animation-view [options]="lottieConfig" [width]="400" [height]="600" (animCreated)="handleAnimation($event)">
-            </lottie-animation-view>
-            <button color="" type="button" ion-button block outline margin-bottom (click)="inicioSlides(1)"
-              class=" btn_go_login">Iniciar</button>
-          </div>
-      </ion-grid>
-    </ion-slide>
-  
-    <ion-slide>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <div class="outer">
-              <div class="inner">
-                <h3 class="txt">Encontre o produto adequado para seus cabelos
-                  <br/>
-                  <br />
-                  <br />
-                  <img src="./../assets/imgs/lisa-produto.png">
-                </h3>
-              </div>
-              <div class="inner">
-                <lottie-animation-view [options]="lottieConfig2" [width]="300" [height]="600"
-                  (animCreated)="handleAnimation2($event)">
-                </lottie-animation-view>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  
-    <ion-slide>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <div class="outer">
-              <div class="inner">
-                <h3 class="txt">
-                  Encontre os melhores salões próximos a você
-                  <br/>
-                  <br/>
-                  <img src="./../assets/imgs/girl.png">
-                </h3>
-              </div>
-              <div class="inner">
-                <lottie-animation-view [options]="lottieConfig3" [width]="300" [height]="600"
-                  (animCreated)="handleAnimation3($event)">
-                </lottie-animation-view>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  
-  </ion-slides>
+<ion-header>
 
+  <ion-navbar color="imperial">
+    <ion-title>
+      Cronograma
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="" >
+  <ion-list>
+    <ion-item class="mg-top-40">
+      <ion-label>Dia:</ion-label>
+      <ion-datetime placeholder="Definir" displayFormat="" #myPicker (ionChange)="updateMyDate(myPicker.value)"
+        cancelText="Cancelar" doneText="Ok" [(ngModel)]="fullTime">
+      </ion-datetime>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -7,6 +7,15 @@ page-calendario {
         .scroll-content {
             padding-top: 40px !important
         }
+    }.linhaDescricaoMarcadores{
+        width: 100%;
+        max-height: 50px;
     }
-    
-   }
+    .marcadorHidratacao{
+        background:#533c53;
+        width: 20px;
+        height: 15px;
+        border-radius: 100%;
+
+    }
+    }

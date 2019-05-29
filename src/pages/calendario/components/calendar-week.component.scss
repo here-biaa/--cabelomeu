@@ -40,11 +40,11 @@ ion-calendar-week {
   }
 
   .week-title.light {
-    @include week-title(light, #42033D);
+    @include week-title(light, #9e9e9e);
   }
 
   .week-title.transparent {
-    @include week-title(light, #42033D);
+    @include week-title(light, #9e9e9e);
     background-color: transparent;
   }
 

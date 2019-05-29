@@ -9,5 +9,8 @@ export const pickModes = {
   SINGLE: 'single',
   RANGE: 'range',
   MULTI: 'multi',
+  HIDRATACAO: 'hidratacao',
+  NUTRICAO: 'nutricao',
+  RECONSTRUCAO: 'reconstrucao'
 
 };

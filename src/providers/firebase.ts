@@ -57,6 +57,18 @@ export class FirebaseProvider {
       });
     return collection$;
   }
+  deletarProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .doc(data.$key)
+      .delete()
+        .then(function() {
+            console.log("Document successfully deleted!");
+        }).
+          catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+     
   //Salvar produtos
   saveProdutos = data =>
     this.afs
@@ -71,5 +83,4 @@ export class FirebaseProvider {
       .doc(data.uid)
       .set(data);
   }
-
   
