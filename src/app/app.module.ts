@@ -82,7 +82,10 @@ import { ModalPageModule } from '../pages/modal/modal.module';
     IonicStorageModule.forRoot(),
     LottieAnimationViewModule.forRoot(),
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      backButtonText: 'Go back',
+      backButtonIcon: 'ios-arrow-back-outline'
+    }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,

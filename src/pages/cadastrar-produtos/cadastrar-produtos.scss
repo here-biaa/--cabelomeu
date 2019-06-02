@@ -3,8 +3,16 @@ page-cadastrar-produtos {
         background-size: cover;
         background-position: center center;
         height: 150px;
-        width: 100%;
-        border-bottom: 3px solid $rosa;
+        width: 150px;
+        border: 3px solid $imperial;
+        border-radius: 100px;
+    }
+    button.center.fab.fab-md {
+        margin-left: 180px;
+        margin-top: -50px;
+    }
+    .avatar {
+        background-image: url("./assets/imgs/favourite (1).png")!important;
     }
     
 

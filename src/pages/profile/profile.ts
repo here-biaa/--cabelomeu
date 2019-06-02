@@ -63,9 +63,7 @@ abrirModal() {
  alterarSenha(){
    this.abrirModal();
   }
-  alterarEmail(){
-    this.editarEmail = true;
-  }
+  
   //Atualizar a pagina
   refresh(refresher) {
     refresher.complete();
