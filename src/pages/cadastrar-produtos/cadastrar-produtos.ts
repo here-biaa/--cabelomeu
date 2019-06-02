@@ -132,7 +132,7 @@ presentToast() {
     this.camera.getPicture({
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      sourceType: this.camera.PictureSourceType.CAMERA,
       correctOrientation: true,
       allowEdit: true,
       targetWidth: 600,

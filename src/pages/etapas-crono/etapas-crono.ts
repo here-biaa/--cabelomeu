@@ -1,14 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams,Slides } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-etapas-crono',
   templateUrl: 'etapas-crono.html',
 })
-export class EtapasCronoPage {
+export class EtapasCronoPage implements OnInit {
+  nutricao = false;
+  hidratacao = true;
+  reconstrucao = false;
+
   @ViewChild('slides') slides:Slides;
+  @Input() etapas : any; 
   
-  etapas = 0;
   //paginas
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -17,6 +21,9 @@ export class EtapasCronoPage {
   this.slides.slideTo(index);
   
 }
+  ngOnInit() {
+    console.log(this.etapas);
+  }
  
   
 }

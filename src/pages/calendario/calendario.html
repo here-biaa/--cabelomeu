@@ -12,6 +12,7 @@
 <ion-calendar 
   [(ngModel)]="dateMulti"
   [options]="optionsMulti"
+  [eventos]="optionsEventos"
   [type]="type" 
   format="DD/MM/YYYY"
   (onChange)="onChange($event)"
@@ -19,11 +20,23 @@
   (onSelectEnd)="onSelectEnd($event)"
   (onSelect)="onSelect($event)"
   (monthChange)="monthChange($event)"
+  (onHidratacao)="onHidratacao($event)"
+ 
 
   >
   
   </ion-calendar>
-  
-  <button>Salvar</button>
-  
-</ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button (click)="hidratacao()">H</button>
+      </ion-col>
+      <ion-col>
+        <button >N</button>
+      </ion-col>
+      <ion-col>
+        <button>R</button> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

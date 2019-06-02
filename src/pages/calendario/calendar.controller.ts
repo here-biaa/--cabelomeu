@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
-import { ModalOptions, CalendarModalOptions } from './calendar.model'
+import { ModalOptions, CalendarModalOptions, DayConfig } from './calendar.model'
 import { CalendarModal } from "./components/calendar.modal";
 import { CalendarService } from './services/calendar.service';
 
@@ -38,5 +38,24 @@ export class CalendarController {
     });
 
   }
+/*  loadEvents() {
+    let eventsSource: DayConfig[] = [];
 
+    this.calSvc.getEvents()
+      .subscribe(response => {
+        response.forEach(event => {
+          eventsSource.push({
+            date: event.startTime,
+            marked: true,
+            subTitle: event.numEvents < 5 ? "*".repeat(event.numEvents) : "****"
+          });
+        });
+
+        this.options = {
+          ...this.options,
+          daysConfig: eventsSource
+        };
+      });
+  }*/
+  
 }

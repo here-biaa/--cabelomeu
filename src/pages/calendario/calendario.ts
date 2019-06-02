@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController, ToastController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,
+   ModalController, ViewController, ToastController, ActionSheetController, Events } from 'ionic-angular';
 import * as moment from 'moment';
-import { CalendarModalOptions, DayConfig, CalendarOptions, CalendarComponentOptions } from './calendar.model';
+import { CalendarModalOptions, DayConfig, CalendarOptions, CalendarComponentOptions, Cronograma } from './calendar.model';
 
 
 import { CalendarModal } from './components/calendar.modal';
@@ -10,10 +11,10 @@ import { CalendarModal } from './components/calendar.modal';
   selector: 'page-calendario',
   templateUrl: 'calendario.html',
 })
-export class calendarioPage  {
-  btnEditar = true;
-
+export class calendarioPage implements OnInit {
+  btnHidratacao= true;
   constructor(
+    public evt:Events,
     public navCtrl: NavController,
     public modalCtrl: ModalController, 
     private toastCtrl: ToastController, 
@@ -22,11 +23,24 @@ export class calendarioPage  {
     moment.locale('pt-br'); 
   }
   dateMulti: string[];
+  mockSchedules: Cronograma[] = [];
+
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   
-  optionsMulti: CalendarComponentOptions = {
-    pickMode: 'multi'
-  };
+  
+  ngOnInit() {
+    let _daysConfig: DayConfig[] = [];
+    for (let i = 0; i < 31; i++) {
+      _daysConfig.push({
+        date: new Date(2019, 6, i + 1),
+        subTitle: `$${i + 1}`
+      })
+    }
+    const optionsMulti: CalendarComponentOptions = {
+      pickMode: 'multi'
+    };
+    console.log(optionsMulti)
+   }
 
   
   _toastWrap(event: string, payload: {}) {
@@ -40,13 +54,15 @@ export class calendarioPage  {
   
   onChange($event) {
     console.log('onChange', $event);
-    this.btnEditar = true; 
   }
   
   onSelect($event) {
     console.log('onSelect', $event);
     this.presentActionSheet()
     }
+  onHidratacao($event) {
+    console.log('onHidratacao', $event);
+  }
 
   onSelectStart($event) {
     console.log('onSelectStart', $event);
@@ -88,19 +104,22 @@ export class calendarioPage  {
         handler: () => {
           console.log('Favorite clicked');
         }
-      }, {
-        text: 'Cancel',
+      }*/, {
+        text: 'Cancelar',
         icon: 'close',
         role: 'cancel',
         handler: () => {
           console.log('Cancel clicked');
         }
-      }*/]
+      }]
     });
     actionSheet.present();
   }
   EventosCalendar(){
-    this.navCtrl.push('slideCronogramaPage')
+    this.navCtrl.setRoot('slideCronogramaPage')
+  }
+  hidratacao(){
+    
   }
 }
 

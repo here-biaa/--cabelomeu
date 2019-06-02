@@ -1,4 +1,6 @@
 @import "../functions";
+@import "ionic.theme.default";
+
 @mixin transition-property($args...) {
     -webkit-transition-property: $args;
     -moz-transition-property: $args;
@@ -29,6 +31,25 @@
     .days .today p {
         color: bindColors($background-color);
     }
+    button.days-btn small,
+    .days .marked p,
+    .days .today p, .hidratacao {
+        color: bindColors($background-color);
+        $background-color: light;
+    }
+    button.days-btn small,
+    .days .marked p,
+    .days .today p, .nutricao {
+        color: bindColors($background-color);
+        $background-color: primary ;
+    }
+    button.days-btn small,
+    .days .marked p,
+    .days .today p, .nutricao {
+        color: bindColors($background-color);
+        $background-color: secondary;
+    }
+    
     .days .today p {
         font-weight: 700;
     }
@@ -56,8 +77,9 @@
             top: 0;
             right: 0;
             display: block;
-            background-color: lighten(bindColors($background-color), 12%);
+            background-color: bindColors($background-color), 12%;
         }
+
     }
     .endSelection {
         position: relative;
@@ -69,7 +91,7 @@
             top: 0;
             left: 0;
             display: block;
-            background-color: lighten(bindColors($background-color), 12%);
+            background-color: bindColors($background-color), 12%;
         }
     }
     .startSelection.endSelection {
@@ -81,7 +103,7 @@
         border-radius: 50%
     }
     .between button.days-btn {
-        background-color: lighten(bindColors($background-color), 12%);
+        background-color: bindColors($background-color), 12%;
         width: 100%;
         border-radius: 0;
         p {
