@@ -107,7 +107,6 @@ export class LoginPage implements ErrorHandler{
       this.authProvider.password(data)
            .then((res) => {
              console.log(res);
-             res.user = firebase.auth().currentUser;
              this.firebaseProvider.postUser(data).then(res => {
                this.storage.set('user_cabelomeu', data).then(() => {
                  this.loadingProvider.dismiss();
