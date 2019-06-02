@@ -7,30 +7,33 @@
 <ion-header>
 
   <ion-navbar color="imperial">
-    <ion-title>Detalhes do produto</ion-title>
+    <ion-title>{{ produtos.nome }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card>
-       <img class="container1" src={{produtos.imgProduto}} >
-        <ion-card-content>
-            <ion-card-title class="center Logotipo bold">
-                {{ produtos.nome }}
-            </ion-card-title>
-              <small class="titulo bold">Descrição: </small><p>{{ produtos.obs }}</p>
-             
-              <small class="titulo bold">Marca: </small><p>{{ produtos.marca }}</p>
-        
-              <small class="titulo bold">Tipo: </small><p>{{ produtos.tipo }} </p>
-              <ion-grid>
-                <ion-row >
-                  <p class="titulo bold">Apagar</p><br/>
-                    <button (click)="apagar()"><ion-icon name="trash"></ion-icon></button>
-                </ion-row>
-              </ion-grid>
-         </ion-card-content>
-      </ion-card>
+  <ion-card>
+    <img class="container1" src={{produtos.imgProduto}}>
+    <ion-card-content>
+      <ion-card-title class="center Logotipo bold">
+        {{ produtos.nome }}
+      </ion-card-title>
+      <small class="titulo bold">Descrição: </small>
+      <p>{{ produtos.obs }}</p>
+
+      <small class="titulo bold">Marca: </small>
+      <p>{{ produtos.marca }}</p>
+
+      <small class="titulo bold">Tipo: </small>
+      <p>{{ produtos.tipo }} </p>
+      <div class="mg-left-50-percent">
+        <button ion-button icon-start (click)="apagar()" outline color="imperial">
+          <ion-icon name="trash" color="imperial"></ion-icon>
+          Excluir
+        </button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

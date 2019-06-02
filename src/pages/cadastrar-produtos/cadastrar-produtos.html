@@ -8,13 +8,14 @@
 
 <ion-content padding>
 
-    <div  class="center">
-        <img *ngIf="!produto.imgProduto" class="produto">
-        <img *ngIf="produto.imgProduto" class="produto" [ngStyle]="{ 'background-image': 'url(' + produto.imgProduto + ')'}">
-          <button class="center" color="imperial" ion-fab mini (click)="imagemProduto()">
-            <ion-icon padding name="md-camera" item-end></ion-icon>
-          </button>
-    </div>
+  <div class="center mg-bottom-20">
+    <img *ngIf="!produto.imgProduto" class="produto avatar">
+    <img *ngIf="produto.imgProduto" class="produto"
+      [ngStyle]="{ 'background-image': 'url(' + produto.imgProduto + ')'}">
+    <button class="center" color="imperial" ion-fab mini (click)="imagemProduto()">
+      <ion-icon padding name="md-camera" item-end></ion-icon>
+    </button>
+  </div>
   <form [formGroup]="form">
     <ion-list>
       <ion-item>
@@ -26,22 +27,28 @@
         <ion-input type="text" formControlName="marca" [(ngModel)]="form.marca"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label color="primary">Tipo</ion-label>
-        <ion-select formControlName="tipo" [(ngModel)]="form.tipo">
-          <ion-option value="hidratacao">Hidratação</ion-option>
-          <ion-option value="nutricao">Nutrição</ion-option>
-          <ion-option value="reconstrucao">Reconstrução</ion-option>
-          <ion-option value="finalizacao">Finalização</ion-option>
-          <ion-option value="outros">Outros</ion-option>
-        </ion-select>
-      </ion-item>
+      <ion-row>
+        <ion-col width-55>
+          <ion-item>
+            <ion-label color="primary">Tipo</ion-label>
+            <ion-select formControlName="tipo" [(ngModel)]="form.tipo">
+              <ion-option value="hidratacao">Hidratação</ion-option>
+              <ion-option value="nutricao">Nutrição</ion-option>
+              <ion-option value="reconstrucao">Reconstrução</ion-option>
+              <ion-option value="finalizacao">Finalização</ion-option>
+              <ion-option value="outros">Outros</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </ion-list>
   </form>
   <ion-item>
     <ion-label color="primary" stacked>Observação</ion-label>
-    <ion-input type="textarea" [(ngModel)]="produto.obs"></ion-input>
+    <ion-input type="textarea" placeholder="Opcional (ex: ajudou a controlar o friz)" [(ngModel)]="produto.obs">
+    </ion-input>
   </ion-item>
-  
-  <button class="mg-top-40 center" color="imperial" ion-button block [disabled]="!form.valid" (click)="cadastrar()" >Cadastrar</button>
+
+  <button class="mg-top-40 center" color="imperial" ion-button block [disabled]="!form.valid"
+    (click)="cadastrar()">Cadastrar</button>
 </ion-content>

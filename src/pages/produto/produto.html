@@ -1,25 +1,27 @@
-<ion-header >
+<ion-header>
 
   <ion-navbar color="imperial">
     <ion-title>Meus produtos</ion-title>
   </ion-navbar>
-  
+
   <ion-searchbar placeholder="Pesquisar" (ionInput)="getItems($event)"></ion-searchbar>
   <!--<ion-list>
-      <ion-item *ngFor="let item of items">
-        {{ item }}
-      </ion-item>
-    </ion-list>
--->
+    <ion-item *ngFor="let item of items">
+      {{ item.nome }}
+    </ion-item>
+  </ion-list>-->
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <button ion-item *ngFor="let item of produtos" (click)="abreDetalhe(item)">
-            {{ item.nome }}<br>
-            {{ item.tipo }}<br>
-            {{ item.marca }}
-            <ion-icon color="imperial" name="md-eye" item-end></ion-icon>
-        </button>
-      </ion-list>
-</ion-content> 
+
+  <ion-card *ngFor="let item of produtos" style="border-radius: 6px;">
+    <ion-card-content>
+      <ion-card-title class="font-18" color="imperial">{{ item.nome }}</ion-card-title>
+      <ion-icon name="md-pricetags" item-start></ion-icon> {{ item.tipo }}<br><br>
+      <ion-icon name="ios-flask-outline" item-start size="danger"></ion-icon> {{ item.marca }}
+      <button ion-item >
+        <ion-icon name="md-eye" color="imperial" item-end (click)="abreDetalhe(item)"></ion-icon>
+      </button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

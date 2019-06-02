@@ -63,6 +63,7 @@ abrirModal() {
  alterarSenha(){
    this.abrirModal();
   }
+  
   //Atualizar a pagina
   refresh(refresher) {
     refresher.complete();

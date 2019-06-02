@@ -3,7 +3,7 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Meu perfil</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content *ngIf="user" padding>
@@ -27,41 +27,42 @@
   </div>
   <!-- FORMS -->
   <ion-list >
-    <ion-item>
-      <ion-label stacked class="eggshell">Seu nome</ion-label>
+    <ion-item padding>
+        <ion-label stacked class="eggshell">Seu nome</ion-label>
       <ion-icon name="person" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Nome" [disabled]="!editarNome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
+      <ion-input [disabled]="!editarNome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
       <ion-icon name="md-create" (click)="alterarNome()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
   <ion-list>
-    <ion-item>
+    <ion-item padding>
       <ion-label stacked class="eggshell">Seu e-mail</ion-label>
       <ion-icon name="mail" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Email" [disabled]="!editarEmail" [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
+      <ion-input [disabled]="!editaEmail" [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
       <ion-icon name="md-create" (click)="alterarEmail()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
   <ion-list>
-  <ion-item center>
-    <ion-label stacked class="eggshell">Seu tipo de cabelo</ion-label>
-    <ion-icon name="md-heart" color="rosa" item-start></ion-icon>
-    <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="toppings">
-      <ion-option>1</ion-option>
-      <ion-option>2A</ion-option>
-      <ion-option>2B</ion-option>
-      <ion-option>2C</ion-option>
-      <ion-option>3A</ion-option>
-      <ion-option>3B</ion-option>
-      <ion-option>3C</ion-option>
-      <ion-option>4A</ion-option>
-      <ion-option>4B</ion-option>
-      <ion-option>4C</ion-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
+      <ion-item center>
+        <ion-label stacked class="eggshell">Seu tipo de cabelo</ion-label>
+        <ion-icon name="md-heart" color="rosa" item-start></ion-icon>
+        <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="toppings">
+          <ion-option>1</ion-option>
+          <ion-option>2A</ion-option>
+          <ion-option>2B</ion-option>
+          <ion-option>2C</ion-option>
+          <ion-option>3A</ion-option>
+          <ion-option>3B</ion-option>
+          <ion-option>3C</ion-option>
+          <ion-option>4A</ion-option>
+          <ion-option>4B</ion-option>
+          <ion-option>4C</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
   <ion-list>
     <button class="mg-top-20 center" color="imperial" ion-button full  (click)="alterarSenha()">Alterar senha</button>
   </ion-list>
