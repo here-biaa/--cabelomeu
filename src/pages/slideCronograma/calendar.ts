@@ -1,25 +1,21 @@
-import {Component, ViewChild,forwardRef,Output,EventEmitter,OnInit,Input} from "@angular/core";
 import {
-  IonicPage,
-  NavController,
-  NavParams,
-  ModalController,
-  Slides,
-  DateTime
-} from "ionic-angular";
+  Component,
+  ViewChild,
+  forwardRef,
+  Output,
+  EventEmitter,
+  OnInit,
+  Input
+} from '@angular/core';
+import moment, { Moment } from 'moment';
+import { Slides, DateTime } from 'ionic-angular';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CalendarController } from './calendar-controller';
 import { Schedule, StartDate } from './calendar.model';
-import { Storage } from "@ionic/storage";
-import { FirebaseProvider } from "../../providers/firebase";
-import { LoadingProvider } from "../../providers/loading";
-import { CalendarComponent } from "./calendar";
-import moment, { Moment } from 'moment';
 
-@IonicPage()
 @Component({
-  selector: "page-slideCronograma",
-  templateUrl: "slideCronograma.html",
+  selector: 'calendar',
+  templateUrl: 'calendar.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -28,9 +24,7 @@ import moment, { Moment } from 'moment';
     }
   ]
 })
-export class slideCronogramaPage implements OnInit, ControlValueAccessor{
-  private calendar: CalendarComponent;
-
+export class CalendarComponent implements OnInit, ControlValueAccessor {
   @ViewChild(Slides)
   private slides: Slides;
 
@@ -99,13 +93,13 @@ export class slideCronogramaPage implements OnInit, ControlValueAccessor{
 
   dates: Moment[] = [];
 
-  private _onChanged: Function = () => { };
+  private _onChanged: Function = () => {};
 
-  constructor(private calendarCtrl: CalendarController) { }
+  constructor(private calendarCtrl: CalendarController) {}
 
   ngOnInit() {
     this.initDate(moment());
-    this.calendarCtrl.setCalendar(this.calendar);
+    this.calendarCtrl.setCalendar(this);
   }
 
   private initDate(date: Moment) {
@@ -276,5 +270,5 @@ export class slideCronogramaPage implements OnInit, ControlValueAccessor{
     this._onChanged = fn;
   }
 
-  registerOnTouched(fn: any) { }
+  registerOnTouched(fn: any) {}
 }

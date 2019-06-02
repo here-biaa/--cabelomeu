@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { slideCronogramaPage } from './slideCronograma';
+import { CalendarComponent } from './calendar';
+import { IonicModule } from 'ionic-angular';
 import { CalendarMonthComponent } from './calendar-month/calendar-month';
 import { CalendarDayComponent } from './calendar-day/calendar-day';
 import { LockSlidesDirective } from './lock-slides.directive';
 import { CalendarController } from './calendar-controller';
-import { CalendarComponent } from './calendar';
 
 @NgModule({
-  imports: [
-    IonicPageModule.forChild(slideCronogramaPage),
-  ],
+  imports: [IonicModule],
   declarations: [
-    slideCronogramaPage,
     CalendarComponent,
     CalendarMonthComponent,
     CalendarDayComponent,
@@ -20,8 +16,5 @@ import { CalendarComponent } from './calendar';
   ],
   providers: [CalendarController],
   exports: [CalendarComponent]
-
 })
-export class slideCronogramaPageModule {
-  
-}
+export class CalendarModule {}

@@ -127,9 +127,11 @@ abrirModal() {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       correctOrientation: true,
       allowEdit: true,
+      cameraDirection: 1,
       targetWidth: 900,
       targetHeight: 900
-    }).then(imageData => {
+    })
+    .then(imageData => {
       let base64data = 'data:image/jpeg;base64,' + imageData;
       this.bigImg = base64data;
       //Get image size
@@ -137,7 +139,25 @@ abrirModal() {
     }, error => {
     });
   }
+  tirarFoto(){
+    this.camera.getPicture({
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      cameraDirection: 0,
+      targetWidth: 900,
+      targetHeight: 900
+    })
+      .then(imageData => {
+        let base64data = 'data:image/jpeg;base64,' + imageData;
+        this.bigImg = base64data;
+        //Get image size
+        this.createThumbnail();
+      }, error => {
+      });
 
+  }
   createThumbnail() {
     let load = this.loadingProvider;
     load.present()
@@ -198,14 +218,21 @@ abrirModal() {
     let actionsheet = this.actionctrl.create({
       title: 'Foto de perfil',
       buttons : [
-        
+        {
+          text: 'Tirar foto para o perfil',
+          icon: 'ios-camera-outline',
+          handler: () => {
+            this.tirarFoto()
+          }
+        },
+
         {
           text:'Selecionar foto de perfil',
           icon: 'ios-images-outline',
           handler: () => {
+            this.changeAvatar()
           }
         },
-        
         {
           text:'Remover foto',
           icon: 'ios-trash-outline',

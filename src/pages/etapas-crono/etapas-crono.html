@@ -1,71 +1,71 @@
-
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Etapas cronograma</ion-title>
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment [(ngModel)]="etapas" >
-      <ion-segment-button value="hidratacao" #hidratacao (click)="selecionarTab(0)">
+    <ion-segment [(ngModel)]="etapas">
+      <ion-segment-button value="hidratacao">
         Hidratação
       </ion-segment-button>
-      <ion-segment-button value="nutricao" #nutricao (click)="selecionarTab(1)">
+      <ion-segment-button value="nutricao">
         Nutrição
       </ion-segment-button>
-      <ion-segment-button value="reconstrucao" #reconstrucao (click)="selecionarTab(2)">
+      <ion-segment-button value="reconstrucao">
         Reconstrução
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-slides  #slides class="page-etapas-crono" padding>
-      <ion-slide class="backCor fixed" padding>
+
+<ion-content class="page-etapas-crono" padding>
+
+  <div class="backCor fixed" padding>
+    <div [ngSwitch]="etapas">
+      <ion-list *ngSwitchCase="'hidratacao'">
+        <h1 class="title bold center">Hidratação</h1>
+        <img class="center" src="./assets/imgs/cachos_linhas.png">
         <div>
-          <ion-list>
-            <h1 class="title bold center">Hidratação</h1>
-            <img class="center" src="./assets/imgs/cachos_linhas.png">
-            <div>
-              <p class="texto">Fase mais conhecida do cronograma por tirar o ressecamento. É responsável por repor água e
-                nutrientes
-                essenciais
-                que são perdidos todos os dias livrando os fios de opacidez e ressecamento fazendo com que eles voltem a ser
-                brilhosos e hidratados.</p>
-            </div>
-          </ion-list>
+          <p class="texto">Fase mais conhecida do cronograma por tirar o ressecamento. É responsável por repor água e
+            nutrientes
+            essenciais
+            que são perdidos todos os dias livrando os fios de opacidez e ressecamento fazendo com que eles voltem a ser
+            brilhosos e hidratados.</p>
         </div>
-      </ion-slide>
-      <ion-slide >
-        <ion-list >
-            <h1 class="title bold center">Nutrição</h1>
-            <img class="center" src="./assets/imgs/cachos_linhas.png">
-            <div>
-              <p class="texto">Fase utilizada quando os fios estão secos e sem definição, serve para repor os nutrientes
-                dos fios
-                que são os
-                denominados lipídios. Os lipídios são moléculas gordurosas produzidas pelo couro cabeludo com a
-                finalidade de
-                proteger
-                os fios, deixando-os saudáveis.</p>
-            </div>
-          </ion-list>
-      </ion-slide>
-      <ion-slide >
-          <ion-list>
-            <h1 class="title bold center">Reconstrução</h1>
-            <img class="center" src="./assets/imgs/cachos_linhas.png">
-            <div>
-              <p class="texto">Fase em que os fios estão elásticos e quebradiços geralmente por conta de produtos químicos.
-                E
-                então
-                há
-                necessidade
-                de
-                reconstruí-los para adicionar proteínas. É recomendado ser feito a cada quinze dias, pois há casos de efeito
-                contrário
-                em que os fios chegam a cair.</p>
-            </div>
-          </ion-list>
-      </ion-slide>
-  </ion-slides>
+      </ion-list>
+    </div>
+
+    <div [ngSwitch]="etapas">
+      <ion-list *ngSwitchCase="'nutricao'">
+        <h1 class="title bold center">Nutrição</h1>
+        <img class="center" src="./assets/imgs/cachos_linhas.png">
+        <div>
+          <p class="texto">Fase utilizada quando os fios estão secos e sem definição, serve para repor os nutrientes
+            dos fios
+            que são os
+            denominados lipídios. Os lipídios são moléculas gordurosas produzidas pelo couro cabeludo com a
+            finalidade de
+            proteger
+            os fios, deixando-os saudáveis.</p>
+        </div>
+      </ion-list>
+    </div>
+    <div [ngSwitch]="etapas">
+      <ion-list *ngSwitchCase="'reconstrucao'">
+        <h1 class="title bold center">Reconstrução</h1>
+        <img class="center" src="./assets/imgs/cachos_linhas.png">
+        <div>
+          <p class="texto">Fase em que os fios estão elásticos e quebradiços geralmente por conta de produtos químicos.
+            E
+            então
+            há
+            necessidade
+            de
+            reconstruí-los para adicionar proteínas. É recomendado ser feito a cada quinze dias, pois há casos de efeito
+            contrário
+            em que os fios chegam a cair.</p>
+        </div>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

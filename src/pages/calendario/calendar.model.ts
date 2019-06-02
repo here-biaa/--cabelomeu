@@ -54,7 +54,7 @@ export interface ModalOptions {
   enterAnimation?: string;
   leaveAnimation?: string;
 }
-export interface Schedule {
+export interface Cronograma {
   date: string;
   color: string;
 }
@@ -99,6 +99,12 @@ export interface CalendarOptions {
   showAdjacentMonthDay?: boolean;
 }
 
+export interface Cronograma {
+  date: string;
+  color: string;
+  data: Date;
+
+}
 export interface CalendarComponentOptions extends CalendarOptions {
   showToggleButtons?: boolean;
   showMonthPicker?: boolean;

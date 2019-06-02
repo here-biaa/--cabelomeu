@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, Input, Output, EventEmitter, forwardRef, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig } from '../calendar.model'
+import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig, Cronograma } from '../calendar.model'
 import { defaults, pickModes } from "../config";
 import moment, { Moment } from 'moment';
 import { CalendarController } from '../calendar.controller';
@@ -29,18 +29,20 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.last-month-day]="day.isLastMonth"
                         [class.next-month-day]="day.isNextMonth"
                         [class.on-selected]="isSelected(day.time)"
+                        [class]="'days-btn ' + day.hidratacao"
+                        [class]="'days-btn ' + day.nutricao"
+                        [class]="'days-btn ' + day.reconstrucao"
+                        
+
                         >
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
-                  <b [hidden]="!haveSchedule" [ngStyle]="{'background-color':schedule?.color}"></b>
-
+            
                 </button>
               </ng-container>
             </div>
           </ng-template>
         </div>
-        <button type="button" [disabled]="!hidrata" (click)="hidratacao()" class="days-btn btn-hidratacao" >H</button>
-        <button type="button" [disabled]="reconstroi" class="days-btn btn-reconstrucao" >R</button>
       </ng-template>
 
       <ng-template #rangeBox>
@@ -65,6 +67,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.on-selected]="isSelected(day.time)"
                         >
                   <p>{{day.title}}</p>
+                   <b [hidden]="!eventos" [ngStyle]="{'background-color':agenda?.color}"></b>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
                 </button>
               </ng-container>
@@ -88,7 +91,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   @Input() color: string = defaults.COLOR;
   @Input() date: string;
   @Input() dateMonth: Moment;
-
+  @Input() etapas: Cronograma[] = [];
 
   @Output() onChange: EventEmitter<CalendarDay[]> = new EventEmitter();
   @Output() onSelect: EventEmitter<CalendarDay> = new EventEmitter();
@@ -97,6 +100,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   @Output() onHidratacao: EventEmitter<CalendarDay> = new EventEmitter();
 
   _date: Array<CalendarDay | null> = [null, null];
+  dias : CalendarDay;
   _isInit = false;
   _onChanged: Function;
   _onTouched: Function;
@@ -108,7 +112,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   constructor(public ref: ChangeDetectorRef, private calendarCtrl: CalendarController) { }
   ngAfterViewInit(): void {
     this._isInit = true;
-  }
+   }
 
   writeValue(obj: any): void {
     if (Array.isArray(obj)) {
@@ -222,7 +226,24 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       const index = this._date.findIndex(e => e !== null && e.time === item.time);
 
       if (index === -1) {
-        this._date.push(item);
+        if (item.title == '3' || item.title == '5' || item.title == '13' || item.title == '16' || item.title == '19'){
+          this._date.push(item);
+          item.subTitle = 'H'
+          item.cssClass = 'hidratacao'
+        }
+        else if (item.title == '6' || item.title == '8' || item.title == '18'){
+          this._date.push(item);
+          item.subTitle = 'N'
+          item.cssClass = 'nutricao'
+
+        }
+        else if (item.title == '14' || item.title == '28'){
+          this._date.push(item);
+          item.subTitle = 'R'
+          item.cssClass = 'reconstrucao'
+
+        }
+          
       } else {
         this._date.splice(index, 1);
       }
@@ -238,6 +259,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     item.subTitle= 'H'
     console.log(item)
   }
-  
-
+   get eventos(): boolean {
+    return !!this.etapas;
+  }
 }

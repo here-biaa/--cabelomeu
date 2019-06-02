@@ -7,10 +7,14 @@ import {
   CalendarMonth,
   CalendarModalOptions,
   CalendarResult,
-  DayConfig
+  DayConfig,
+  CalendarOptions,
+  CalendarComponentOptions,
+  Cronograma
 } from '../calendar.model'
 import * as moment from 'moment';
 import { defaults, pickModes } from "../config";
+import { CalendarComponent } from '../components/calendar.component';
 
 @Injectable()
 export class CalendarService {
@@ -80,7 +84,6 @@ export class CalendarService {
       showAdjacentMonthDay
     }
   }
-
   createOriginalCalendar(time: number): CalendarOriginal {
     const date = new Date(time);
     const year = date.getFullYear();
@@ -256,5 +259,13 @@ export class CalendarService {
       date: _moment.date()
     }
   }
-
-}
+  getEvents(etapas:any): Cronograma{
+    const _diasEtapa: DayConfig[] = [];
+     let {
+       data= _diasEtapa,
+       color = ''
+     } = etapas || {};
+     return
+    
+  }
+  }
