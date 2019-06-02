@@ -28,16 +28,18 @@
   <!-- FORMS -->
   <ion-list >
     <ion-item padding>
+        <ion-label stacked class="eggshell">Seu nome</ion-label>
       <ion-icon name="person" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Nome" [disabled]="!editarNome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
+      <ion-input [disabled]="!editarNome" [(ngModel)]="user.name" type="text" class="black bold"></ion-input>
       <ion-icon name="md-create" (click)="alterarNome()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
 
   <ion-list>
     <ion-item padding>
+      <ion-label stacked class="eggshell">Seu e-mail</ion-label>
       <ion-icon name="mail" color="rosa" item-start></ion-icon>
-      <ion-input placeholder="Email" [disabled]="!editaEmail" [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
+      <ion-input [disabled]="!editaEmail" [(ngModel)]="user.email" type="text" class="black bold"></ion-input>
       <ion-icon name="md-create" (click)="alterarEmail()" color="imperial" item-end></ion-icon>
     </ion-item>
   </ion-list>
