@@ -36,7 +36,11 @@ export class CreateAccountPage {
   // Validação do formulário de cadastro
   buildForm() {
     this.validacao_form = this.formBuilder.group({
-      name: ["", Validators.required],
+      name: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3)
+
+      ])), 
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -52,10 +56,9 @@ export class CreateAccountPage {
         Validators.minLength(8),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]))
-    }, (validacao_form: FormGroup) => {
-        return PasswordValidator.areEqual(validacao_form);
-    });
-  }
+    }, {
+        Validators: PasswordValidator.isMatching
+    })};
 
   registrar() {
     if (this.validacao_form.valid) {

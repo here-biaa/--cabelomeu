@@ -9,10 +9,9 @@
 <ion-content padding>
 
   <div class="center mg-bottom-20">
-    <img *ngIf="!produto.imgProduto" class="produto avatar">
     <img *ngIf="produto.imgProduto" class="produto"
       [ngStyle]="{ 'background-image': 'url(' + produto.imgProduto + ')'}">
-    <button class="center" color="imperial" ion-fab mini (click)="imagemProduto()">
+    <button class="center" color="imperial" ion-fab mini (click)="FolhaDeAcoes()">
       <ion-icon padding name="md-camera" item-end></ion-icon>
     </button>
   </div>
@@ -32,11 +31,11 @@
           <ion-item>
             <ion-label color="primary">Tipo</ion-label>
             <ion-select formControlName="tipo" [(ngModel)]="form.tipo">
-              <ion-option value="hidratacao">Hidratação</ion-option>
-              <ion-option value="nutricao">Nutrição</ion-option>
-              <ion-option value="reconstrucao">Reconstrução</ion-option>
-              <ion-option value="finalizacao">Finalização</ion-option>
-              <ion-option value="outros">Outros</ion-option>
+              <ion-option value="Hidratação">Hidratação</ion-option>
+              <ion-option value="Nutrição">Nutrição</ion-option>
+              <ion-option value="Reconstrução">Reconstrução</ion-option>
+              <ion-option value="Finalização">Finalização</ion-option>
+              <ion-option value="Outros">Outros</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>

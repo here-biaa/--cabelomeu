@@ -11,7 +11,7 @@ import { CalendarModal } from './components/calendar.modal';
   selector: 'page-calendario',
   templateUrl: 'calendario.html',
 })
-export class calendarioPage implements OnInit {
+export class calendarioPage{
   btnHidratacao= true;
   constructor(
     public evt:Events,
@@ -23,26 +23,12 @@ export class calendarioPage implements OnInit {
     moment.locale('pt-br'); 
   }
   dateMulti: string[];
-  mockSchedules: Cronograma[] = [];
-
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
-  
-  
-  ngOnInit() {
-    let _daysConfig: DayConfig[] = [];
-    for (let i = 0; i < 31; i++) {
-      _daysConfig.push({
-        date: new Date(2019, 6, i + 1),
-        subTitle: `$${i + 1}`
-      })
-    }
-    const optionsMulti: CalendarComponentOptions = {
-      pickMode: 'multi'
-    };
-    console.log(optionsMulti)
-   }
+  optionsMulti: CalendarComponentOptions = {
+    pickMode: 'multi'
+  };
 
-  
+
   _toastWrap(event: string, payload: {}) {
     let toast = this.toastCtrl.create({
       message: `${event}: ${JSON.stringify(payload, null, 2)}`,
@@ -58,7 +44,6 @@ export class calendarioPage implements OnInit {
   
   onSelect($event) {
     console.log('onSelect', $event);
-    this.presentActionSheet()
     }
   onHidratacao($event) {
     console.log('onHidratacao', $event);

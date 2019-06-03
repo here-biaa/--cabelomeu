@@ -66,6 +66,28 @@ export class ConfiguracoesPage {
     
   }
   
+  async AlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      title: 'Tem certeza?',
+      message: 'Realmente deseja sair?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Sair',
+          handler: () => {
+            this.logout()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
   }

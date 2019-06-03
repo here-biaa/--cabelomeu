@@ -7,26 +7,39 @@
       </div>
     </div>
       <h1 class="text mg-top-20 bold">Alterar senha</h1>
-      <!-- PASS -->
-      <ion-item class="transparent-bg no-padding mg-top-20">
-        <ion-label stacked class="eggshell">Sua senha</ion-label>
-        <ion-input type="password" class="eggshell bold">
-        </ion-input>
-      </ion-item>
+      <form [formGroup]="validacao_form">
+        <!-- PASS -->
+        <ion-item class="transparent-bg no-padding mg-top-20">
+          <ion-label stacked class="eggshell">Senha atual</ion-label>
+          <ion-input type="password" formControlName="pass" [(ngModel)]="validacao_form.pass" class="eggshell bold"></ion-input>
+        </ion-item>
+        <div class="no-padding" *ngIf="!validacao_form.controls.pass.valid && validacao_form.controls.pass.hasError('pattern')"
+          class="validator-error red light">
+          Senha incorreta
+        </div>
 
-      <ion-item class="transparent-bg no-padding mg-top-20">
-        <ion-label stacked class="eggshell">Nova senha</ion-label>
-        <ion-input type="password" class="eggshell bold">
-        </ion-input>
-      </ion-item>
+        <ion-item class="transparent-bg no-padding mg-top-20">
+          <ion-label stacked class="eggshell">Nova senha</ion-label>
+          <ion-input type="password"formControlName="novaSenha" [(ngModel)]="validacao_form.novaSenha" class="eggshell bold">
+          </ion-input>
+        </ion-item>
+        <div class="no-padding" *ngIf="!validacao_form.controls.novaSenha.valid && validacao_form.controls.novaSenha.hasError('pattern')"
+          class="validator-error red light">
+          Sua senha deve conter 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.
+        </div>
 
-      <!-- PASS -->
-      <ion-item class="transparent-bg no-padding mg-top-20">
-        <ion-label stacked class="eggshell">Confirme a senha</ion-label>
-        <ion-input type="password" class="eggshell bold"></ion-input>
-      </ion-item>
+        <!-- PASS -->
+        <ion-item class="transparent-bg no-padding mg-top-20">
+          <ion-label stacked class="eggshell">Confirme a senha</ion-label>
+          <ion-input type="password" formControlName="confirmPass" [(ngModel)]="validacao_form.confirmPass" class="eggshell bold"></ion-input>
+        </ion-item>
+        <div class="no-padding" *ngIf="
+        validacao_form.controls.confirmPass.errors?.isMatching"
+          class="validator-error red light">
+          As senhas não conferem
+        </div>
 
-      <button class="mg-top-20 center" color="rosa" ion-button block outline (click)="alterarSenha()">Alterar</button>
- 
+        <button class="mg-top-20 center" color="rosa" [disabled]="!validacao_form.valid" ion-button block outline (click)="alterarSenha()">Alterar</button>
+      </form>
   </div>
 </ion-content>

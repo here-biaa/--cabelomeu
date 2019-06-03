@@ -1,33 +1,21 @@
 import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl } from "@angular/forms";
 
 export class PasswordValidator {
 
-    // Inspired on: http://plnkr.co/edit/Zcbg2T3tOxYmhxs7vaAm?p=preview
-    static areEqual(formGroup: FormGroup) {
-        let val;
-        let valid = true;
+    static isMatching(AC: AbstractControl) {
 
-        for (let key in formGroup.controls) {
-            if (formGroup.controls.hasOwnProperty(key)) {
-                let control: FormControl = <FormControl>formGroup.controls[key];
+        let password = AC.get('pass').value;
+        let confirmPassword = AC.get('confirmPass').value;
 
-                if (val === undefined) {
-                    val = control.value
-                } else {
-                    if (val !== control.value) {
-                        valid = false;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (valid) {
+        if (password != confirmPassword) {
+            console.log("Senhas não conferem");
+            console.log('Senha: ', password);
+            console.log('Confirmar Senha: ', confirmPassword)
+            AC.get('confirmPass').setErrors({ isMatching: false });
+        } else {
+            console.log("Senhas conferem");
             return null;
         }
-
-        return {
-            areEqual: true
-        };
     }
 }

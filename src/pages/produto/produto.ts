@@ -52,4 +52,14 @@ export class ProdutoPage {
       this.produtos = res;
     });
   }
+  getItems(ev) {
+    this.produtos;
+
+    var val = ev.target.value;
+if (val && val.trim() != '') {
+      this.produtos= this.produtos.filter((produtos) => {
+        return produtos
+     })
+    }
   }
+}

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { IonicPage, NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LoadingProvider } from '../../providers/loading';
 import { FirebaseProvider } from '../../providers/firebase';
@@ -23,12 +23,14 @@ export class ProfilePage {
     email:'',
     pass:'',
     uid: '',
-    avatar: ''
+    avatar: '',
+    cabelo:''
   };
   bigImg = null;
   smallImg = null;
   editarNome= false;
   editarEmail =false;
+  @Input() cabelos:string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,8 +44,11 @@ export class ProfilePage {
     public actionctrl:ActionSheetController,
     private toastCtrl: ToastController,
     public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+
   ) {
     this.getCurrentUser();
+
   }
   alterarEmail(){
     this.editarEmail = true;
@@ -70,7 +75,7 @@ abrirModal() {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
-  //Get current user data
+  //Buscar dados do usuario no storage
   getCurrentUser() {
     this.storage.get('user_cabelomeu')
       .then((user) => {
@@ -79,13 +84,42 @@ abrirModal() {
   }
 
   //Salvar alterações do usuario
-  save() {
+  save(){
     this.loadingProvider.present();
-    this.firebaseProvider.saveUser(this.user)
-      .then((res) => {
+    if(this.editarEmail == true){  
+      let user = firebase.auth().currentUser;
+      user.sendEmailVerification();
+      if (user.emailVerified) {
+        console.log(user)
+        console.log("email verified");
+        this.firebaseProvider.saveUser(this.user)
         this.getAndSaveCurrentUser(this.user.uid);
         this.presentToast()
-      })  
+        // 
+      } else {
+        // Senão ele vai receber um alerta
+        console.log("email not verified");
+        this.loadingProvider.dismiss();
+
+        let user = firebase.auth().currentUser;
+        user.sendEmailVerification();
+        this.alertCtrl.create({
+          title: "Verifique e confirme seu email",
+          subTitle: "É necessário a confirmação do e-mail de autenticação.",
+          buttons: ["Ok"]
+        }).present();
+
+      }
+    }
+    else if(this.editarNome == true)
+    {
+      this.loadingProvider.present();
+      this.firebaseProvider.saveUser(this.user)
+       .then((res) => {
+          this.getAndSaveCurrentUser(this.user.uid);
+          this.presentToast()
+       })  
+    }
   }
 
 //quando o usuario salvar as alteraçoes vai aparecer

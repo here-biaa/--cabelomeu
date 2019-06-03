@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, AlertController, ActionSheetController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LoadingProvider } from '../../providers/loading';
 import { FirebaseProvider } from '../../providers/firebase';
@@ -36,7 +36,7 @@ amount = 0;
     private firebaseProvider: FirebaseProvider,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
-    
+    public actionctrl: ActionSheetController,
     public app: App,
     private camera: Camera,
     private storageImages: ImagesUpload,
@@ -105,12 +105,12 @@ amount = 0;
       this.loadingProvider.dismiss();
       this.presentToast();
       this.update();
-      this.form.value.nome= "";
-      this.form.value.marca = "";
-      this.produto.obs = "";
-      this.form.value.tipo = "";
-      this.produto.imgProduto = [""]; 
-
+      this.form.value.nome= null;
+      this.form.value.marca = null ;
+      this.produto.obs = null;
+      this.form.value.tipo = null;
+      this.produto.imgProduto = null; 
+      this.form.reset()
     });
 }
 //quando cadastrar o produto aparece 
@@ -132,7 +132,8 @@ presentToast() {
     this.camera.getPicture({
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.CAMERA,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      tirarFoto: this.camera.PictureSourceType.CAMERA,
       correctOrientation: true,
       allowEdit: true,
       targetWidth: 600,
@@ -144,6 +145,25 @@ presentToast() {
       this.createThumbnail();
     }, error => {
     });
+  }
+  tirarFoto() {
+    this.camera.getPicture({
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      cameraDirection: 0,
+      targetWidth: 900,
+      targetHeight: 900
+    })
+      .then(imageData => {
+        let base64data = 'data:image/jpeg;base64,' + imageData;
+        this.bigImg = base64data;
+        //Get image size
+        this.createThumbnail();
+      }, error => {
+      });
+
   }
 
   createThumbnail() {
@@ -199,4 +219,32 @@ presentToast() {
     image.src = img;
   }
   
+
+  FolhaDeAcoes() {
+    let actionsheet = this.actionctrl.create({
+      title: 'Adicionar Foto',
+      buttons: [
+        {
+          text: 'Tirar foto do produto',
+          icon: 'ios-camera-outline',
+          handler: () => {
+            this.tirarFoto()
+          }
+        },
+
+        {
+          text: 'Adicionar foto da galeria',
+          icon: 'ios-images-outline',
+          handler: () => {
+            this.imagemProduto()
+          }
+        }
+        
+      ]
+    })
+
+
+    actionsheet.present();
+  }
+
 }
