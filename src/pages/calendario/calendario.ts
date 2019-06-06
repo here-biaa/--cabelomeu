@@ -1,33 +1,67 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams,
    ModalController, ViewController, ToastController, ActionSheetController, Events } from 'ionic-angular';
 import * as moment from 'moment';
 import { CalendarModalOptions, DayConfig, CalendarOptions, CalendarComponentOptions, Cronograma } from './calendar.model';
-
-
-import { CalendarModal } from './components/calendar.modal';
+import { Storage } from "@ionic/storage";
+import { FirebaseProvider } from '../../providers/firebase';
+import { LoadingProvider } from '../../providers/loading';
 @IonicPage()
 @Component({
   selector: 'page-calendario',
   templateUrl: 'calendario.html',
 })
-export class calendarioPage{
+export class calendarioPage implements AfterViewInit,OnInit{
   btnHidratacao= true;
+  _daysConfig;
+  visibilidade = false;
+  user;
+  produtos;
   constructor(
     public evt:Events,
     public navCtrl: NavController,
     public modalCtrl: ModalController, 
-    private toastCtrl: ToastController, 
+    private toastCtrl: ToastController,
+    private firebaseProvider: FirebaseProvider,
+    private loadingProvider: LoadingProvider,
+    private storage: Storage,
+    public navParams: NavParams,
     public actionSheetController: ActionSheetController) 
   { 
     moment.locale('pt-br'); 
+    this.getCurrentUser();
+    this.getProdutos();
+    this.produtos = this.navParams.get("produtos");
+
+
+  }
+  ngAfterViewInit(){
+    
+  }
+  ngOnInit(){
+
   }
   dateMulti: string[];
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsMulti: CalendarComponentOptions = {
-    pickMode: 'multi'
+    pickMode: 'multi',
+    daysConfig: this._daysConfig
   };
 
+  getCurrentUser = () => {
+    this.storage.get("user_cabelomeu").then(user => {
+      this.user = user;
+    });
+  };
+
+  //Listar produtos
+  getProdutos = () => {
+    this.firebaseProvider.getProdutos().subscribe(res => {
+      this.loadingProvider.dismiss();
+      this.produtos = res;
+      
+    });
+  }
 
   _toastWrap(event: string, payload: {}) {
     let toast = this.toastCtrl.create({
@@ -44,6 +78,13 @@ export class calendarioPage{
   
   onSelect($event) {
     console.log('onSelect', $event);
+    if ($event.cssClass == 'hidratacao')
+    {
+      this.produtos.tipo = 'hidratcao';
+      console.log('tipooo')
+    }
+    this.visibilidade = true;
+    console.log(this.produtos)
     }
   onHidratacao($event) {
     console.log('onHidratacao', $event);
@@ -51,10 +92,13 @@ export class calendarioPage{
 
   onSelectStart($event) {
     console.log('onSelectStart', $event);
+    this.visibilidade = true;
+
   }
 
   onSelectEnd($event) {
     console.log('onSelectEnd', $event);
+    this.visibilidade = false;
     this._toastWrap('onSelectEnd', $event)
   }
 
@@ -62,48 +106,18 @@ export class calendarioPage{
     console.log('monthChange', $event);
     this._toastWrap('monthChange', $event)
   }
-   presentActionSheet() {
-    let actionSheet = this.actionSheetController.create({
-      buttons: [{
-        text: 'Meu cronograma',
-        role: 'destructive',
-        icon: 'calendar',
-        handler: () => {
-          this.EventosCalendar()
-        }
-      }/*, {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'arrow-dropright-circle',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }*/, {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    actionSheet.present();
+  CadastrarProduto(){ 
+    this.navCtrl.push('CadastrarProdutosPage')
   }
-  EventosCalendar(){
-    this.navCtrl.setRoot('slideCronogramaPage')
+  Temporizador(){
+    this.navCtrl.push('TemporizadorPage')
+
   }
-  hidratacao(){
+  EditarCronograma(){
+    this.navCtrl.push('slideCronogramaPage')
+  }
+  Anotacoes(){
+    this.navCtrl.push('FbLoginPage')
     
   }
 }

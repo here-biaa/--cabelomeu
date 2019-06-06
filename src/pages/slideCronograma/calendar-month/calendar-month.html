@@ -1,3 +1,0 @@
-<div class="calendar" *ngIf="!!dateMonth">
-  <calendar-day *ngFor="let date of dates;trackBy: trackByFn" [dateMonth]="dateMonth" [date]="date" (onSelect)="changeDate($event)"></calendar-day>
-</div>

@@ -139,7 +139,7 @@ export class LoginPage implements ErrorHandler{
       let user = res[0];
       this.storage.set('user_cabelomeu', user).then(() =>{
         this.loadingProvider.dismiss();
-        this.navCtrl.setRoot('IntroPage');
+        this.navCtrl.setRoot('TabsPage');
       });
     })
   }

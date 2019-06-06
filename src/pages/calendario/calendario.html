@@ -12,6 +12,7 @@
     [(ngModel)]="dateMulti"
     [options]="optionsMulti"
     [eventos]="optionsEventos"
+     [eventSource]="eventSource"
     [type]="type" 
     format="DD/MM/YYYY"
     (onChange)="onChange($event)"
@@ -22,9 +23,24 @@
     (onHidratacao)="onHidratacao($event)"
   > 
   </ion-calendar>
-    <ion-fab right bottom>
-      <button ion-fab class="bgButton">
+    
+    <ion-fab right bottom *ngIf="visibilidade">
+      <button ion-fab class="bgButton" >
         <ion-icon  name="calendar"></ion-icon>
       </button>
+      <ion-fab-list padding side="left">
+          <ion-fab-button ion-fab class="bgButton" (click)="Temporizador()" padding>
+            <ion-icon name="time"></ion-icon>
+          </ion-fab-button>
+        <ion-fab-button ion-fab class="bgButton"  (click)="EditarCronograma()"  padding>
+          <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button ion-fab class="bgButton"  padding>
+          <ion-icon name="images"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button ion-fab class="bgButton" (click)="CadastrarProduto()"  padding>
+          <ion-icon size="small" name="add" ><ion-icon name="flask"></ion-icon></ion-icon>
+        </ion-fab-button>
+       </ion-fab-list>
     </ion-fab>
 </ion-content>

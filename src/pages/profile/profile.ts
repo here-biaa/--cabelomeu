@@ -84,43 +84,15 @@ abrirModal() {
   }
 
   //Salvar alterações do usuario
-  save(){
+  save() {
     this.loadingProvider.present();
-    if(this.editarEmail == true){  
-      let user = firebase.auth().currentUser;
-      user.sendEmailVerification();
-      if (user.emailVerified) {
-        console.log(user)
-        console.log("email verified");
-        this.firebaseProvider.saveUser(this.user)
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
         this.getAndSaveCurrentUser(this.user.uid);
         this.presentToast()
-        // 
-      } else {
-        // Senão ele vai receber um alerta
-        console.log("email not verified");
-        this.loadingProvider.dismiss();
-
-        let user = firebase.auth().currentUser;
-        user.sendEmailVerification();
-        this.alertCtrl.create({
-          title: "Verifique e confirme seu email",
-          subTitle: "É necessário a confirmação do e-mail de autenticação.",
-          buttons: ["Ok"]
-        }).present();
-
-      }
-    }
-    else if(this.editarNome == true)
-    {
-      this.loadingProvider.present();
-      this.firebaseProvider.saveUser(this.user)
-       .then((res) => {
-          this.getAndSaveCurrentUser(this.user.uid);
-          this.presentToast()
-       })  
-    }
+      })
   }
+
 
 //quando o usuario salvar as alteraçoes vai aparecer
   presentToast() {

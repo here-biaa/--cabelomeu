@@ -1,9 +1,12 @@
 import { Component, ChangeDetectorRef, Input, Output, EventEmitter, forwardRef, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig, Cronograma } from '../calendar.model'
+import { CalendarDay, CalendarMonth, CalendarOriginal, PickMode, DayConfig, Cronograma, CalendarComponentOptions } from '../calendar.model'
 import { defaults, pickModes } from "../config";
 import moment, { Moment } from 'moment';
 import { CalendarController } from '../calendar.controller';
+import { LoadingProvider } from '../../../providers/loading';
+import { FirebaseProvider } from '../../../providers/firebase';
+import { Storage } from "@ionic/storage";
 
 export const MONTH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -64,11 +67,13 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.next-month-day]="day.isNextMonth"
                         [class.is-first]="day.isFirst"
                         [class.is-last]="day.isLast"
-                        [class.on-selected]="isSelected(day.time)"
+                        [class.on-selected]="true"
                         >
                   <p>{{day.title}}</p>
                    <b [hidden]="!eventos" [ngStyle]="{'background-color':agenda?.color}"></b>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                  <p *ngIf="day.produtos">   <ion-icon name="flask"></ion-icon></p>
+                
                 </button>
               </ng-container>
             </div>
@@ -82,7 +87,9 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   hidrata = false;
   nutri = true;
   reconstroi= true;
-
+  typeDays = [];
+  produtos;
+  user;
   @Input() month: CalendarMonth;
   @Input() pickMode: PickMode;
   @Input() isSaveHistory: boolean;
@@ -109,11 +116,28 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     return this.pickMode === pickModes.RANGE
   }
 
-  constructor(public ref: ChangeDetectorRef, private calendarCtrl: CalendarController) { }
+  constructor(
+    public ref: ChangeDetectorRef, 
+    private calendarCtrl: CalendarController,
+    private firebaseProvider: FirebaseProvider,
+    private loadingProvider: LoadingProvider,
+    private storage: Storage,
+
+    ) {
+    this.getCurrentUser();
+    this.getProdutos();
+   }
   ngAfterViewInit(): void {
     this._isInit = true;
-   }
+    /*const type = this.activatedRoute.snapshot.params.type;
 
+    if(type == 1) {
+      this.typeDays.push(4,5,6,8);
+    }
+    [class]="ngIf typeDays.include(day.title)
+
+   */
+    }
   writeValue(obj: any): void {
     if (Array.isArray(obj)) {
       this._date = obj;
@@ -226,12 +250,14 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       const index = this._date.findIndex(e => e !== null && e.time === item.time);
 
       if (index === -1) {
-        if (item.title == '3' || item.title == '5' || item.title == '13' || item.title == '16' || item.title == '19'){
+        if (item.title ==
+           '3' || item.title == '5' || item.title == '13' || item.title == '16' || item.title == '19'){
           this._date.push(item);
           item.subTitle = 'H'
           item.cssClass = 'hidratacao'
+          
         }
-        else if (item.title == '6' || item.title == '8' || item.title == '18'){
+        else if (item.title == '6' || item.title == '8' || item.title == '18' || item.title == '22' || item.title == '25'){
           this._date.push(item);
           item.subTitle = 'N'
           item.cssClass = 'nutricao'
@@ -241,6 +267,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
           this._date.push(item);
           item.subTitle = 'R'
           item.cssClass = 'reconstrucao'
+          item.produtos = true;
 
         }
           
@@ -250,16 +277,17 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       this.onChange.emit(this._date.filter(e => e !== null));
     }
   }
-  hidratacao(item: CalendarDay): void{
-    this.hidrata = true;
-    console.log('clickou', this.hidrata)
-    if (this.readonly) return;
-    item.selected = true;
-    this.onHidratacao.emit(item);
-    item.subTitle= 'H'
-    console.log(item)
-  }
-   get eventos(): boolean {
-    return !!this.etapas;
+  getCurrentUser = () => {
+    this.storage.get("user_cabelomeu").then(user => {
+      this.user = user;
+    });
+  };
+
+  //Listar produtos
+  getProdutos = () => {
+    this.firebaseProvider.getProdutos().subscribe(res => {
+      this.loadingProvider.dismiss();
+      this.produtos = res;
+    });
   }
 }

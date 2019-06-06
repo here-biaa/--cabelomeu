@@ -14,7 +14,6 @@ import {
 } from '../calendar.model'
 import * as moment from 'moment';
 import { defaults, pickModes } from "../config";
-import { CalendarComponent } from '../components/calendar.component';
 
 @Injectable()
 export class CalendarService {
@@ -142,12 +141,14 @@ export class CalendarService {
     let title = new Date(time).getDate().toString();
     if (dayConfig && dayConfig.title) {
       title = dayConfig.title
+
     } else if (opt.defaultTitle) {
       title = opt.defaultTitle
     }
     let subTitle = '';
     if (dayConfig && dayConfig.subTitle) {
       subTitle = dayConfig.subTitle
+    
     } else if (opt.defaultSubtitle) {
       subTitle = opt.defaultSubtitle
     }
@@ -259,13 +260,6 @@ export class CalendarService {
       date: _moment.date()
     }
   }
-  getEvents(etapas:any): Cronograma{
-    const _diasEtapa: DayConfig[] = [];
-     let {
-       data= _diasEtapa,
-       color = ''
-     } = etapas || {};
-     return
-    
-  }
+
+  
   }

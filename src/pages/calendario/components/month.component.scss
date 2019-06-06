@@ -218,11 +218,17 @@ ion-calendar-month {
         display: block;
         left: 0;
         right: 0;
-        bottom: -5px;
+        padding:3px;
         position: absolute;
         z-index: 1;
         text-align: center;
-        font-weight: 200;
+        font-weight: bold;
+        font-size:16px;
+        color:rgb(71, 36, 60);
+        background:#F2D7EE;
+        border-radius: 100%;
+        width:18px;
+        height:18px;
     }
     .primary {
         @include month-color();
