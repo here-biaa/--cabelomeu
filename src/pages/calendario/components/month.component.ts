@@ -267,8 +267,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
           this._date.push(item);
           item.subTitle = 'R'
           item.cssClass = 'reconstrucao'
-          item.produtos = true;
-
+          
         }
           
       } else {

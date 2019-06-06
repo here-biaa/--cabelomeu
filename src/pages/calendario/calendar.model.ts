@@ -24,7 +24,6 @@ export interface CalendarDay {
   };
   isFirst?: boolean;
   isLast?: boolean;
-  produtos:boolean;
   }
 
 

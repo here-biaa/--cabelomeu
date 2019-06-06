@@ -165,7 +165,7 @@ export class CalendarService {
       cssClass: dayConfig ? dayConfig.cssClass || '' : '',
       disable: _disable,
       isFirst: date.date() === 1,
-      isLast: date.date() === date.daysInMonth()
+      isLast: date.date() === date.daysInMonth(),
     }
   }
 

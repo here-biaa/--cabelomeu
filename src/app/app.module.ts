@@ -39,7 +39,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LoginPageModule } from '../pages/login/login.module';
 import { CreateAccountPageModule } from '../pages/create-account/create-account.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
-import { ProductPageModule } from '../pages/product/product.module';
 import { FbLoginPageModule } from '../pages/fb-login/fb-login.module';
 import { HomePageModule } from '../pages/home/home.module';
 import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
@@ -61,7 +60,6 @@ import { ModalPageModule } from '../pages/modal/modal.module';
     LoginPageModule,
     CreateAccountPageModule,
     TabsPageModule,
-    ProductPageModule,
     FbLoginPageModule,
     HomePageModule,
     ConfiguracoesPageModule,
