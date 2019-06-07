@@ -67,7 +67,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.next-month-day]="day.isNextMonth"
                         [class.is-first]="day.isFirst"
                         [class.is-last]="day.isLast"
-                        [class.on-selected]="true"
+                        [class.on-selected]="isSelected(day.time)"
                         >
                   <p>{{day.title}}</p>
                    <b [hidden]="!eventos" [ngStyle]="{'background-color':agenda?.color}"></b>

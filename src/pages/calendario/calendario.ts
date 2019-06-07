@@ -37,11 +37,16 @@ export class calendarioPage implements AfterViewInit,OnInit{
   }
   ngAfterViewInit(){
     
+    //conexao ocom banco pra descobrir o tipo
+    /*const tipo = 1;
+
+    if(tipo == 1){
+      this.dateMulti = []
+    }*/
   }
   ngOnInit(){
-
   }
-  dateMulti: string[];
+  dateMulti: string[] = [moment().toDate().toDateString(), moment().add(1, 'days').toDate().toDateString(), moment().add(2, 'days').toDate().toDateString()];
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsMulti: CalendarComponentOptions = {
     pickMode: 'multi',
