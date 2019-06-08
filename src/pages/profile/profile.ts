@@ -225,7 +225,7 @@ abrirModal() {
       title: 'Foto de perfil',
       buttons : [
         {
-          text: 'Tirar foto para o perfil',
+          text: 'Tirar foto',
           icon: 'ios-camera-outline',
           handler: () => {
             this.tirarFoto()
@@ -233,7 +233,7 @@ abrirModal() {
         },
 
         {
-          text:'Selecionar foto de perfil',
+          text:'Selecionar foto',
           icon: 'ios-images-outline',
           handler: () => {
             this.changeAvatar()
@@ -246,19 +246,9 @@ abrirModal() {
           handler: () => {
             this.deletarFoto()
           }
-        },
-        {
-          text:'Cancelar',
-          icon:'ios-close-circle-outline',
-          role:'cancel',
-          handler: () => {
-            console.log("Hey cancelled sucessfully")
-          }
         }
       ]
     })
-
-
     actionsheet.present();
   }
 

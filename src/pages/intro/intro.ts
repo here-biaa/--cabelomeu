@@ -18,6 +18,6 @@ export class IntroPage {
 
 abrirCronograma(){ 
   this.storage.set('slideCompleto',true);
-  this.navCtrl.setRoot('TabsPage')
+  this.navCtrl.setRoot('calendarioPage')
 }
 }

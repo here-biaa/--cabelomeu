@@ -18,109 +18,8 @@
   <ion-content padding class="backCronograma">
     <ion-slides pager>
 
-      <ion-slide class="slide_image">
-          <h3 class="txt mg-top-20">Indentifique seu <small class="Logotipo">TIPO</small> de cabelo</h3>
-        <ion-card class="card">
-          <div class="card-title-hidratação">Liso</div>
-          <ion-list>
-            <ion-item>
-              <ion-avatar item-start>
-                <button ion-fab color="imperial">
-                  <ion-icon>1</ion-icon>
-                </button>
-              </ion-avatar>
-              <img src="./assets/imgs/fio-cabelo.png">
-            </ion-item>
-          </ion-list>
-        </ion-card>
-
-        <ion-card>
-          <div class="card-title-hidratação">Ondulado</div>
-          <ion-list>
-            <ion-item>
-              <img src="./assets/imgs/2.1.png">
-              <ion-avatar item-start>
-                <button ion-fab color="imperial">
-                  <ion-icon>2A</ion-icon>
-                </button>
-              </ion-avatar>
-            </ion-item>
-          </ion-list>
-        </ion-card>
-
-        <ion-card>
-          <div class="card-title-hidratação">Ondulado</div>
-          <ion-list>
-            <ion-item>
-              <img src="./assets/imgs/2b.png">
-              <ion-avatar item-start>
-                <button ion-fab color="imperial">
-                  <ion-icon>2B</ion-icon>
-                </button>
-              </ion-avatar>
-            </ion-item>
-          </ion-list>
-        </ion-card>
-
-        <ion-card>
-          <div class="card-title-hidratação">Ondulado</div>
-          <ion-list>
-            <ion-item>
-              <img src="./assets/imgs/2c.png">
-              <ion-avatar item-start>
-                <button ion-fab color="imperial">
-                  <ion-icon>2C</ion-icon>
-                </button>
-              </ion-avatar>
-            </ion-item>
-          </ion-list>
-        </ion-card>
-
-        <ion-card>
-            <div class="card-title-hidratação">Cacheado</div>
-            <ion-list>
-              <ion-item>
-                <img src="./assets/imgs/3a.png">
-                <ion-avatar item-start>
-                  <button ion-fab color="imperial">
-                    <ion-icon>3A</ion-icon>
-                  </button>
-                </ion-avatar>
-              </ion-item>
-            </ion-list>
-          </ion-card>
-
-          <ion-card>
-              <div class="card-title-hidratação">Cacheado</div>
-              <ion-list>
-                <ion-item>
-                  <img src="./assets/imgs/3b.png">
-                  <ion-avatar item-start>
-                    <button ion-fab color="imperial">
-                      <ion-icon>3B</ion-icon>
-                    </button>
-                  </ion-avatar>
-                </ion-item>
-              </ion-list>
-            </ion-card>
-
-            <ion-card>
-                <div class="card-title-hidratação">Cacheado</div>
-                <ion-list>
-                  <ion-item>
-                    <img src="./assets/imgs/3c.png">
-                    <ion-avatar item-start>
-                      <button ion-fab color="imperial">
-                        <ion-icon>3C</ion-icon>
-                      </button>
-                    </ion-avatar>
-                  </ion-item>
-                </ion-list>
-              </ion-card>
-      </ion-slide>
-
       <ion-slide class="slide_image" padding>
-          <h3 class="txt">Qual o seu <small class="Logotipo">TIPO</small> de cabelo?</h3> 
+        <h3 class="txt">Qual o seu <small class="Logotipo">TIPO</small> de cabelo?</h3>
         <div class="mg-top-10">
           <button ion-button color="secondary" full>Liso</button>
         </div>
@@ -137,22 +36,66 @@
           <button ion-button color="secondary" full>Crespo</button>
         </div>
 
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Transição</button>
+        </div>
+
         <div>
-          <button  class="mg-top-40" padding ion-button color="secondary" outline>
+          <button class="mg-top-40" padding ion-button color="secondary" outline>
             Continuar
           </button>
         </div>
       </ion-slide>
 
+      <ion-slide class="slide_image" padding>
+        <h3 class="txt mg-top-20">Como montar meu <small class="Logotipo">cronograma capilar</small>?</h3>
+        <small class="Logotipo bold">Teste de purosidade</small>
+        <p>Você pode descobrir se seu cabelo precisa de hidratação, nutrição ou reconstrução por meio de um teste de
+          porosidade. Para isso, coloque um pouco de água em um recipiente transparente e, em seguida, coloque um fio
+          do
+          seu cabelo na água. Por fim, é só analisar o resultado.</p>
 
-      <ion-slide class="slide_image">
-        <h3 class="txt mg-top-40"> Agora responda o <small class="Logotipo bold">Teste de Purosidade</small> para
-          finalizar</h3>
-        <button ion-button color="secondary" outline (click)="abrirCronograma()" class="mg-top-10">
-          Criar meu cronograma
-        </button>
       </ion-slide>
 
+      <ion-slide class="slide_image">
+
+        <p class="mg-top-menos-50">
+          <small class="Logotipo bold">Teste de purosidade</small><br>
+          <p>Se seu cabelo boiar,
+          ele precisa de <small class="Logotipo">hidratação.</small></p>
+
+        <p>Se seu cabelo não afundar nem boiar,
+          ele precisa de <small class="Logotipo">nutrição.</small></p>
+
+        <p>Se seu cabelo afundar,
+          ele precisa de <small class="Logotipo">reconstrução.</small></p>
+
+        <div class="center mg-top-10">
+          <img src="./assets/imgs/teste-de-porosidade.jpg" class="logo-white-login">
+        </div>
+
+      </ion-slide>
+
+      <ion-slide class="slide_image" padding>
+        <h3 class="txt mg-top-menos-30">Com base no seu <small class="Logotipo">teste de purosidade</small>, o que seu
+          cabelo
+          mais precisa?</h3>
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Hidratação</button>
+        </div>
+
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Nutrição</button>
+        </div>
+
+        <div class="mg-top-10">
+          <button ion-button color="secondary" full>Reconstrução</button>
+        </div>
+        <button ion-button color="secondary" outline (click)="abrirCronograma()" class="mg-top-40">
+          Criar meu cronograma
+        </button>
+
+      </ion-slide>
     </ion-slides>
   </ion-content>
 </ion-content>
