@@ -51,6 +51,7 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-produto.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { ModalPageModule } from '../pages/modal/modal.module';
+import { AnotacoesPageModule } from '../pages/anotacoes/anotacoes.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,6 +73,7 @@ import { ModalPageModule } from '../pages/modal/modal.module';
     DetalhesProdutoPageModule,
     IntroPageModule,
     ModalPageModule,
+    AnotacoesPageModule,
 
     //Calendario
     //Outros

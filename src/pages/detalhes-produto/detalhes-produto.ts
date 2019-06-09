@@ -51,6 +51,7 @@ export class DetalhesProdutoPage {
   }
   openOptions(){
     let actionsheet = this.actionctrl.create({
+      title: 'Produto',
       buttons : [
         {
           text: 'Editar',

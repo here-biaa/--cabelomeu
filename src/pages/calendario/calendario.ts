@@ -116,14 +116,12 @@ export class calendarioPage implements AfterViewInit,OnInit{
   }
   Temporizador(){
     this.navCtrl.push('TemporizadorPage')
-
   }
   EditarCronograma(){
     this.navCtrl.push('slideCronogramaPage')
   }
-  Anotacoes(){
-    this.navCtrl.push('FbLoginPage')
-    
+  abrirAnotacoes(){
+    this.navCtrl.push('AnotacoesPage')
   }
 }
 

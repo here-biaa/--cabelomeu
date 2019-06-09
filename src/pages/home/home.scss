@@ -170,10 +170,10 @@ page-home {
         font-family: 'Sacramento', cursive;
       }
     .btnProd{
-        width:187px;
+        width:50%;
         height: 140px;
         background: $rosa;
-        margin-left: 12px;
+        margin-left: 15px;
         border-radius: 6px;
     }
     .Prod-subtitle {
@@ -185,10 +185,10 @@ page-home {
         font-family: 'Handlee', cursive;
       }
     .btnTempo{
-        width:147px;
+        width:40%;
         height: 140px;
         background: $roxo;
-        margin-left: 11px;
+        margin-right:10px;
         border-radius: 6px;
     }
     .Tempo-subtitle {
@@ -200,18 +200,18 @@ page-home {
         font-family: 'Handlee', cursive;
     }
     .btnCronograma{
-        width:210px;
+        width:55%;
         height: 140px;
         background: $imperial;
-        margin-left: 09px;
+        margin-right:10px;
         border-radius: 6px;
         font-family: 'Handlee', cursive;
     }
     .btnPerfil{
-        width:125px;
+        width:35%;
         height: 140px;
         background: $roxo;
-        margin-left: 12px;
+        margin-left: 15px;
         border-radius: 6px;
         font-family: 'Handlee', cursive;
     }
