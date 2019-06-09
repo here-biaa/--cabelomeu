@@ -37,7 +37,8 @@
         </ion-input>
       </ion-item>
 
-      <div class="no-padding" *ngIf="!validacao_form.controls.email.valid && validacao_form.controls.email.dirty " class="validator-error red light">
+      <div class="no-padding" *ngIf="!validacao_form.controls.email.valid && validacao_form.controls.email.dirty "
+        class="validator-error red light">
         Entre com um e-mail válido.
       </div>
 
@@ -52,7 +53,9 @@
         </ion-input>
       </ion-item>
 
-      <div class="no-padding" *ngIf="!validacao_form.controls.pass.valid && validacao_form.controls.pass.hasError('pattern')" class="validator-error red light">
+      <div class="no-padding"
+        *ngIf="!validacao_form.controls.pass.valid && validacao_form.controls.pass.hasError('pattern')"
+        class="validator-error red light">
         Sua senha deve conter 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.
       </div>
 
@@ -63,13 +66,14 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           <b>Confirme a senha</b>
         </ion-label>
-        <ion-input formControlName="confirmPass" [(ngModel)]="validacao_form.confirmPass" type="password" class="bold white">
+        <ion-input formControlName="confirmPass" [(ngModel)]="validacao_form.confirmPass" type="password"
+          class="bold white">
         </ion-input>
       </ion-item>
-        <div class="no-padding" *ngIf="
+      <div class="no-padding" *ngIf="
                 validacao_form.controls.confirmPass.errors?.isMatching" class="validator-error red light">
-          As senhas não conferem
-        </div>
+        As senhas não conferem
+      </div>
 
       <!-- CTA -->
       <div class="registerCta mg-top-30">
@@ -78,8 +82,10 @@
           <b>Cadastrar</b>
         </button>
       </div>
-
       <div class="mg-top-30 center mimi font-18">
+        <small>Ao clicar em cadastrar, você concorda com nossos Termos e Política de Privacidade.</small>
+      </div>
+      <div class="mg-top-20 center mimi font-18">
         <small>Já tem uma conta? </small><a (click)="haveAccount()" color="imperial">Entrar</a>
       </div>
     </form>

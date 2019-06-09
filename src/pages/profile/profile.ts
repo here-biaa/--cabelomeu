@@ -219,6 +219,32 @@ abrirModal() {
     this.user.avatar = null;
   }
 
+  async ionViewCanLeave() {
+    const shouldLeave = await this.confirmLeave();
+    return shouldLeave;
+  }
+  
+  confirmLeave(): Promise<Boolean> {
+    let resolveLeaving;
+    const canLeave = new Promise<Boolean>(resolve => resolveLeaving = resolve);
+    const alert = this.alertCtrl.create({
+      title: 'Confirm leave',
+      message: 'Do you want to leave the page?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => resolveLeaving(false)
+        },
+        {
+          text: 'Yes',
+          handler: () => resolveLeaving(true)
+        }
+      ]
+    });
+    alert.present();
+    return canLeave
+  }
 //folha de açao com opçoes da foto de perfil//
   showactionsheet(){
     let actionsheet = this.actionctrl.create({
@@ -251,5 +277,4 @@ abrirModal() {
     })
     actionsheet.present();
   }
-
 }

@@ -14,8 +14,8 @@
 
 
 <ion-content padding>
-  <ion-list *ngFor="let item of produtos">
-    <ion-item>
+  <ion-list>
+    <ion-item *ngFor="let item of produtos">
       <small class="Logotipo">{{ item.nome }}</small><br>
       <div>
         <ion-icon name="md-pricetags" item-start></ion-icon>

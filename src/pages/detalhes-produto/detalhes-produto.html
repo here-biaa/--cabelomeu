@@ -17,8 +17,9 @@
   <ion-card>
     <img class="container1" src={{produtos.imgProduto}}>
     <ion-card-content>
-      <ion-card-title class="center Logotipo bold">
+      <ion-card-title class="center nome Logotipo bold">
         {{ produtos.nome }}
+        <ion-icon class="options"color="imperial" (click)="openOptions()" item-end name="more" top></ion-icon>
       </ion-card-title>
       <small class="titulo bold">Descrição: </small>
       <p>{{ produtos.obs }}</p>
@@ -28,12 +29,13 @@
 
       <small class="titulo bold">Tipo: </small>
       <p>{{ produtos.tipo }} </p>
-      <div class="mg-left-50-percent">
-        <button ion-button icon-start (click)="AlertConfirm()" outline color="imperial">
+
+       <!--<div class="mg-left-50-percent">
+       <button ion-button icon-start (click)="AlertConfirm()" outline color="imperial">
           <ion-icon name="trash" color="imperial"></ion-icon>
           Excluir
         </button>
-      </div>
+      </div>-->
     </ion-card-content>
   </ion-card>
 </ion-content>
