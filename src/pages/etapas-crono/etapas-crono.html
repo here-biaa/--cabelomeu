@@ -23,8 +23,10 @@
   <div class="backCor fixed" padding>
     <div [ngSwitch]="etapas">
       <ion-list *ngSwitchCase="'hidratacao'">
-        <h1 class="title bold center">Hidratação</h1>
-        <img class="center" src="./assets/imgs/cachos_linhas.png">
+        <ion-item>
+          <h1 item-start class="title bold center">Hidratação</h1>
+          <img item-end class="center" src="./assets/icon/hidratacao.png">
+        </ion-item>
         <div>
           <p class="texto">Fase mais conhecida do cronograma por tirar o ressecamento. É responsável por repor água e
             nutrientes
@@ -37,8 +39,10 @@
 
     <div [ngSwitch]="etapas">
       <ion-list *ngSwitchCase="'nutricao'">
-        <h1 class="title bold center">Nutrição</h1>
-        <img class="center" src="./assets/imgs/cachos_linhas.png">
+        <ion-item>
+          <h1 item-start class="title bold center">Nutrição</h1>
+          <img item-end class="center" src="./assets/icon/nutricao.png">
+        </ion-item>
         <div>
           <p class="texto">Fase utilizada quando os fios estão secos e sem definição, serve para repor os nutrientes
             dos fios
@@ -52,8 +56,10 @@
     </div>
     <div [ngSwitch]="etapas">
       <ion-list *ngSwitchCase="'reconstrucao'">
-        <h1 class="title bold center">Reconstrução</h1>
-        <img class="center" src="./assets/imgs/cachos_linhas.png">
+        <ion-item>
+          <h1 item-start class="title bold center">Reconstrução</h1>
+          <img item-end class="center" src="./assets/icon/recontrucao.png">
+        </ion-item>
         <div>
           <p class="texto">Fase em que os fios estão elásticos e quebradiços geralmente por conta de produtos químicos.
             E

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase';
 import { LoadingProvider } from '../../providers/loading';
 
@@ -21,6 +21,7 @@ export class DetalhesProdutoPage {
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,
     public alertCtrl: AlertController,
+    public actionctrl:ActionSheetController,
 
   ) {
     this.produtos = this.navParams.get("produtos");
@@ -29,7 +30,7 @@ export class DetalhesProdutoPage {
   async AlertConfirm() {
     const alert = await this.alertCtrl.create({
       title: 'Tem certeza?',
-      message: 'Realmente deseja apagar esse produto?',
+      message: 'Deseja apagar esse produto?',
       buttons: [
         {
           text: 'Cancelar',
@@ -38,7 +39,7 @@ export class DetalhesProdutoPage {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Continuar',
+          text: 'Apagar',
           handler: () => {
             this.apagar()
           }
@@ -47,6 +48,29 @@ export class DetalhesProdutoPage {
     });
 
     await alert.present();
+  }
+  openOptions(){
+    let actionsheet = this.actionctrl.create({
+      title: 'Produto',
+      buttons : [
+        {
+          text: 'Editar',
+          icon: 'md-create',
+          handler: () => {
+            //this.tirarFoto()
+          }
+        },
+        {
+          text:'Excluir',
+          icon: 'ios-trash',
+          role:'destructive',
+          handler: () => {
+            this.AlertConfirm()
+          }
+        }
+      ]
+    })
+    actionsheet.present();
   }
 
  apagar(){

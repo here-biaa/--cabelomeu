@@ -16,21 +16,30 @@ export class ProdutoPage {
   produtos;
   user;
 
+
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private firebaseProvider: FirebaseProvider,
-    private db : AngularFireDatabase,
+    private db: AngularFireDatabase,
     private loadingProvider: LoadingProvider,
     private modalCtrl: ModalController,
     private storage: Storage,
-    ) {
+  ) {
     this.loadingProvider.present().then(() => {
       this.getCurrentUser();
       this.getProdutos();
     });
-    }
+  }
+  produto = true;
+  notas = false;
 
+  abreNotas(){
+    this.notas = true;
+  }
+  abreProduto(){
+    this.produto = true;
+  }
   abreDetalhe = produtos => this.navCtrl.push("DetalhesProdutoPage", { produtos });
 
   //Refresh page
@@ -56,10 +65,10 @@ export class ProdutoPage {
     this.produtos;
 
     var val = ev.target.value;
-if (val && val.trim() != '') {
-      this.produtos= this.produtos.filter((produtos) => {
+    if (val && val.trim() != '') {
+      this.produtos = this.produtos.filter((produtos) => {
         return produtos
-     })
+      })
     }
   }
 }

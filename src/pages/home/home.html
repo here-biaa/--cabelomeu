@@ -78,53 +78,52 @@
     </ion-slide>
   </ion-slides>
   -->
-  <ion-header>
+<ion-header>
 
-    <ion-navbar>
-      <ion-title>
-        <small class="Logotipo no-padding bold center">CabeloMeu</small>
-      </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      <small class="Logotipo no-padding bold center">CabeloMeu</small>
+    </ion-title>
+  </ion-navbar>
 
-  </ion-header>
-  <ion-content class="card-background-page">
+</ion-header>
 
-    <ion-card class="imperial" (click)="abrirHidratacao()">
-      <img src="./assets/imgs/card1.png" />
-      <div class="card-title-hidratação">Hidratação</div>
-      <div class="card-subtitle-hidratação">Hidratar os fios</div>
-    </ion-card>
+<ion-content class="card-background-page">
+  <ion-card class="imperial" (click)="abrirHidratacao()">
+    <img src="./assets/imgs/card1.png" />
+    <div class="card-title-hidratação">Hidratação</div>
+    <div class="card-subtitle-hidratação">Hidratar os fios</div>
+  </ion-card>
 
-    <button class="btnProd" ion-button icon-only (click)="abrirProdutos()">
-      <img src="./assets/icon/product.png" />
-      <div class="Prod-subtitle">Cadastre produtos</div>
-    </button>
+  <button class="btnProd center" ion-button icon-only (click)="abrirProdutos()">
+    <img src="./assets/icon/product.png" />
+    <div class="Prod-subtitle">Cadastre produtos</div>
+  </button>
 
-    <button class="btnTempo" (click)="abrirTemporizador()" ion-button icon-only>
-      <img src="./assets/icon/tempo.png" />
-      <div class="Tempo-subtitle">Temporizador</div>
-    </button>
+  <button class="btnTempo center" (click)="abrirTemporizador()" ion-button icon-only>
+    <img src="./assets/icon/tempo.png" />
+    <div class="Tempo-subtitle">Temporizador</div>
+  </button>
 
-    <ion-card class="rosa" (click)="abrirNutricao()">
-      <img class="mg-top-10" src="./assets/imgs/card2.png" />
-      <div class="card-title-nutrição">Nutrição</div>
-      <div class="card-subtitle-nutrição">Nutrir os fios</div>
-    </ion-card>
+  <ion-card class="rosa" (click)="abrirNutricao()">
+    <img class="mg-top-10" src="./assets/imgs/card2.png" />
+    <div class="card-title-nutrição">Nutrição</div>
+    <div class="card-subtitle-nutrição">Nutrir os fios</div>
+  </ion-card>
 
-    <button class="btnPerfil" ion-button icon-only (click)="abrirPerfil()">
-      <img src="./assets/icon/perfil.png" />
-      <div class="Tempo-subtitle">Perfil</div>
-    </button>
+  <button class="btnPerfil" ion-button icon-only (click)="abrirPerfil()">
+    <img src="./assets/icon/perfil.png" />
+    <div class="Tempo-subtitle">Perfil</div>
+  </button>
 
-    <button class="btnCronograma" (click)="abrirCronograma()" ion-button icon-only>
-      <img src="./assets/icon/calendar.png" />
-      <div class="Prod-subtitle">Meu cronograma</div>
-    </button>
+  <button class="btnCronograma" (click)="abrirCronograma()" ion-button icon-only>
+    <img src="./assets/icon/calendar.png" />
+    <div class="Prod-subtitle">Meu cronograma</div>
+  </button>
 
-    <ion-card class="roxo" (click)="abrirReconstrucao()">
-      <img src="./assets/imgs/card3.png" />
-      <div class="card-title-reconstrução">Reconstrução</div>
-      <div class="card-subtitle-reconstrução">Reconstruir os fios</div>
-    </ion-card>
-
-  </ion-content>
+  <ion-card class="roxo" (click)="abrirReconstrucao()">
+    <img src="./assets/imgs/card3.png" />
+    <div class="card-title-reconstrução">Reconstrução</div>
+    <div class="card-subtitle-reconstrução">Reconstruir os fios</div>
+  </ion-card>
+</ion-content>
