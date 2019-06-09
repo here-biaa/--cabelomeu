@@ -20,11 +20,13 @@ smallImg = null;
 amount = 0;
 
   user = {
-    uid: ''
+    uid: '',
+    
   };
   produto ={
     obs: '',
-    imgProduto: []
+    imgProduto: [],
+    id:''
   }
   produtos=[];
   constructor(
@@ -73,7 +75,7 @@ amount = 0;
       let i = 0;
       for (i; i < this.produtos.length; i++) {
         let price = parseFloat(this.produtos[i].produto);
-        this.amount = this.amount + this.produto['imgProduto'+'obs'];
+        this.amount = this.amount + this.produto['imgProduto' + 'obs' ]
       }
     }
 
@@ -95,21 +97,16 @@ amount = 0;
       obs: this.produto.obs,
       tipo: this.form.value.tipo,
       imgProduto: this.produto.imgProduto,
-      uid: this.user.uid
+      id: this.produto.id
 
     };
     console.log(data);
     this.firebaseProvider.postProdutos(data)
     .then(res => {
-      console.log('foi');
+      console.log(res);
       this.loadingProvider.dismiss();
       this.presentToast();
       this.update();
-      this.form.value.nome= null;
-      this.form.value.marca = null ;
-      this.produto.obs = null;
-      this.form.value.tipo = null;
-      this.produto.imgProduto = null; 
       this.form.reset()
     });
 }

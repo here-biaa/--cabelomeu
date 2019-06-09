@@ -32,22 +32,15 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.last-month-day]="day.isLastMonth"
                         [class.next-month-day]="day.isNextMonth"
                         [class.on-selected]="isSelected(day.time)"
-                        [class]="'days-btn ' + day.hidratacao"
-                        [class]="'days-btn ' + day.nutricao"
-                        [class]="'days-btn ' + day.reconstrucao"
-                        
-
-                        >
-                  <p>{{day.title}}</p>
-                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
-            
+                        [disabled]="day.disable">
+                  <p>{{ day.title }}</p>
+                  <small *ngIf="day.subTitle">{{ day?.subTitle }}</small>
                 </button>
               </ng-container>
             </div>
           </ng-template>
         </div>
       </ng-template>
-
       <ng-template #rangeBox>
         <div class="days-box">
           <ng-template ngFor let-day [ngForOf]="month.days" [ngForTrackBy]="trackByTime">
@@ -68,12 +61,9 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.is-first]="day.isFirst"
                         [class.is-last]="day.isLast"
                         [class.on-selected]="isSelected(day.time)"
-                        >
-                  <p>{{day.title}}</p>
-                   <b [hidden]="!eventos" [ngStyle]="{'background-color':agenda?.color}"></b>
-                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
-                  <p *ngIf="day.produtos">   <ion-icon name="flask"></ion-icon></p>
-                
+                        [disabled]="day.disable">
+                  <p>{{ day.title }}</p>
+                  <small *ngIf="day.subTitle">{{ day?.subTitle }}</small>
                 </button>
               </ng-container>
             </div>
@@ -81,7 +71,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
         </div>
       </ng-template>
     </div>
-  `
+  `,
 })
 export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   hidrata = false;
@@ -124,19 +114,9 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     private storage: Storage,
 
     ) {
-    this.getCurrentUser();
-    this.getProdutos();
    }
   ngAfterViewInit(): void {
     this._isInit = true;
-    /*const type = this.activatedRoute.snapshot.params.type;
-
-    if(type == 1) {
-      this.typeDays.push(4,5,6,8);
-    }
-    [class]="ngIf typeDays.include(day.title)
-
-   */
     }
   writeValue(obj: any): void {
     if (Array.isArray(obj)) {
@@ -246,47 +226,28 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
     }
 
     if (this.pickMode === pickModes.MULTI) {
-
       const index = this._date.findIndex(e => e !== null && e.time === item.time);
 
       if (index === -1) {
-        if (item.title ==
-           '3' || item.title == '5' || item.title == '13' || item.title == '16' || item.title == '19'){
-          this._date.push(item);
-          item.subTitle = 'H'
-          item.cssClass = 'hidratacao'
-          
-        }
-        else if (item.title == '6' || item.title == '8' || item.title == '18' || item.title == '22' || item.title == '25'){
-          this._date.push(item);
-          item.subTitle = 'N'
-          item.cssClass = 'nutricao'
-
-        }
-        else if (item.title == '14' || item.title == '28'){
-          this._date.push(item);
-          item.subTitle = 'R'
-          item.cssClass = 'reconstrucao'
-          
-        }
-          
+        this._date.push(item);
       } else {
         this._date.splice(index, 1);
       }
       this.onChange.emit(this._date.filter(e => e !== null));
     }
-  }
-  getCurrentUser = () => {
-    this.storage.get("user_cabelomeu").then(user => {
-      this.user = user;
-    });
-  };
+    if (this.pickMode === pickModes.HIDRATACAO) {
+      const index = this._date.findIndex(e => e !== null && e.time === item.time);
 
-  //Listar produtos
-  getProdutos = () => {
-    this.firebaseProvider.getProdutos().subscribe(res => {
-      this.loadingProvider.dismiss();
-      this.produtos = res;
-    });
+      if (index === -1) {
+        item.cssClass= 'hidratacao'
+        this._date.push(item);
+        
+      } else {
+        this._date.splice(index, 1);
+      }
+      this.onChange.emit(this._date.filter(e => e !== null));
+    }
+
   }
+ 
 }

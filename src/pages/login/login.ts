@@ -106,20 +106,13 @@ export class LoginPage implements ErrorHandler{
       let data = this.formEmail.value;
       this.authProvider.password(data)
            .then((res) => {
-             console.log(res);
-             this.firebaseProvider.postUser(data).then(res => {
-               this.storage.set('user_cabelomeu', data).then(() => {
-                 this.loadingProvider.dismiss();
-                 this.navCtrl.setRoot('LoginPage');
-               });
-
+               this.alertCtrl.create({
+               title: "Verifique e confirme seu email",
+               subTitle: "Enviamos um link de redefinição de senha no seu email.",
+               buttons: ["Ok"]
              });
+             this.navCtrl.setRoot('LoginPage');
 
-             this.alertCtrl.create({
-              title: "Verifique e confirme seu email",
-              subTitle: "Enviamos um link de redefinição de senha no seu email.",
-              buttons: ["Ok"]
-            }).present();
            })
            .catch ((err) => {
              console.log(err);

@@ -13,10 +13,11 @@ import { LoadingProvider } from '../../providers/loading';
 })
 export class calendarioPage implements AfterViewInit,OnInit{
   btnHidratacao= true;
-  _daysConfig;
   visibilidade = false;
   user;
+  etapa:string;
   produtos;
+  cor:string = '#F2D7EE';
   constructor(
     public evt:Events,
     public navCtrl: NavController,
@@ -30,28 +31,125 @@ export class calendarioPage implements AfterViewInit,OnInit{
   { 
     moment.locale('pt-br'); 
     this.getCurrentUser();
-    this.getProdutos();
     this.produtos = this.navParams.get("produtos");
-
-
-  }
-  ngAfterViewInit(){
-    
-    //conexao ocom banco pra descobrir o tipo
-    /*const tipo = 1;
-
-    if(tipo == 1){
-      this.dateMulti = []
-    }*/
   }
   ngOnInit(){
   }
-  dateMulti: string[] = [moment().toDate().toDateString(), moment().add(1, 'days').toDate().toDateString(), moment().add(2, 'days').toDate().toDateString()];
+  tipo = 1;
+  _daysConfig: DayConfig[] = [];
+  
+  dateMulti: string[] = [];
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsMulti: CalendarComponentOptions = {
     pickMode: 'multi',
     daysConfig: this._daysConfig
-  };
+   };
+
+  ngAfterViewInit() {
+
+    //conexao ocom banco pra descobrir o tipo
+  
+    for (let i = 0; i < 31; i++) {
+      //primeira semana do crnograma
+      this._daysConfig.push({
+        date: new Date(2019, 5, 14),
+        subTitle:   'H',
+        marked: true,
+        cssClass: 'hidratacao'
+
+      }),
+        this._daysConfig.push({
+          date: new Date(2019, 5, 17),
+          subTitle: 'N',
+          marked: true,
+          cssClass: 'nutricao'
+        }),
+        this._daysConfig.push({
+          date: new Date(2019, 5, 20),
+          subTitle: 'H',
+          marked: true,
+          cssClass: 'hidratacao'
+
+        }),
+        //segunda semana do crnograma
+
+      this._daysConfig.push({
+        date: new Date(2019, 5, 23),
+        subTitle:   'N',
+        marked: true,
+        cssClass: 'nutricao'
+      }),
+        this._daysConfig.push({
+          date: new Date(2019, 5, 26),
+          subTitle: 'H',
+          marked: true,
+          cssClass: 'hidratacao'
+
+        }),
+        this._daysConfig.push({
+          date: new Date(2019, 5, 29),
+          subTitle: 'R',
+          marked: true,
+          cssClass: 'reconstrucao'
+
+        }),
+        //terceira semana do crnograma
+
+        this._daysConfig.push({
+          date: new Date(2019, 6, 1),
+          subTitle: 'H',
+          marked: true,
+          cssClass: 'hidratacao',
+          disable:true
+
+        }),
+        this._daysConfig.push({
+          date: new Date(2019, 6, 4),
+          subTitle: 'N',
+          marked: true,
+          cssClass: 'nutricao',
+          disable: true
+        })
+        this._daysConfig.push({
+        date: new Date(2019, 6, 6),
+        subTitle:   'H',
+        marked: true,
+        cssClass: 'hidratacao',
+          disable: true
+
+      }),
+      //ultima semana do crnograma
+        this._daysConfig.push({
+          date: new Date(2019, 6, 8),
+          subTitle: 'N',
+          marked: true,
+          cssClass: 'nutricao'
+        }),
+        this._daysConfig.push({
+          date: new Date(2019, 6, 11),
+          subTitle: 'H',
+          marked: true,
+          cssClass: 'hidratacao'
+
+        })
+      this._daysConfig.push({
+        date: new Date(2019, 6, 13),
+        subTitle:   'R',
+        marked: true,
+        cssClass:'reconstrucao'
+      })
+    }
+
+    /*if(this.tipo == 1) {
+      this.dateMulti = [
+      moment().toDate().toDateString(), 
+      moment().add(1, 'days').toDate().toDateString(), 
+      moment().add(2, 'days').toDate().toDateString(),
+
+    ]}*/
+  }
+    
+  
 
   getCurrentUser = () => {
     this.storage.get("user_cabelomeu").then(user => {
@@ -60,14 +158,6 @@ export class calendarioPage implements AfterViewInit,OnInit{
   };
 
   //Listar produtos
-  getProdutos = () => {
-    this.firebaseProvider.getProdutos().subscribe(res => {
-      this.loadingProvider.dismiss();
-      this.produtos = res;
-      
-    });
-  }
-
   _toastWrap(event: string, payload: {}) {
     let toast = this.toastCtrl.create({
       message: `${event}: ${JSON.stringify(payload, null, 2)}`,
@@ -83,13 +173,8 @@ export class calendarioPage implements AfterViewInit,OnInit{
   
   onSelect($event) {
     console.log('onSelect', $event);
-    if ($event.cssClass == 'hidratacao')
-    {
-      this.produtos.tipo = 'hidratcao';
-      console.log('tipooo')
-    }
     this.visibilidade = true;
-    console.log(this.produtos)
+
     }
   onHidratacao($event) {
     console.log('onHidratacao', $event);
@@ -97,19 +182,16 @@ export class calendarioPage implements AfterViewInit,OnInit{
 
   onSelectStart($event) {
     console.log('onSelectStart', $event);
-    this.visibilidade = true;
-
+    this.visibilidade = false;    
   }
 
   onSelectEnd($event) {
     console.log('onSelectEnd', $event);
     this.visibilidade = false;
-    this._toastWrap('onSelectEnd', $event)
   }
 
   monthChange($event) {
     console.log('monthChange', $event);
-    this._toastWrap('monthChange', $event)
   }
   CadastrarProduto(){ 
     this.navCtrl.push('CadastrarProdutosPage')

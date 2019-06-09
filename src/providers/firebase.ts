@@ -80,7 +80,7 @@ export class FirebaseProvider {
   postProdutos = data =>
     this.afs
       .collection("Produtos")
-      .doc(data.uid)
+      .doc(data.id)
       .set(data);
   }
   

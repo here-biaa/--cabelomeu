@@ -31,21 +31,29 @@
     .days .today p {
         color: bindColors($background-color);
     }
-    button.days-btn small,
-    .days .marked p,
-    .days .today p, .hidratacao {
-        color: bindColors($background-color);
-        $background-color: light;
+    
+    .hidratacao small {
+        color: #e9e9e9 !important;
+        background: rgb(128, 29, 53)!important;
+    }
+    .nutricao small {
+        color: #fff !important;
+        background: #883172!important;
+    }
+    
+    .reconstrucao small {
+        color: #442200 !important;
+        background: #c590b8!important;
     }
     button.days-btn small,
     .days .marked p,
-    .days .today p, .nutricao {
+    .days .today p  {
         color: bindColors($background-color);
         $background-color: primary ;
     }
     button.days-btn small,
     .days .marked p,
-    .days .today p, .nutricao {
+    .days .today p {
         color: bindColors($background-color);
         $background-color: secondary;
     }
@@ -223,7 +231,7 @@ ion-calendar-month {
         z-index: 1;
         text-align: center;
         font-weight: bold;
-        font-size:16px;
+        font-size:14px;
         color:rgb(71, 36, 60);
         background:#F2D7EE;
         border-radius: 100%;
