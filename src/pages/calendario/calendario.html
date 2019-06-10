@@ -40,4 +40,11 @@
         </ion-fab-button>
        </ion-fab-list>
     </ion-fab>
+    <ion-item *ngFor="let item of produtos">
+      <div *ngIf="produtos">
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        {{ item.tipo }}
+      </div>
+     </ion-item>
+
 </ion-content>
