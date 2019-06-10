@@ -91,13 +91,13 @@ amount = 0;
 
   //Salvar alterações do usuario
   cadastrar() {
-    const data = {
+    let data = {
       nome: this.form.value.nome,
       marca: this.form.value.marca,
       obs: this.produto.obs,
       tipo: this.form.value.tipo,
       imgProduto: this.produto.imgProduto,
-      id: this.produto.id
+      uid: this.user.uid
 
     };
     console.log(data);

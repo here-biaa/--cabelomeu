@@ -31,6 +31,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   { 
     moment.locale('pt-br'); 
     this.getCurrentUser();
+    this.getProdutos();
     this.produtos = this.navParams.get("produtos");
   }
   ngOnInit(){
@@ -166,7 +167,13 @@ export class calendarioPage implements AfterViewInit,OnInit{
     toast.present()
     
   }
-  
+  getProdutos = () => {
+    this.firebaseProvider.getProdutos()
+      .subscribe(res => {
+        this.loadingProvider.dismiss();
+        this.produtos = res;
+      });
+  }
   onChange($event) {
     console.log('onChange', $event);
   }

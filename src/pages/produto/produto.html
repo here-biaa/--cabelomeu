@@ -6,18 +6,18 @@
   
   <ion-toolbar>
     <ion-segment color="imperial">
-      <ion-segment-button value="abreProduto()">
+      <ion-segment-button value="abreProduto()" (click)="abreProduto()">
         Produtos
       </ion-segment-button>
-      <ion-segment-button value="abreNotas()">
+      <ion-segment-button value="abreNotas()" (click)="abreNotas()">
         Notas
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
+<ion-content  padding>
+  <ion-list *ngIf="inicio">
     <ion-item *ngFor="let item of produtos">
       <small class="Logotipo">{{ item.nome }}</small><br>
       <div>

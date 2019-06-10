@@ -14,7 +14,9 @@ import { Storage } from "@ionic/storage";
 })
 export class ProdutoPage {
   produtos;
-  user;
+  user={
+    uid:''
+  };
 
 
   constructor(
@@ -31,14 +33,16 @@ export class ProdutoPage {
       this.getProdutos();
     });
   }
-  produto = true;
+  inicio= true;
   notas = false;
 
   abreNotas(){
     this.notas = true;
+    this.inicio =false;
   }
   abreProduto(){
-    this.produto = true;
+    this.inicio = true;
+    this.notas = false;
   }
   abreDetalhe = produtos => this.navCtrl.push("DetalhesProdutoPage", { produtos });
 
@@ -56,19 +60,11 @@ export class ProdutoPage {
 
   //Listar produtos
   getProdutos = () => {
-    this.firebaseProvider.getProdutos().subscribe(res => {
+    this.firebaseProvider.getProdutos()
+    .subscribe(res => {
       this.loadingProvider.dismiss();
       this.produtos = res;
     });
   }
-  getItems(ev) {
-    this.produtos;
-
-    var val = ev.target.value;
-    if (val && val.trim() != '') {
-      this.produtos = this.produtos.filter((produtos) => {
-        return produtos
-      })
-    }
-  }
+  
 }

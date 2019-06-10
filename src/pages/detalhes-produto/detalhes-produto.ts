@@ -10,10 +10,8 @@ import { LoadingProvider } from '../../providers/loading';
   templateUrl: 'detalhes-produto.html',
 })
 export class DetalhesProdutoPage {
-  @Input() numEstrelas:number = 5;
-  @Input() value: number = 2.5;
-  @Output() fav :EventEmitter<number>= new EventEmitter<number>();
-
+  listagem = true;
+  editar= false;
   produtos;
   constructor(
     public navCtrl: NavController,
@@ -57,7 +55,7 @@ export class DetalhesProdutoPage {
           text: 'Editar',
           icon: 'md-create',
           handler: () => {
-            //this.tirarFoto()
+            this.Editar()
           }
         },
         {
@@ -80,5 +78,25 @@ export class DetalhesProdutoPage {
        this.navCtrl.setRoot('ProdutoPage')
      });
  
+  }
+  Editar(){
+    this.editar = true;
+    this.listagem = false;
+  }
+  Atualizar(){
+    let data = {
+      marca: this.produtos.marca,
+      obs: this.produtos.obs,
+      tipo: this.produtos.tipo,
+     
+    };
+    
+    this.firebaseProvider.updateProdutos(data)
+      .then(res => {
+        console.log(res)
+        this.loadingProvider.dismiss();
+        this.navCtrl.setRoot('ProdutoPage')
+     });
+    
   }
 }

@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content *ngIf="listagem" padding>
   <ion-card>
     <img class="container1" src={{produtos.imgProduto}}>
     <ion-card-content>
@@ -37,5 +37,35 @@
         </button>
       </div>-->
     </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="editar" padding>
+  <br/>
+  <br />
+  <br />
+  <br />
+  <br />
+  <ion-card padding>
+    <img class="container2" src={{produtos.imgProduto}}>
+    <ion-card-content>
+      <ion-card-title class="center nome Logotipo bold">
+        {{ produtos.nome }}
+      </ion-card-title>
+      <small class="titulo bold">Descrição: </small>
+      
+      
+      <ion-textarea class=""  value='{{ produtos.obs }}'></ion-textarea>
+      <hr class="no-padding">
+      <small class="titulo bold">Marca: </small>
+      <ion-input class="" value='{{ produtos.marca }}'></ion-input>
+      <hr class="no-padding">
+
+      <small class="titulo bold">Tipo: </small>
+      <ion-input class="" value='{{ produtos.tipo }}'></ion-input>
+      <hr class="no-padding">
+
+    </ion-card-content>
+    <button (click)="Atualizar()" item-end color="imperial" class="btn-imperial">Atualizar <ion-icon color="mimi"  item-end name="checkmark" top></ion-icon></button>
   </ion-card>
 </ion-content>
