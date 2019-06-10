@@ -16,7 +16,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   visibilidade = false;
   user;
   etapa:string;
-  produtos;
+  produtos = false;
   cor:string = '#F2D7EE';
   constructor(
     public evt:Events,
@@ -31,6 +31,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   { 
     moment.locale('pt-br'); 
     this.getCurrentUser();
+    this.getProdutos();
     this.produtos = this.navParams.get("produtos");
   }
   ngOnInit(){
@@ -46,26 +47,26 @@ export class calendarioPage implements AfterViewInit,OnInit{
    };
 
   ngAfterViewInit() {
-
     //conexao ocom banco pra descobrir o tipo
-  
     for (let i = 0; i < 31; i++) {
       //primeira semana do crnograma
       this._daysConfig.push({
-        date: new Date(2019, 5, 14),
+        date: new Date(2019, 5, 17),
         subTitle:   'H',
         marked: true,
-        cssClass: 'hidratacao'
-
-      }),
-        this._daysConfig.push({
-          date: new Date(2019, 5, 17),
-          subTitle: 'N',
-          marked: true,
-          cssClass: 'nutricao'
-        }),
+        cssClass: 'hidratacao',
+      
+      }
+      )
         this._daysConfig.push({
           date: new Date(2019, 5, 20),
+          subTitle: 'N',
+          marked: true,
+          cssClass: 'nutricao',
+        
+        }),
+        this._daysConfig.push({
+          date: new Date(2019, 5, 22),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao'
@@ -74,13 +75,13 @@ export class calendarioPage implements AfterViewInit,OnInit{
         //segunda semana do crnograma
 
       this._daysConfig.push({
-        date: new Date(2019, 5, 23),
+        date: new Date(2019, 5, 24),
         subTitle:   'N',
         marked: true,
         cssClass: 'nutricao'
       }),
         this._daysConfig.push({
-          date: new Date(2019, 5, 26),
+          date: new Date(2019, 5, 27),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao'
@@ -90,8 +91,8 @@ export class calendarioPage implements AfterViewInit,OnInit{
           date: new Date(2019, 5, 29),
           subTitle: 'R',
           marked: true,
-          cssClass: 'reconstrucao'
-
+          cssClass: 'reconstrucao',
+          produtos:true
         }),
         //terceira semana do crnograma
 
@@ -100,23 +101,20 @@ export class calendarioPage implements AfterViewInit,OnInit{
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao',
-          disable:true
-
+         
         }),
         this._daysConfig.push({
           date: new Date(2019, 6, 4),
           subTitle: 'N',
           marked: true,
           cssClass: 'nutricao',
-          disable: true
-        })
+          })
         this._daysConfig.push({
         date: new Date(2019, 6, 6),
         subTitle:   'H',
         marked: true,
         cssClass: 'hidratacao',
-          disable: true
-
+         
       }),
       //ultima semana do crnograma
         this._daysConfig.push({
@@ -136,7 +134,8 @@ export class calendarioPage implements AfterViewInit,OnInit{
         date: new Date(2019, 6, 13),
         subTitle:   'R',
         marked: true,
-        cssClass:'reconstrucao'
+        cssClass: 'reconstrucao',
+        produtos: true
       })
     }
 
@@ -166,7 +165,13 @@ export class calendarioPage implements AfterViewInit,OnInit{
     toast.present()
     
   }
-  
+  getProdutos = () => {
+    this.firebaseProvider.getProdutos()
+      .subscribe(res => {
+        this.loadingProvider.dismiss();
+        this.produtos = res;
+      });
+  }
   onChange($event) {
     console.log('onChange', $event);
   }
@@ -174,7 +179,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   onSelect($event) {
     console.log('onSelect', $event);
     this.visibilidade = true;
-
+ 
     }
   onHidratacao($event) {
     console.log('onHidratacao', $event);

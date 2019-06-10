@@ -24,6 +24,7 @@ export interface CalendarDay {
   };
   isFirst?: boolean;
   isLast?: boolean;
+  produtos?:boolean;
   }
 
 
@@ -40,13 +41,8 @@ export interface DayConfig {
   title?: string;
   subTitle?: string;
   cssClass?: string;
-
-}
-export interface Hidratacao {
-  date: string;
-  color: string;
-  defaultDates?: DefaultDate[];
-  
+  produtos?:boolean;
+ 
 }
 export interface ModalOptions {
   showBackdrop?: boolean;
@@ -99,12 +95,6 @@ export interface CalendarOptions {
   showAdjacentMonthDay?: boolean;
 }
 
-export interface Cronograma {
-  date: string;
-  color: string;
-  data: Date;
-
-}
 export interface CalendarComponentOptions extends CalendarOptions {
   showToggleButtons?: boolean;
   showMonthPicker?: boolean;

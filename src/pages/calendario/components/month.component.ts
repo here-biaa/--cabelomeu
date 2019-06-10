@@ -35,6 +35,8 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [disabled]="day.disable">
                   <p>{{ day.title }}</p>
                   <small *ngIf="day.subTitle">{{ day?.subTitle }}</small>
+                  <ion-icon *ngIf="day.produtos" name="flask"></ion-icon>
+               
                 </button>
               </ng-container>
             </div>
@@ -56,6 +58,7 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.today]="day.isToday"
                         (click)="onSelected(day)"
                         [class.marked]="day.marked"
+                        [class.produtos]="day.produtos"
                         [class.last-month-day]="day.isLastMonth"
                         [class.next-month-day]="day.isNextMonth"
                         [class.is-first]="day.isFirst"
@@ -63,7 +66,9 @@ export const MONTH_VALUE_ACCESSOR: any = {
                         [class.on-selected]="isSelected(day.time)"
                         [disabled]="day.disable">
                   <p>{{ day.title }}</p>
-                  <small *ngIf="day.subTitle">{{ day?.subTitle }}</small>
+                  <small *ngIf="day.subTitle">{{ day?.subTitle }}</small><br/>
+
+                 
                 </button>
               </ng-container>
             </div>
@@ -74,12 +79,6 @@ export const MONTH_VALUE_ACCESSOR: any = {
   `,
 })
 export class MonthComponent implements ControlValueAccessor, AfterViewInit {
-  hidrata = false;
-  nutri = true;
-  reconstroi= true;
-  typeDays = [];
-  produtos;
-  user;
   @Input() month: CalendarMonth;
   @Input() pickMode: PickMode;
   @Input() isSaveHistory: boolean;
@@ -88,14 +87,12 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   @Input() color: string = defaults.COLOR;
   @Input() date: string;
   @Input() dateMonth: Moment;
-  @Input() etapas: Cronograma[] = [];
-
+  
   @Output() onChange: EventEmitter<CalendarDay[]> = new EventEmitter();
   @Output() onSelect: EventEmitter<CalendarDay> = new EventEmitter();
   @Output() onSelectStart: EventEmitter<CalendarDay> = new EventEmitter();
   @Output() onSelectEnd: EventEmitter<CalendarDay> = new EventEmitter();
-  @Output() onHidratacao: EventEmitter<CalendarDay> = new EventEmitter();
-
+  
   _date: Array<CalendarDay | null> = [null, null];
   dias : CalendarDay;
   _isInit = false;
@@ -235,19 +232,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
       }
       this.onChange.emit(this._date.filter(e => e !== null));
     }
-    if (this.pickMode === pickModes.HIDRATACAO) {
-      const index = this._date.findIndex(e => e !== null && e.time === item.time);
-
-      if (index === -1) {
-        item.cssClass= 'hidratacao'
-        this._date.push(item);
-        
-      } else {
-        this._date.splice(index, 1);
-      }
-      this.onChange.emit(this._date.filter(e => e !== null));
-    }
-
+    
   }
  
 }

@@ -3,10 +3,11 @@ import { AngularFirestore,AngularFirestoreCollection} from "angularfire2/firesto
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
 import { firestore } from 'firebase/app';
+import { AngularFireDatabase } from "angularfire2/database";
 
 @Injectable()
 export class FirebaseProvider {
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private db: AngularFireDatabase) { }
 
   //Save user on firestore
   saveUser = data =>
@@ -20,7 +21,7 @@ export class FirebaseProvider {
     this.afs
       .collection("Users")
       .doc(data.uid)
-      .set(data);
+      .update(data);
   
   //Create order on firestore
   postOrder = data => this.afs.collection("Orders").add(data);
@@ -41,7 +42,32 @@ export class FirebaseProvider {
       });
     return collection$;
   };
-  
+  deletarProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .doc(data.$key)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+      }).
+      catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+
+  //Salvar produtos
+  updateProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .doc(data.$key)
+      .update(data);
+
+  //Criar produtos no firestore
+  postProdutos = data =>
+    this.afs
+      .collection("Produtos")
+      .add(data)
+     
+
   //buscar produtos
   getProdutos = () => {
     const collection: AngularFirestoreCollection<any> = this.afs.collection(
@@ -57,30 +83,4 @@ export class FirebaseProvider {
       });
     return collection$;
   }
-  deletarProdutos = data =>
-    this.afs
-      .collection("Produtos")
-      .doc(data.$key)
-      .delete()
-        .then(function() {
-            console.log("Document successfully deleted!");
-        }).
-          catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-     
-  //Salvar produtos
-  saveProdutos = data =>
-    this.afs
-      .collection("Produtos")
-      .doc(data.$key)
-      .set(data);
-
-  //Criar produtos no firestore
-  postProdutos = data =>
-    this.afs
-      .collection("Produtos")
-      .doc(data.id)
-      .set(data);
-  }
-  
+}
