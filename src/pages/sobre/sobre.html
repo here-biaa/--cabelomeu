@@ -1,9 +1,3 @@
-<!--
-  Generated template for the SobrePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -13,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content *ngIf="inicio" padding>
     <button ion-item (click)="abrirPolitica()">
         Politica de privacidade
         <ion-icon item-end name="ios-arrow-forward"></ion-icon>
@@ -26,4 +20,182 @@
         Versão
         <ion-icon item-end name="ios-arrow-forward"></ion-icon>
       </button>
+</ion-content>
+
+<ion-content *ngIf="politica" padding>
+  <ion-title>Política de privacidade</ion-title>
+  <ion-slides  pager="true">
+    <ion-slide>
+      <h1>O QUE FAZEMOS COM AS SUAS INFORMAÇÕES?</h1>
+        <small>
+          Quando você utiliza alguma funcionalidade do nosso aplicativo, como parte do processo de login e cadastro, coletamos as
+          informações pessoais que você nos fornece, tais como seu nome, senha e e-mail.
+          
+          Marketing por e-mail (quando aplicável): Com sua permissão, podemos lhe enviar e-mails sobre nosso aplicativo, anúncios
+          e outras atualizações.
+        </small>
+      <h1>SEÇÃO 2 - CONSENTIMENTO</h1>
+        <small>
+          Como vocês obtêm meu consentimento?
+          
+          Se pedirmos suas informações pessoais por uma razão secundária, como marketing, vamos pedir seu consentimento, ou te dar
+          a oportunidade de dizer não.
+          
+          Como posso retirar o meu consentimento?
+          
+          Caso depois de fornecer seus dados você mude de ideia, você pode retirar o seu consentimento quando quiser e assim
+          evitar que entremos em contato para obter ou divulgar informações. Entre em contato conosco através do e-mail
+          cabelomeu.feedback@gmail.com.
+        </small>
+      <h1>SEÇÃO 3 - DIVULGAÇÃO</h1>
+      <small>
+        Podemos divulgar suas informações pessoais se formos obrigados por lei a fazê-lo ou se você violar nossos Termos de
+        serviço.
+      </small>
+    </ion-slide>
+    <ion-slide>
+        <h1>SEÇÃO 4 - SERVIÇOS DE TERCEIROS</h1>
+        <small>
+          No geral, futuramente nossos fornecedores terceirizados irão divulgar suas informações através de anúncios apenas na
+          medida do necessário para permitir que eles realizem os serviços que eles fornecem.
+        
+          Se você sair do aplicativo e entrar em algum site de terceiros você não será mais regido por essa Política de
+          privacidade ou pelos Termos de serviço do nosso aplicativo.
+        
+          Links
+        
+          Quando você clicar em links no nosso aplicativo ou site, eles podem lhe direcionar para fora do nosso site. Não somos
+          responsáveis pelas práticas de privacidade de outros sites e lhe incentivamos a ler as políticas de privacidade deles.
+        </small>
+        <h1>SEÇÃO 5 - SEGURANÇA</h1>
+        <small>
+          Para proteger suas informações pessoais, tomamos precauções e seguimos as melhores práticas da indústria para nos
+          certificar que elas não sejam perdidas, usurpadas, acessadas, divulgadas, alteradas ou destruídas.
+        
+          Se você nos fornecer as suas informações, elas serão criptografadas usando a tecnologia "secure socket layer" (SSL) e
+          armazenadas com criptografia AES-256. Embora nenhum método de transmissão pela Internet ou armazenamento eletrônico
+          seja
+          100% seguro, nós seguimos todos os requisitos da PCI-DSS e implementamos medidas adicionais aceitas pelos padrões da
+          indústria.
+        </small>
+      </ion-slide>
+      <ion-slide>
+        <h1>SEÇÃO 6 - ALTERAÇÕES NA POLÍTICA DE PRIVACIDADE</h1>
+        <small>
+          Reservamos o direito de modificar essa política de privacidade a qualquer momento. Portanto, por favor, leia-a com
+          frequência. As alterações e esclarecimentos surgem efeito imediatamente após serem publicadas na aplicação. Caso
+          façamos
+          alterações na política de privacidade, iremos notificá-lo sobre a atualização. Assim, você saberá quais informações
+          que
+          coletamos, como as usamos, e sob que circunstâncias, caso aplicável, as utilizaremos e/ou divulgaremos.
+        
+        
+        
+          PERGUNTAS E INFORMAÇÕES DE CONTATO
+        
+          Se você gostaria de acessar, corrigir, alterar ou excluir quaisquer informações pessoais que temos sobre você,
+          registre
+          uma queixa, ou simplesmente peça mais informações de contato a nós que somos responsáveis também pela politica de
+          privacidade através do cabelomeu.feedback@gmail.com
+        </small>
+
+      </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-content *ngIf="termos" padding>
+  <ion-title> Termos de Uso</ion-title>
+  <ion-slides pager="true">
+    <ion-slide>
+      <h1>SEÇÃO 1 - TERMOS DA REDE SOCIAL</h1>
+      <small>
+        Ao concordar com os Termos de serviço você não deve usar nossos produtos para qualquer fim ilegal ou não autorizado.
+        Você também não pode, ao usufruir deste Serviço, violar quaisquer leis em sua jurisdição (incluindo, mas não limitado, a
+        leis de direitos autorais).
+        
+        Você não deve transmitir nenhum vírus ou qualquer código de natureza destrutiva.
+        
+        Violar qualquer um dos Termos tem como consequência a rescisão imediata dos seus Serviços.
+      </small>
+      <h1>SEÇÃO 2 - CONDIÇÕES GERAIS</h1>
+      <small>
+        Reservamos o direito de recusar o serviço a qualquer pessoa por qualquer motivo a qualquer momento.
+        
+        Você entende que o seu conteúdo, pode ser transferido sem criptografia e pode: (a) ser transmitido por várias redes; e
+        (b) sofrer alterações para se adaptar e se adequar às exigências técnicas de conexão de redes ou dispositivos.
+        
+        Você concorda em não reproduzir, duplicar, copiar, vender, revender ou explorar qualquer parte do Serviço, uso do
+        Serviço, acesso ao Serviço, ou qualquer contato no site através do qual o serviço é fornecido, sem nossa permissão
+        expressa por escrito.
+      </small>
+      <small>
+        Podemos divulgar suas informações pessoais se formos obrigados por lei a fazê-lo ou se você violar nossos Termos
+        de
+        serviço.
+      </small>
+    </ion-slide>
+    <ion-slide>
+      <h1>SEÇÃO 4 - SERVIÇOS DE TERCEIROS</h1>
+      <small>
+        No geral, futuramente nossos fornecedores terceirizados irão divulgar suas informações através de anúncios
+        apenas na
+        medida do necessário para permitir que eles realizem os serviços que eles fornecem.
+
+        Se você sair do aplicativo e entrar em algum site de terceiros você não será mais regido por essa Política de
+        privacidade ou pelos Termos de serviço do nosso aplicativo.
+
+        Links
+
+        Quando você clicar em links no nosso aplicativo ou site, eles podem lhe direcionar para fora do nosso site. Não
+        somos
+        responsáveis pelas práticas de privacidade de outros sites e lhe incentivamos a ler as políticas de privacidade
+        deles.
+      </small>
+      <h1>SEÇÃO 5 - SEGURANÇA</h1>
+      <small>
+        Para proteger suas informações pessoais, tomamos precauções e seguimos as melhores práticas da indústria para
+        nos
+        certificar que elas não sejam perdidas, usurpadas, acessadas, divulgadas, alteradas ou destruídas.
+
+        Se você nos fornecer as suas informações, elas serão criptografadas usando a tecnologia "secure socket layer"
+        (SSL) e
+        armazenadas com criptografia AES-256. Embora nenhum método de transmissão pela Internet ou armazenamento
+        eletrônico
+        seja
+        100% seguro, nós seguimos todos os requisitos da PCI-DSS e implementamos medidas adicionais aceitas pelos
+        padrões da
+        indústria.
+      </small>
+    </ion-slide>
+    <ion-slide>
+      <h1>SEÇÃO 6 - ALTERAÇÕES NA POLÍTICA DE PRIVACIDADE</h1>
+      <small>
+        Reservamos o direito de modificar essa política de privacidade a qualquer momento. Portanto, por favor, leia-a
+        com
+        frequência. As alterações e esclarecimentos surgem efeito imediatamente após serem publicadas na aplicação. Caso
+        façamos
+        alterações na política de privacidade, iremos notificá-lo sobre a atualização. Assim, você saberá quais
+        informações
+        que
+        coletamos, como as usamos, e sob que circunstâncias, caso aplicável, as utilizaremos e/ou divulgaremos.
+
+
+
+        PERGUNTAS E INFORMAÇÕES DE CONTATO
+
+        Se você gostaria de acessar, corrigir, alterar ou excluir quaisquer informações pessoais que temos sobre você,
+        registre
+        uma queixa, ou simplesmente peça mais informações de contato a nós que somos responsáveis também pela politica
+        de
+        privacidade através do cabelomeu.feedback@gmail.com
+      </small>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-content *ngIf="versao" padding>
+  <ion-slides pager="true">
+    <ion-slide>
+        <small>Versão 1.0</small>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

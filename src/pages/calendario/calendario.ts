@@ -18,6 +18,11 @@ export class calendarioPage implements AfterViewInit,OnInit{
   etapa:string;
   produtos = false;
   cor:string = '#F2D7EE';
+  ProdHidrata:boolean;
+  prod={
+    tipo:'',
+    uid:''
+  }
   constructor(
     public evt:Events,
     public navCtrl: NavController,
@@ -45,7 +50,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
     pickMode: 'multi',
     daysConfig: this._daysConfig
    };
-
+   prodType;
   ngAfterViewInit() {
     //conexao ocom banco pra descobrir o tipo
     for (let i = 0; i < 31; i++) {
@@ -55,7 +60,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
         subTitle:   'H',
         marked: true,
         cssClass: 'hidratacao',
-      
+        produtos:this.ProdHidrata
       }
       )
         this._daysConfig.push({
@@ -148,8 +153,6 @@ export class calendarioPage implements AfterViewInit,OnInit{
     ]}*/
   }
     
-  
-
   getCurrentUser = () => {
     this.storage.get("user_cabelomeu").then(user => {
       this.user = user;
@@ -166,12 +169,17 @@ export class calendarioPage implements AfterViewInit,OnInit{
     
   }
   getProdutos = () => {
+    this.loadingProvider.dismiss();
     this.firebaseProvider.getProdutos()
       .subscribe(res => {
-        this.loadingProvider.dismiss();
         this.produtos = res;
-      });
-  }
+        if(res.tipo == "Hidratação"){
+          this.ProdHidrata = true;
+        }
+        console.log('Resposta', res)
+        console.log('Uid', this.user.uid)
+      })
+    }
   onChange($event) {
     console.log('onChange', $event);
   }
@@ -179,7 +187,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   onSelect($event) {
     console.log('onSelect', $event);
     this.visibilidade = true;
- 
+    console.log(this.ProdHidrata)
     }
   onHidratacao($event) {
     console.log('onHidratacao', $event);

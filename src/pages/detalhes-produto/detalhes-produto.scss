@@ -11,7 +11,9 @@ page-detalhes-produto {
         margin-left: 75px;
         height: auto;
     }
-    
+    .tamanhoAuto{
+      height: auto !important;
+    }
     .titulo{
         font-family: 'Questrial', sans-serif;
         font-size:17px;

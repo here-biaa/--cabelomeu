@@ -46,6 +46,7 @@ amount = 0;
     this.getCurrentUser();
     this.getProdutos();
     this.buildForm();
+  
   }
   buildForm() {
     this.form = this.formBuilder.group({

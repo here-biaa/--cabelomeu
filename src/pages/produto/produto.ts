@@ -18,7 +18,7 @@ export class ProdutoPage {
   user={
     uid:''
   };
-
+  
 
   constructor(
     public navCtrl: NavController,
@@ -66,8 +66,10 @@ export class ProdutoPage {
     this.firebaseProvider.getProdutos()
     .subscribe(res => {
       this.produtos = res;
-    });
-  }
+      console.log('Resposta',res)
+      console.log('Uid', this.user.uid)
+    })
+ }
 
   //Listar notas
   getNotas = () => {
@@ -77,4 +79,13 @@ export class ProdutoPage {
       });
   }
 
+  //Atualizar o usuario no local storage
+  getAndSaveCurrentUser(uid) {
+    this.firebaseProvider.getCurrentUser(uid)
+      .subscribe((res) => {
+        this.loadingProvider.dismiss();
+        let user = res[0];
+        this.storage.set('user_cabelomeu', user);
+      })
+  }
 }

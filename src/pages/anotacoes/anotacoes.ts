@@ -25,8 +25,7 @@ export class AnotacoesPage {
   {
     this.buildForm();
     moment.locale('pt-br');
-    moment.updateLocale('pt-br')
-
+  
   }
   user = {
     uid: '',
@@ -56,7 +55,7 @@ export class AnotacoesPage {
       definicao: this.notas.definicao,
       volume: this.notas.volume,
       nota: this.form.value.nota,
-      date: moment().locale('pt-br').toDate().toDateString(),
+      date: (moment().locale('pt-br').toDate().toDateString()),
       uid: this.user.uid
 
     };

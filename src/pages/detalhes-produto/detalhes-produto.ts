@@ -2,8 +2,6 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase';
 import { LoadingProvider } from '../../providers/loading';
-
-
 @IonicPage()
 @Component({
   selector: 'page-detalhes-produto',
@@ -74,7 +72,6 @@ export class DetalhesProdutoPage {
  apagar(){
    this.firebaseProvider.deletarProdutos(this.produtos)
      .then(res => {
-       this.loadingProvider.dismiss();
        this.navCtrl.setRoot('ProdutoPage')
      });
  
@@ -83,16 +80,11 @@ export class DetalhesProdutoPage {
     this.editar = true;
     this.listagem = false;
   }
-  Atualizar(){
-    let data = {
-      marca: this.produtos.marca,
-      obs: this.produtos.obs,
-      tipo: this.produtos.tipo,
-     
-    };
-    
+  Atualizar(produtos){
+    let data = produtos
     this.firebaseProvider.updateProdutos(data)
       .then(res => {
+        console.log(data)
         console.log(res)
         this.loadingProvider.dismiss();
         this.navCtrl.setRoot('ProdutoPage')

@@ -59,7 +59,7 @@ export class FirebaseProvider {
     this.afs
       .collection("Produtos")
       .doc(data.$key)
-      .update(data);
+      .set(data)
 
   //Criar produtos no firestore
   postProdutos = data =>

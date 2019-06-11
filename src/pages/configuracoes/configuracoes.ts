@@ -57,7 +57,7 @@ export class ConfiguracoesPage {
     this.loadingProvider.dismiss()
       .then((resposta) => {
           this.resp = resposta
-          this.storage.clear();
+          this.storage.remove('user_cabelomeu')
           this.app.getRootNav().setRoot('LoginPage');
           if(this.resp = true){
             this.storage.set('slideCompleto', this.user);

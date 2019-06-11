@@ -13,8 +13,8 @@
 </ion-header>
 
 
-<ion-content *ngIf="listagem" padding>
-  <ion-card>
+<ion-content padding>
+  <ion-card *ngIf="listagem" >
     <img class="container1" src={{produtos.imgProduto}}>
     <ion-card-content>
       <ion-card-title class="center nome Logotipo bold">
@@ -37,35 +37,38 @@
         </button>
       </div>-->
     </ion-card-content>
-  </ion-card>
-</ion-content>
+  </ion-card >
+  <ion-card *ngIf="editar" class="tamanhoAuto">
+        <img class="container1" src={{produtos.imgProduto}}>
+        <ion-card-content>
+          <ion-card-title class="center nome Logotipo bold">
+            <ion-input class="" value='{{ produtos.nome }}' [(ngModel)]='produtos.nome'></ion-input>
+          </ion-card-title>
+          
+          <small class="titulo bold">Descrição: </small>
 
-<ion-content *ngIf="editar" padding>
-  <br/>
-  <br />
-  <br />
-  <br />
-  <br />
-  <ion-card padding>
-    <img class="container2" src={{produtos.imgProduto}}>
-    <ion-card-content>
-      <ion-card-title class="center nome Logotipo bold">
-        {{ produtos.nome }}
-      </ion-card-title>
-      <small class="titulo bold">Descrição: </small>
-      
-      
-      <ion-textarea class=""  value='{{ produtos.obs }}'></ion-textarea>
-      <hr class="no-padding">
-      <small class="titulo bold">Marca: </small>
-      <ion-input class="" value='{{ produtos.marca }}'></ion-input>
-      <hr class="no-padding">
-
-      <small class="titulo bold">Tipo: </small>
-      <ion-input class="" value='{{ produtos.tipo }}'></ion-input>
-      <hr class="no-padding">
-
-    </ion-card-content>
-    <button (click)="Atualizar()" item-end color="imperial" class="btn-imperial">Atualizar <ion-icon color="mimi"  item-end name="checkmark" top></ion-icon></button>
+          <ion-textarea class="" value='{{ produtos.obs }}' [(ngModel)]='produtos.obs'></ion-textarea>
+          <hr class="no-padding">
+          <small class="titulo bold">Marca: </small>
+          <ion-input class="" value='{{ produtos.marca }}' [(ngModel)]='produtos.marca'></ion-input>
+          <hr class="no-padding">
+        
+          <small class="titulo bold">Tipo: </small>
+        <ion-item>
+          <ion-label color="primary">Selecione o tipo:</ion-label>
+          <ion-select formControlName="tipo" [(ngModel)]="produtos.tipo">
+            <ion-option value="Hidratação">Hidratação</ion-option>
+            <ion-option value="Nutrição">Nutrição</ion-option>
+            <ion-option value="Reconstrução">Reconstrução</ion-option>
+            <ion-option value="Finalização">Finalização</ion-option>
+            <ion-option value="Outros">Outros</ion-option>
+          </ion-select>
+        </ion-item>
+        
+        </ion-card-content>
+        <button (click)="Atualizar(produtos)" type="submit" color="imperial"  class="btn-imperial">Atualizar <ion-icon color="mimi" item-end
+            name="checkmark" top></ion-icon></button>
+        <br/>
+        <br /><br />
   </ion-card>
 </ion-content>
