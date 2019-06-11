@@ -19,18 +19,24 @@ export class MyApp {
    
     this.storage.get('user_cabelomeu')
     .then((user) => {
-      if (user) this.rootPage = 'TabsPage';
+      if (user) 
+        this.storage.get('slideCompleto')
+        .then((result) => {
+        if (result) this.rootPage = 'TabsPage';
+        else
+          this.rootPage = 'introPage';
+      });
+
       else this.rootPage = 'LoginPage';
     });
     
     platform.ready().then(() => {
-     /* this.storage.get('slideCompleto')
+      this.storage.get('slideCompleto')
         .then((result) => {
-          if (result) this.rootPage = 'introPage';
+          if (result) this.rootPage = 'TabsPage';
           else 
           this.rootPage = 'introPage';
-          this.storage.set('slideCompleto',true);
-        });*/
+          });
 
 
       setTimeout(() => {

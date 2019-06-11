@@ -14,6 +14,7 @@ import { Storage } from "@ionic/storage";
 })
 export class ProdutoPage {
   produtos;
+  anotacoes;
   user={
     uid:''
   };
@@ -30,6 +31,7 @@ export class ProdutoPage {
   ) {
     this.loadingProvider.present().then(() => {
       this.getCurrentUser();
+      this.getNotas();
       this.getProdutos();
     });
   }
@@ -60,11 +62,19 @@ export class ProdutoPage {
 
   //Listar produtos
   getProdutos = () => {
+    this.loadingProvider.dismiss();
     this.firebaseProvider.getProdutos()
     .subscribe(res => {
-      this.loadingProvider.dismiss();
       this.produtos = res;
     });
   }
-  
+
+  //Listar notas
+  getNotas = () => {
+    this.firebaseProvider.getNotas()
+      .subscribe(res => {
+        this.anotacoes = res;
+      });
+  }
+
 }

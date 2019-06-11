@@ -17,6 +17,7 @@ import { AuthProvider } from '../../providers/auth';
 })
 export class ConfiguracoesPage {
   rootPage = ProfilePage;
+  resp:boolean;
   public currentUser: any; 
   public loading: Loading;
   constructor(
@@ -52,12 +53,16 @@ export class ConfiguracoesPage {
     this.navCtrl.push(SobrePage);
   }
   logout() {
+    
     this.loadingProvider.dismiss()
-      .then((res) => {
+      .then((resposta) => {
+          this.resp = resposta
           this.storage.clear();
           this.app.getRootNav().setRoot('LoginPage');
-          console.log(res);
-          this.storage.set('slideCompleto', res);
+          if(this.resp = true){
+            this.storage.set('slideCompleto', this.user);
+           }
+        console.log(this.resp)
 
         })
         

@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar padding color="imperial">
@@ -11,39 +10,30 @@
 <ion-content class="slides">
 
   <ion-content padding class="backCronograma">
-    <ion-slides pager>
+    <ion-slides #slides>
 
-      <ion-slide  class="slide_image" padding>
+      <ion-slide class="slide_image" padding>
         <h3 class="txt">Qual o seu <small class="Logotipo">TIPO</small> de cabelo?</h3>
-        <form >  
-          <div class="mg-top-10">
-            <button ion-button color="secondary" full>Liso</button>
-          </div>
-          
-          <div class="mg-top-10">
-            <button ion-button color="secondary" full>Ondulado</button>
-          </div>
-          
-          <div class="mg-top-10">
-            <button ion-button color="secondary" full>Cacheado</button>
-          </div>
-          
-          <div class="mg-top-10">
-            <button ion-button color="secondary" full>Crespo</button>
-          </div>
-          
-          <div class="mg-top-10">
-            <button ion-button color="secondary" full>Transição</button>
-          </div>
+        <div center class="center">
+          <ion-icon name="md-heart" color="rosa" item-start></ion-icon>
+          <ion-label stacked>Defina seu tipo de cabelo</ion-label>
+          <br/>
+          <ion-select class=" left" okText="Ok" cancelText="Cancelar" [(ngModel)]="user.cabelo">
+            <ion-option>Liso</ion-option>
+            <ion-option>Ondulado</ion-option>
+            <ion-option>Cacheado</ion-option>
+            <ion-option>Crespo</ion-option>
+            <ion-option>Transição</ion-option>
+          </ion-select>
+        </div>
           <div>
-            <button class="mg-top-40" padding ion-button color="secondary"  (click)="Continuar()" outline>
+            <button class="mg-top-40" padding ion-button color="secondary" (click)="Continuar()" outline>
               Continuar
             </button>
           </div>
-        </form>
       </ion-slide>
 
-      <ion-slide *ngIf="teste-porosidade" class="slide_image" padding>
+      <ion-slide *ngIf="teste-porosidade" class="slide_image" padding >
         <h3 class="txt mg-top-20">Como montar meu <small class="Logotipo">cronograma capilar</small>?</h3>
         <small class="Logotipo bold">Teste de porosidade</small>
         <p>Você pode descobrir se seu cabelo precisa de hidratação, nutrição ou reconstrução por meio de um teste de
@@ -58,38 +48,47 @@
         <p class="mg-top-menos-50">
           <small class="Logotipo bold">Teste de porosidade</small><br>
           <p>Se seu cabelo boiar,
-          ele precisa de <small class="Logotipo">hidratação.</small></p>
+            ele precisa de <small class="Logotipo">hidratação.</small></p>
 
-        <p>Se seu cabelo não afundar nem boiar,
-          ele precisa de <small class="Logotipo">nutrição.</small></p>
+          <p>Se seu cabelo não afundar nem boiar,
+            ele precisa de <small class="Logotipo">nutrição.</small></p>
 
-        <p>Se seu cabelo afundar,
-          ele precisa de <small class="Logotipo">reconstrução.</small></p>
+          <p>Se seu cabelo afundar,
+            ele precisa de <small class="Logotipo">reconstrução.</small></p>
 
-        <div class="center mg-top-10">
-          <img src="./assets/imgs/teste-de-porosidade.jpg" class="logo-white-login">
-        </div>
-
+          <div class="center mg-top-10">
+            <img src="./assets/imgs/teste-de-porosidade.jpg" class="logo-white-login">
+          </div>
+          <div>
+            <button class="mg-top-20" padding ion-button color="secondary" (click)="Continuar()" outline>
+              Continuar
+            </button>
+          </div>
       </ion-slide>
 
       <ion-slide class="slide_image" padding>
         <h3 class="txt mg-top-menos-30">Com base no seu <small class="Logotipo">teste de porosidade</small>, o que seu
           cabelo
           mais precisa?</h3>
-        <div class="mg-top-10">
-          <button ion-button color="secondary" full>Hidratação</button>
+        <div *ngIf="hidratacao" class="mg-top-10">
+          <button ion-button color="secondary" (click)="CronogramaHidratacao()" full>Hidratação</button>
         </div>
 
-        <div class="mg-top-10">
-          <button ion-button color="secondary" full>Nutrição</button>
+        <div *ngIf="nutricao" class="mg-top-10">
+          <button ion-button color="secondary" (click)="CronogramaNutricao()" full>Nutrição</button>
         </div>
 
-        <div class="mg-top-10">
-          <button ion-button color="secondary" full>Reconstrução</button>
+        <div *ngIf="reconstrucao" class="mg-top-10">
+          <button ion-button color="secondary" (click)="CronogramaReconstrucao()" full>Reconstrução</button>
         </div>
-        <button ion-button color="secondary" outline (click)="abrirCronograma()" class="mg-top-40">
-          Criar meu cronograma
-        </button>
+        <div>
+          <button ion-button color="secondary" outline (click)="VoltarSlide()" class="mg-top-40">
+            Voltar
+          </button>
+          <button ion-button color="secondary" outline (click)="abrirCronograma()" class="mg-top-40">
+            Iniciar
+          </button>
+        </div>
 
       </ion-slide>
     </ion-slides>

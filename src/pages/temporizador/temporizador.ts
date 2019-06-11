@@ -13,7 +13,7 @@ import * as firebase from 'firebase';
   selector: 'page-temporizador',
   templateUrl: 'temporizador.html',
 })
-export class TemporizadorPage{
+export class TemporizadorPage implements OnInit{
   user;
   elapsed: any = {
     h: '00',

@@ -120,10 +120,10 @@ export class LoginPage implements ErrorHandler{
         this.loadingProvider.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Algo deu errado. ',
-          subTitle: 'Usuário não encontrado.',
+          subTitle: 'Usuário não encontrado .',
           buttons: ['Ok']
         });
-        alert.present();
+        alert.dismiss();
       })      
     })}
   getAndSaveCurrentUser(uid){
