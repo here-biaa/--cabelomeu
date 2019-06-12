@@ -1,47 +1,28 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Inject, LOCALE_ID, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams,
-   ModalController, ViewController, ToastController, ActionSheetController, Events } from 'ionic-angular';
+   ModalController, ViewController, ToastController, ActionSheetController } from 'ionic-angular';
 import * as moment from 'moment';
 import { CalendarModalOptions, DayConfig, CalendarOptions, CalendarComponentOptions, Cronograma } from './calendar.model';
-import { Storage } from "@ionic/storage";
-import { FirebaseProvider } from '../../providers/firebase';
-import { LoadingProvider } from '../../providers/loading';
 @IonicPage()
 @Component({
   selector: 'page-calendario',
   templateUrl: 'calendario.html',
 })
 export class calendarioPage implements AfterViewInit,OnInit{
-  btnHidratacao= true;
-  visibilidade = false;
   user;
-  etapa:string;
-  produtos = false;
-  cor:string = '#F2D7EE';
-  ProdHidrata:boolean;
-  prod={
-    tipo:'',
-    uid:''
-  }
+  btn =false;
   constructor(
-    public evt:Events,
     public navCtrl: NavController,
     public modalCtrl: ModalController, 
     private toastCtrl: ToastController,
-    private firebaseProvider: FirebaseProvider,
-    private loadingProvider: LoadingProvider,
-    private storage: Storage,
     public navParams: NavParams,
     public actionSheetController: ActionSheetController) 
   { 
     moment.locale('pt-br'); 
-    this.getCurrentUser();
-    this.getProdutos();
-    this.produtos = this.navParams.get("produtos");
-  }
+   }
   ngOnInit(){
   }
-  tipo = 1;
+  tipo;
   _daysConfig: DayConfig[] = [];
   
   dateMulti: string[] = [];
@@ -50,7 +31,6 @@ export class calendarioPage implements AfterViewInit,OnInit{
     pickMode: 'multi',
     daysConfig: this._daysConfig
    };
-   prodType;
   ngAfterViewInit() {
     //conexao ocom banco pra descobrir o tipo
     for (let i = 0; i < 31; i++) {
@@ -60,7 +40,6 @@ export class calendarioPage implements AfterViewInit,OnInit{
         subTitle:   'H',
         marked: true,
         cssClass: 'hidratacao',
-        produtos:this.ProdHidrata
       }
       )
         this._daysConfig.push({
@@ -97,7 +76,6 @@ export class calendarioPage implements AfterViewInit,OnInit{
           subTitle: 'R',
           marked: true,
           cssClass: 'reconstrucao',
-          produtos:true
         }),
         //terceira semana do crnograma
 
@@ -140,8 +118,8 @@ export class calendarioPage implements AfterViewInit,OnInit{
         subTitle:   'R',
         marked: true,
         cssClass: 'reconstrucao',
-        produtos: true
       })
+      this.tipo = this._daysConfig.push()
     }
 
     /*if(this.tipo == 1) {
@@ -152,56 +130,26 @@ export class calendarioPage implements AfterViewInit,OnInit{
 
     ]}*/
   }
-    
-  getCurrentUser = () => {
-    this.storage.get("user_cabelomeu").then(user => {
-      this.user = user;
-    });
-  };
-
-  //Listar produtos
-  _toastWrap(event: string, payload: {}) {
-    let toast = this.toastCtrl.create({
-      message: `${event}: ${JSON.stringify(payload, null, 2)}`,
-      duration: 2000,
-    });
-    toast.present()
-    
-  }
-  getProdutos = () => {
-    this.loadingProvider.dismiss();
-    this.firebaseProvider.getProdutos()
-      .subscribe(res => {
-        this.produtos = res;
-        if(res.tipo == "Hidratação"){
-          this.ProdHidrata = true;
-        }
-        console.log('Resposta', res)
-        console.log('Uid', this.user.uid)
-      })
-    }
-  onChange($event) {
+   onChange($event) {
     console.log('onChange', $event);
-  }
+   }
   
   onSelect($event) {
+    this.onSelectEnd($event)
     console.log('onSelect', $event);
-    this.visibilidade = true;
-    console.log(this.ProdHidrata)
-    }
+    this.navCtrl.push('EditarCalendarioPage')
+        }
   onHidratacao($event) {
     console.log('onHidratacao', $event);
   }
 
   onSelectStart($event) {
     console.log('onSelectStart', $event);
-    this.visibilidade = false;    
-  }
+   }
 
   onSelectEnd($event) {
     console.log('onSelectEnd', $event);
-    this.visibilidade = false;
-  }
+   }
 
   monthChange($event) {
     console.log('monthChange', $event);

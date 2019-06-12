@@ -25,7 +25,6 @@ export class AnotacoesPage {
   {
     this.buildForm();
     moment.locale('pt-br');
-  
   }
   user = {
     uid: '',
@@ -55,7 +54,7 @@ export class AnotacoesPage {
       definicao: this.notas.definicao,
       volume: this.notas.volume,
       nota: this.form.value.nota,
-      date: (moment().locale('pt-br').toDate().toDateString()),
+      date: (moment().locale('pt-br').format("DD/MM/YYYY")),
       uid: this.user.uid
 
     };
@@ -66,6 +65,7 @@ export class AnotacoesPage {
         this.loadingProvider.dismiss();
         this.presentToast();
         this.form.reset()
+        this.navCtrl.pop()
       });
   }
   ionViewDidLoad() {

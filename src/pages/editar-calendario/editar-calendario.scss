@@ -1,0 +1,40 @@
+page-editar-calendario {
+    p{
+        text-align: justify;
+    }
+    .inicio{
+           overflow: auto!important;
+    }
+    .tamanhoIcon{
+        font-size: 30px;
+    }
+    .tamanhoIcone{
+        font-size: 22px;
+        margin:0;
+   
+    }   
+    .left{
+        margin-left:5%!important;
+    }
+    .listagem{
+        top:-100px;
+        max-height:150px!important;
+     }
+    .btnEnd{
+        margin-left:90% !important;
+    }
+    .avatar {
+        background-color:$mimi;
+    }
+
+    .avatarPos {
+        background-size: cover;
+        background-position: center center;
+        height: 50px;
+        width: 50px;
+        border: 3px solid $imperial;
+        border-radius: 100px;
+        margin:0;
+    }
+
+}

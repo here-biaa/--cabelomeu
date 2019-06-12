@@ -39,7 +39,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LoginPageModule } from '../pages/login/login.module';
 import { CreateAccountPageModule } from '../pages/create-account/create-account.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
-import { FbLoginPageModule } from '../pages/fb-login/fb-login.module';
 import { HomePageModule } from '../pages/home/home.module';
 import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
 import { SobrePageModule } from '../pages/sobre/sobre.module';
@@ -52,6 +51,7 @@ import { DetalhesProdutoPageModule } from '../pages/detalhes-produto/detalhes-pr
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { ModalPageModule } from '../pages/modal/modal.module';
 import { AnotacoesPageModule } from '../pages/anotacoes/anotacoes.module';
+import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-calendario.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -61,7 +61,6 @@ import { AnotacoesPageModule } from '../pages/anotacoes/anotacoes.module';
     LoginPageModule,
     CreateAccountPageModule,
     TabsPageModule,
-    FbLoginPageModule,
     HomePageModule,
     ConfiguracoesPageModule,
     SobrePageModule,
@@ -74,7 +73,7 @@ import { AnotacoesPageModule } from '../pages/anotacoes/anotacoes.module';
     IntroPageModule,
     ModalPageModule,
     AnotacoesPageModule,
-
+    EditarCalendarioPageModule,
     //Calendario
     //Outros
     CommonModule,

@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar color="imperial">
+    <ion-title>
+      Editar Cronograma
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding  class="animated fadeIn">
+  <ion-fab right bottom position="relative">
+    <button ion-fab class="bgButton">
+      <ion-icon name="ios-create-outline"></ion-icon>
+    </button>
+    <ion-fab-list padding side="left">
+      <ion-fab-button ion-fab class="bgButton" (click)="Temporizador()" padding>
+        <ion-icon name="md-alarm"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button ion-fab class="bgButton" (click)="abrirAnotacoes()" padding>
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button ion-fab class="bgButton" (click)="CadastrarProduto()" padding>
+        <ion-icon size="small" name="add">
+          <ion-icon name="flask"></ion-icon>
+        </ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <div *ngIf="inicio" class="inicio">
+    <h4 class="center mg-left-20 Logotipo">{{day}}</h4>
+    <h5 center color="secondary" class="center font-14 mg-left-20"> {{date}}</h5>
+    <div>
+      <ion-icon item-start padding color="roxo" class="tamanhoIcon" name="calendar">
+        <small class= "Logotipo">Dia de Hidratar</small></ion-icon>
+    </div>
+    <hr>
+    <div>
+      <ion-icon *ngIf="btn" item-start padding color="roxo" class="tamanhoIcon" name="flask"></ion-icon>
+      <button *ngIf="btn" class="transparent-bg no-padding btnEnd" (click)="AddProduto()">
+        <ion-icon color="primary" class="tamanhoIcone" name="add-circle"></ion-icon>
+      </button>
+      <ion-list class="listagem" *ngIf="produtosAtrelados">
+          <ion-icon item-start padding color="roxo" class="tamanhoIcon" name="flask">
+            <small class="Logotipo ">{{adicionados.nome}}</small><br>
+          </ion-icon>
+        <br>
+        <ion-icon class="font-18 left"  name="md-pricetags" item-start><small class="Logotipo "> Tipo: {{adicionados.tipo}}</small><br></ion-icon>
+        <br />
+        <ion-icon class="font-18 left"  name="bookmark" item-start><small class="Logotipo">  Marca: {{adicionados.marca}}</small></ion-icon>
+        <button class="transparent-bg font-18 no-padding btnEnd">
+            <ion-icon name="md-eye" color="imperial" item-end (click)="abreDetalhe(adicionados)"></ion-icon>
+        </button>
+      </ion-list>
+    </div>
+    <hr>
+    <div>
+      <ion-icon *ngIf="btnNotas"color="roxo" class="tamanhoIcon left" name="paper"></ion-icon>
+      <button *ngIf="btnNotas" class="transparent-bg no-padding btnEnd" (click)="AddNota()">
+        <ion-icon color="primary" class="tamanhoIcone" name="add-circle"></ion-icon>
+      </button>
+      <ion-list *ngIf="notasAtreladas" class="listagem" >
+        <ion-icon  padding color="roxo" class="tamanhoIcon" name="paper">
+          <small class="Logotipo ">{{add.titulo}}</small><br>
+        </ion-icon>
+       
+        <p class="left">Data: {{ add.date }}</p>
+        <p class="left">{{ add.nota }}</p>
+        
+      </ion-list>
+    </div>
+    <br />
+    <br />
+    <div center>
+      <ion-icon padding color="roxo" item-start class="font-18" name="calendar"></ion-icon>
+      <small>Etapa Cronograma</small>
+      <ion-icon padding color="roxo" item-center class="font-18" name="flask"></ion-icon>
+      <small>Produtos</small>
+      <ion-icon padding color="roxo" item-end class="font-18" name="paper"></ion-icon>
+      <small>Notas</small>
+    </div>
+    <div class="">
+      <button ion-button color="secondary" (click)="Salvar()" full>Salvar</button>
+    </div>
+  </div>
+</ion-content>
+<ion-content *ngIf="acharProd"  class="inicio animated fadeIn">
+  <div *ngIf="acharProd">
+    <br />
+    <br />
+    <ion-item *ngFor="let item of produtos">
+      <br />
+      <small class="Logotipo">{{ item.nome }}</small><br>
+      <div>
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        {{ item.tipo }}
+      </div>
+      <div>
+        <ion-icon name="ios-flask-outline" item-start></ion-icon>
+        {{ item.marca }}
+      </div>
+      <ion-icon name="add" color="imperial" item-end (click)="Prod(item)"></ion-icon>
+    </ion-item>
+
+  </div>
+</ion-content>
+<ion-content *ngIf="acharNota"  class="inicio animated fadeIn">
+  <div *ngIf="acharNota" >
+    <br />
+    <br />
+    <ion-item *ngFor="let item of anotacoes">
+      <br />
+      <small class="Logotipo">{{ item.titulo }}</small><br /><br />
+      <small class="Logotipo">{{ item.date }}</small><br>
+      <div>
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        {{ item.nota }}
+      </div>
+      <ion-icon name="add" color="imperial" item-end (click)="Nota(item)"></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>
