@@ -15,38 +15,40 @@
 
 <ion-content padding>
   <p class="center txt">Registre sua experiência com a<small class="Logotipo"> etapa.</small></p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Pontas duplas</ion-label>
+      <ion-toggle [(ngModel)]="notas.pontas"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Oleosidade</ion-label>
+      <ion-toggle [(ngModel)]="notas.oleosidade"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Definição</ion-label>
+      <ion-toggle [(ngModel)]="notas.definicao"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Volume</ion-label>
+      <ion-toggle [(ngModel)]="notas.volume"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
   <form [formGroup]="form">
-      <ion-item>
-          <ion-input formControlName="titulo" [(ngModel)]="form.titulo" class="Logotipo" placeholder="Dê um titulo a sua nota" type="text"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label>Receita</ion-label>
-        <br/>
-        <ion-textarea  formControlName="nota" [(ngModel)]="form.nota" ></ion-textarea>
-      </ion-item>
-    </form>
-    <ion-list>
-      <ion-item>
-        <ion-label>Pontas duplas</ion-label>
-        <ion-toggle [(ngModel)]="notas.pontas"></ion-toggle>
-      </ion-item>
+    <ion-item>
+      <ion-label stacked>Título</ion-label>
+      <ion-input placeholder="Dê um titulo a sua nota" type="text" formControlName="titulo" [(ngModel)]="form.titulo"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>Oleosidade</ion-label>
-        <ion-toggle [(ngModel)]="notas.oleosidade"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Definição</ion-label>
-        <ion-toggle [(ngModel)]="notas.definicao"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Volume</ion-label>
-        <ion-toggle [(ngModel)]="notas.volume"></ion-toggle>
-      </ion-item>
-
-    </ion-list>
-  <button class="mg-top-20 center" ion-button full  (click)="Salvar()">Adicionar</button>
+    <ion-item>
+      <ion-label>Receita</ion-label>
+      <br />
+      <ion-textarea formControlName="nota" [(ngModel)]="form.nota"></ion-textarea>
+    </ion-item>
+  </form>
+  <button class="mg-top-20 center" ion-button full (click)="Salvar()">Adicionar</button>
 </ion-content>
