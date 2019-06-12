@@ -42,6 +42,8 @@ export interface DayConfig {
   subTitle?: string;
   cssClass?: string;
   produtos?:boolean;
+  hidratacao?: boolean;
+
  
 }
 export interface ModalOptions {

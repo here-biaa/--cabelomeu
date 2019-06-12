@@ -23,24 +23,22 @@
     (onHidratacao)="onHidratacao($event)"
   > 
   </ion-calendar>
-    
-    <ion-fab right bottom *ngIf="visibilidade">
-      <button ion-fab class="bgButton" >
-        <ion-icon  name="ios-create-outline"></ion-icon>
-      </button>
-      <ion-fab-list padding side="left">
-          <ion-fab-button ion-fab class="bgButton" (click)="Temporizador()" padding>
-            <ion-icon name="md-alarm"></ion-icon>
-          </ion-fab-button>
-        <ion-fab-button ion-fab class="bgButton"  (click)="abrirAnotacoes()"  padding>
-          <ion-icon name="create"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button ion-fab class="bgButton" (click)="CadastrarProduto()"  padding>
-          <ion-icon size="small" name="add" ><ion-icon name="flask"></ion-icon></ion-icon>
-        </ion-fab-button>
-       </ion-fab-list>
-    </ion-fab>
-    <ion-item *ngFor="let item of produtos">
-      <small>{{item.tipo}}</small>
-    </ion-item>
+  <ion-fab  right bottom position="relative">
+    <button ion-fab class="bgButton">
+      <ion-icon name="ios-create-outline"></ion-icon>
+    </button>
+    <ion-fab-list padding side="left">
+      <ion-fab-button ion-fab class="bgButton" (click)="Temporizador()" padding>
+        <ion-icon name="md-alarm"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button ion-fab class="bgButton" (click)="abrirAnotacoes()" padding>
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button ion-fab class="bgButton" (click)="CadastrarProduto()" padding>
+        <ion-icon size="small" name="add">
+          <ion-icon name="flask"></ion-icon>
+        </ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

@@ -22,7 +22,8 @@ export class ConfiguracoesPage {
   public loading: Loading;
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams, public app: App,
+    public navParams: NavParams,
+     public app: App,
     private authProvider: AuthProvider,
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,

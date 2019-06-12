@@ -27,7 +27,7 @@ export class IntroPage {
   hidratacao = true;
   nutricao = true;
   reconstrucao = true;
-
+  btnEnable;
   @ViewChild('slides') slides: Slides;
   
   tabs: any = '0';
@@ -46,7 +46,10 @@ export class IntroPage {
   ) {
     this.getCurrentUser();
   }
-
+  Cacheado(){
+    this.user.cabelo = 'Cacheado';
+    this.btnEnable = false;
+  }
   Continuar() {
     this.loadingProvider.present();
     this.firebaseProvider.saveUser(this.user)
