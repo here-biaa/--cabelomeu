@@ -170,8 +170,7 @@ export class TemporizadorPage implements OnInit {
     clearInterval(this.timer);
     clearInterval(this.overallTimer);
     this.audio.pause();
-    this.stopAudio()
-
+    
   }
   progressTimer() {
     let countDownDate = new Date();
