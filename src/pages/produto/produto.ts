@@ -7,6 +7,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingProvider } from '../../providers/loading';
 import { Storage } from "@ionic/storage";
 
+import { ActionSheetController } from 'ionic-angular';
+
 @IonicPage()
 @Component({
   selector: 'page-produto',
@@ -28,6 +30,7 @@ export class ProdutoPage {
     private loadingProvider: LoadingProvider,
     private modalCtrl: ModalController,
     private storage: Storage,
+    public actionctrl:ActionSheetController,
   ) {
     this.loadingProvider.present().then(() => {
       this.getCurrentUser();
@@ -96,7 +99,7 @@ export class ProdutoPage {
           text: 'Editar',
           icon: 'md-create',
           handler: () => {
-            this.Editar()
+            
           }
         },
         {
@@ -104,7 +107,7 @@ export class ProdutoPage {
           icon: 'ios-trash',
           role:'destructive',
           handler: () => {
-            this.AlertConfirm()
+            
           }
         },
         {
@@ -112,7 +115,7 @@ export class ProdutoPage {
           icon: 'md-eye',
           role:'destructive',
           handler: () => {
-            this.verReceita()
+            
           },
         }
       ]
