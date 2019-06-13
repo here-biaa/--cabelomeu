@@ -29,6 +29,7 @@
     "@ionic-native/file": "^5.6.0",
     "@ionic-native/insomnia": "^5.5.0",
     "@ionic-native/local-notifications": "^5.6.0",
+    "@ionic-native/media": "^5.8.0",
     "@ionic-native/native-audio": "^5.5.0",
     "@ionic-native/native-storage": "^5.4.0",
     "@ionic-native/navigation-bar": "^5.5.0",

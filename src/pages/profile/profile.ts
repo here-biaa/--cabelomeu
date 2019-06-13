@@ -88,7 +88,6 @@ abrirModal() {
     this.loadingProvider.present();
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
-        this.getAndSaveCurrentUser(this.user.uid);
         this.presentToast()
       })
   }

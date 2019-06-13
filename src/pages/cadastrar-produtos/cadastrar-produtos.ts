@@ -109,6 +109,7 @@ amount = 0;
       this.presentToast();
       this.update();
       this.form.reset()
+      this.produto.obs =null
     });
 }
 //quando cadastrar o produto aparece 

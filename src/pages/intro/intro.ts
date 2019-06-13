@@ -46,11 +46,29 @@ export class IntroPage {
   ) {
     this.getCurrentUser();
   }
+  Liso(){
+    this.user.cabelo = 'Liso';
+    this.Continuar()
+  }
+  Ondulado(){
+    this.user.cabelo ='Ondulado';
+    this.Continuar()
+  }
   Cacheado(){
     this.user.cabelo = 'Cacheado';
-    this.btnEnable = false;
+    this.Continuar()
+   }
+  Crespo(){
+    this.user.cabelo = 'Crespo';
+    this.Continuar()
+
   }
-  Continuar() {
+  Transicao(){
+    this.user.cabelo = 'Transicao';
+    this.Continuar()
+
+  }
+  Salvar() {
     this.loadingProvider.present();
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
@@ -64,6 +82,9 @@ export class IntroPage {
       })
 
     console.log(this.user)
+  }
+  Continuar(){
+    this.slides.slideNext();
   }
   CronogramaHidratacao(){
     this.nutricao= false;

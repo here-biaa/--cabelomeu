@@ -107,7 +107,8 @@ import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-ca
     NavigationBar,
     NativeAudio,
     StreamingMedia,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    StreamingMedia
 
   ]
 })

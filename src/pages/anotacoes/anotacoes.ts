@@ -65,6 +65,10 @@ export class AnotacoesPage {
         this.loadingProvider.dismiss();
         this.presentToast();
         this.form.reset()
+        this.notas.definicao = null;
+        this.notas.oleosidade = null
+        this.notas.pontas = null;
+        this.notas.volume = null;
         this.navCtrl.pop()
       });
   }

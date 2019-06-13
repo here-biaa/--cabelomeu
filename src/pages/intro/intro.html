@@ -15,11 +15,11 @@
         <h3 class="txt">Qual o seu <small class="Logotipo">TIPO</small> de cabelo?</h3>
         <form>
           <div class="mg-top-10">
-            <button ion-button color="secondary" [disabled]="btnEnable" full>Liso</button>
+            <button ion-button color="secondary"  (click)="Liso()" [disabled]="btnEnable" full>Liso</button>
           </div>
 
           <div class="mg-top-10">
-            <button ion-button color="secondary"[disabled]="btnEnable" full>Ondulado</button>
+            <button ion-button color="secondary"  (click)="Ondulado()" full>Ondulado</button>
           </div>
 
           <div class="mg-top-10">
@@ -27,18 +27,13 @@
           </div>
 
           <div class="mg-top-10">
-            <button ion-button color="secondary" [disabled]="btnEnable" full>Crespo</button>
+            <button ion-button color="secondary"  (click)="Crespo()" full>Crespo</button>
           </div>
 
           <div class="mg-top-10">
-            <button ion-button color="secondary" [disabled]="btnEnable" full>Transição</button>
+            <button ion-button color="secondary" (click)="Transicao()" full>Transição</button>
           </div>
-          <div>
-            <button class="mg-top-40" padding ion-button color="secondary" (click)="Continuar()" outline>
-              Continuar
-            </button>
-          </div>
-        </form>
+         </form>
       </ion-slide>
       <ion-slide *ngIf="teste-porosidade" class="slide_image" padding>
         <h3 class="txt mg-top-20">Como montar meu <small class="Logotipo">cronograma capilar</small>?</h3>
@@ -67,10 +62,13 @@
             <img src="./assets/imgs/teste-de-porosidade.jpg" class="logo-white-login">
           </div>
           <div>
+              <button ion-button color="secondary" outline (click)="VoltarSlide()" class="mg-top-20">
+                Voltar
+              </button>
             <button class="mg-top-20" padding ion-button color="secondary" (click)="Continuar()" outline>
               Continuar
             </button>
-          </div>
+           </div>
       </ion-slide>
 
       <ion-slide class="slide_image" padding>
