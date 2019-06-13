@@ -224,20 +224,21 @@ abrirModal() {
     return shouldLeave;
   }
   
+  //alert ao sair da página sem salvar//
   confirmLeave(): Promise<Boolean> {
     let resolveLeaving;
     const canLeave = new Promise<Boolean>(resolve => resolveLeaving = resolve);
     const alert = this.alertCtrl.create({
-      title: 'Confirm leave',
-      message: 'Do you want to leave the page?',
+      title: 'Deseja voltar ?',
+      message: 'Ao sair da página as alterações não serão salvas',
       buttons: [
         {
-          text: 'No',
+          text: 'Não',
           role: 'cancel',
           handler: () => resolveLeaving(false)
         },
         {
-          text: 'Yes',
+          text: 'Sim',
           handler: () => resolveLeaving(true)
         }
       ]
