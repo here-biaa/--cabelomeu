@@ -37,30 +37,29 @@
   <br />
   <br />
   <br />
-  <ion-list>
-    <ion-item *ngFor="let item of anotacoes">
-      <small class="Logotipo">{{ item.titulo }}</small><br /><br />
-      <ion-icon class="options"color="imperial" (click)="openOptions()" item-end name="more" top></ion-icon>
-      <small class="Logotipo">{{ item.date }}</small><br>
-      <div>
-        <ion-icon name="md-pricetags" item-start></ion-icon>
-        <small>Pontas duplas:</small>{{ item.pontas }}
+  <br /><br />
+  <ion-list padding *ngFor="let item of anotacoes">
+    <div class="divTamanho">
+      <small class="Logotipo">{{ item.titulo }}</small>
+      <ion-icon class="options tamanhoIcon btnEnd" color="imperial" (click)="openOptions(item)" item-end name="more" top></ion-icon>
+      <p>Data do cadastro: {{ item.date }}</p>
+      <div class="no-padding">
+        <ion-icon name="md-pricetags" item-start><small slot="start" item-start> Pontas duplas:</small></ion-icon>
+        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{item.pontas}}" slot="end"></ion-checkbox>
+        <ion-icon name="md-pricetags" item-start><small> Oleosidade:</small></ion-icon>
+        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.oleosidade }}" slot="end"></ion-checkbox>
+        <ion-icon name="md-pricetags" item-start><small> Definição: </small></ion-icon>  
+        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.definicao }}" slot="end"></ion-checkbox>
+        <ion-icon name="md-pricetags" item-start><small> Volume</small></ion-icon>
+        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.volume }}" slot="end"></ion-checkbox>
+        <hr>
       </div>
-      <div>
-        <ion-icon name="md-pricetags" item-start></ion-icon>
-        <small>Oleosidade:</small>{{ item.oleosidade }}
+      <div *ngIf="receita">
+        <p class="Logotipo">{{item.nota}}</p>
+        <button padding class="transparent-bg" color="secondary" full (click)="FecharNota()">
+          Fechar <ion-icon name="close"></ion-icon></button>
       </div>
-      <div>
-        <ion-icon name="md-pricetags" item-start></ion-icon>
-        <small>Definição: </small>
-      </div>
-      <div>
-        <ion-icon name="md-pricetags" item-start></ion-icon>
-        <small>Volume</small>
-      </div>
-      
-    </ion-item>
-
+    </div>
   </ion-list>
 
 </ion-content>

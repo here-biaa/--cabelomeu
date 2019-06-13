@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, AlertController, Item } from 'ionic-angular';
 import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto';
 import { FirebaseProvider } from '../../providers/firebase';
 import * as firebase from 'firebase';
@@ -18,7 +18,7 @@ export class ProdutoPage {
   user={
     uid:''
   };
-  
+  receita = false;
 
   constructor(
     public navCtrl: NavController,
@@ -28,6 +28,11 @@ export class ProdutoPage {
     private loadingProvider: LoadingProvider,
     private modalCtrl: ModalController,
     private storage: Storage,
+    public actionctrl: ActionSheetController,
+    public alertCtrl: AlertController,
+    
+
+
   ) {
     this.loadingProvider.present().then(() => {
       this.getCurrentUser();
@@ -88,7 +93,7 @@ export class ProdutoPage {
         this.storage.set('user_cabelomeu', user);
       })
   }
-   openOptions(){
+   openOptions(item:any){
     let actionsheet = this.actionctrl.create({
       title: 'Produto',
       buttons : [
@@ -104,7 +109,8 @@ export class ProdutoPage {
           icon: 'ios-trash',
           role:'destructive',
           handler: () => {
-            this.AlertConfirm()
+            //this.AlertConfirm()
+            this.Excluir(item)
           }
         },
         {
@@ -119,4 +125,40 @@ export class ProdutoPage {
     })
     actionsheet.present();
   }
+  Editar(){}
+
+  verReceita(){
+    this.receita = true;
+  }
+  FecharNota(){
+    this.receita=false;
+  }
+  Excluir(item:any){
+      this.firebaseProvider.deletarNotas(item)
+        .then(res => {this.navCtrl.pop()}
+
+        )};
+  async AlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      title: 'Tem certeza?',
+      message: 'Realmente deseja excluir?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Excluir',
+          handler: () => {
+            this.Excluir(Item)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }
