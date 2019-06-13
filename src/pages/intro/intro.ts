@@ -48,24 +48,24 @@ export class IntroPage {
   }
   Liso(){
     this.user.cabelo = 'Liso';
-    this.Continuar()
+    this.Salvar()
   }
   Ondulado(){
     this.user.cabelo ='Ondulado';
-    this.Continuar()
+    this.Salvar()
   }
   Cacheado(){
     this.user.cabelo = 'Cacheado';
-    this.Continuar()
+    this.Salvar()
    }
   Crespo(){
     this.user.cabelo = 'Crespo';
-    this.Continuar()
+    this.Salvar()
 
   }
   Transicao(){
     this.user.cabelo = 'Transicao';
-    this.Continuar()
+    this.Salvar()
 
   }
   Salvar() {
