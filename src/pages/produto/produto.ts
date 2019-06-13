@@ -7,6 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingProvider } from '../../providers/loading';
 import { Storage } from "@ionic/storage";
 
+
 @IonicPage()
 @Component({
   selector: 'page-produto',
@@ -101,7 +102,7 @@ export class ProdutoPage {
           text: 'Editar',
           icon: 'md-create',
           handler: () => {
-            this.Editar()
+            
           }
         },
         {
@@ -118,7 +119,7 @@ export class ProdutoPage {
           icon: 'md-eye',
           role:'destructive',
           handler: () => {
-            this.verReceita()
+            
           },
         }
       ]
