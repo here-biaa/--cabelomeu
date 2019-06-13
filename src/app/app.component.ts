@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
   rootPage: any;
-
+  audio;
   constructor(
     platform: Platform,
     statusBar: StatusBar,
@@ -31,6 +31,7 @@ export class MyApp {
        this.rootPage = 'introPage';
        this.storage.set('slideCompleto',true);
      });*/
+    
         setTimeout(() => {
         splashScreen.hide();
       });

@@ -82,6 +82,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
     <plugin name="cordova-plugin-insomnia" source="npm" version="4.1.0" />
+    <plugin name="cordova-plugin-streaming-media" version="5.0.0" />
     <engine name="ios" spec="~4.5.4" />
     <allow-navigation href="http://192.168.15.8:8100" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />

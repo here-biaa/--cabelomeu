@@ -85,10 +85,9 @@ abrirModal() {
 
   //Salvar alterações do usuario
   save() {
-    this.loadingProvider.present();
+    this.loadingProvider.dismiss();
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
-        this.getAndSaveCurrentUser(this.user.uid);
         this.presentToast()
       })
   }

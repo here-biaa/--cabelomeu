@@ -1,9 +1,3 @@
-<!--
-  Generated template for the DetalhesProdutoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="imperial">
@@ -40,6 +34,9 @@
   </ion-card >
   <ion-card *ngIf="editar" class="tamanhoAuto">
         <img class="container1" src={{produtos.imgProduto}}>
+        <button class="center" class="btnCenter" color="imperial" ion-fab mini (click)="FolhadeAcoes()">
+          <ion-icon padding name="md-camera" item-center></ion-icon>
+        </button>
         <ion-card-content>
           <ion-card-title class="center nome Logotipo bold">
             <ion-input class="" value='{{ produtos.nome }}' [(ngModel)]='produtos.nome'></ion-input>
@@ -55,7 +52,7 @@
         
           <small class="titulo bold">Tipo: </small>
         <ion-item>
-          <ion-label>Selecione o tipo:</ion-label>
+          <ion-label>Tipo:</ion-label>
           <ion-select formControlName="tipo" [(ngModel)]="produtos.tipo">
             <ion-option value="Hidratação">Hidratação</ion-option>
             <ion-option value="Nutrição">Nutrição</ion-option>
