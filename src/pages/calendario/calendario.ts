@@ -24,7 +24,7 @@ export class calendarioPage implements AfterViewInit,OnInit{
   }
   tipo;
   _daysConfig: DayConfig[] = [];
-  
+  eventSource
   dateMulti: string[] = [];
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsMulti: CalendarComponentOptions = {
@@ -137,7 +137,8 @@ export class calendarioPage implements AfterViewInit,OnInit{
   onSelect($event) {
     this.onSelectEnd($event)
     console.log('onSelect', $event);
-    this.navCtrl.push('EditarCalendarioPage')
+    this.navCtrl.push('EditarCalendarioPage', {eventSource:this.eventSource})
+    this.eventSource = $event;
         }
   onHidratacao($event) {
     console.log('onHidratacao', $event);

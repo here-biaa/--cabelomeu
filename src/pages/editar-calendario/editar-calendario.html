@@ -40,14 +40,17 @@
       </button>
       <ion-list class="listagem" *ngIf="produtosAtrelados">
           <ion-icon item-start padding color="roxo" class="tamanhoIcon" name="flask">
-            <small class="Logotipo ">{{adicionados.nome}}</small><br>
-          </ion-icon>
-          <ion-icon><p>Tipo: {{adicionados.tipo}}</p></ion-icon>
-          <ion-icon><p>Marca: {{adicionados.marca}}</p></ion-icon>
-        <button class="transparent-bg font-18 no-padding btnEnd">
-            <ion-icon name="md-eye" color="imperial" item-end (click)="abreDetalhe(adicionados)"></ion-icon>
-        </button>
-      </ion-list>
+            <small class="Logotipo ">{{adicionados.nome}}</small>
+           </ion-icon>
+            <br />
+          <div padding>
+            <ion-icon><p>Tipo: {{adicionados.tipo}}</p></ion-icon>
+            <ion-icon><p>Marca: {{adicionados.marca}}</p></ion-icon>
+            <button class="transparent-bg font-18 no-padding btnEnd">
+              <ion-icon name="md-eye" color="imperial" item-end (click)="abreDetalhe(adicionados)"></ion-icon>
+            </button>
+          </div>
+        </ion-list>
     </div>
     <hr>
     <div>
