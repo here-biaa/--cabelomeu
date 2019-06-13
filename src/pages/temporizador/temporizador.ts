@@ -14,7 +14,7 @@ import { StreamingMedia, StreamingAudioOptions } from '@ionic-native/streaming-m
   selector: 'page-temporizador',
   templateUrl: 'temporizador.html',
 })
-export class TemporizadorPage implements OnInit{
+export class TemporizadorPage implements OnInit {
   user;
   elapsed: any = {
     h: '00',
@@ -27,14 +27,14 @@ export class TemporizadorPage implements OnInit{
   overallProgress: any = 0;
   percent: number = 0;
   radius: number = 100;
-  hours: number =1;
+  hours: number = 1;
   minutes: number = 1;
   seconds: any = 10;
   timer: any = false;
   overallTimer: any = false;
-  fullTime: any ;
+  fullTime: any;
   countDownTimer: any = false;
-  audio:any;
+  audio: any;
   timeLeft: any = {
     h: '00',
     m: '00',
@@ -51,35 +51,34 @@ export class TemporizadorPage implements OnInit{
     private loadingProvider: LoadingProvider,
     private firebaseProvider: FirebaseProvider,
     public alertCtrl: AlertController,
-    public viewCtrl : ViewController,
+    public viewCtrl: ViewController,
     private storage: Storage,
     public platform: Platform,
-    private streamingMedia:StreamingMedia
-    )
-  {
+    private streamingMedia: StreamingMedia
+  ) {
     this.audio = new Audio();
     this.audio.src = "../../assets/audio/alarm.mp3";
     this.audio.load();
 
-  
+
   }
-    public ngOnInit = () => {
+  public ngOnInit = () => {
     let autoHide: boolean = true;
     this.navigationBar.setUp(autoHide);
-     
-   }  
-   refresh(refresher) {
+
+  }
+  refresh(refresher) {
     refresher.complete();
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   startTimer() {
-    
-    if(!this.countDownTimer){
+
+    if (!this.countDownTimer) {
       setInterval(this.timer);
       setInterval(this.countDownTimer);
       this.progressTimer();
-     
+
     }
     if (this.timer) {
       setInterval(this.timer);
@@ -89,7 +88,7 @@ export class TemporizadorPage implements OnInit{
       this.progressTimer();
       this.insomnia.keepAwake()
     }
-    
+
     this.timer = false;
     this.percent = 0;
     this.progress = 0;
@@ -102,32 +101,32 @@ export class TemporizadorPage implements OnInit{
     let totalSeconds = Math.floor(this.minutes * 60) + parseInt(this.seconds);
     let secondsLeft = totalSeconds;
     let forwardsTimer = () => {
-      if (this.percent == this.radius) 
-      clearInterval(this.timer)
+      if (this.percent == this.radius)
+        clearInterval(this.timer)
       this.percent = Math.floor((this.progress / totalSeconds) * 100)
       ++this.progress;
-     
+
     }
     let backwardsTimer = () => {
       if (secondsLeft >= 0) {
         this.timeLeft.h = Math.floor(secondsLeft / 3600)
-        this.timeLeft.m = secondsLeft - ((3600 * this.timeLeft.h)/60)
+        this.timeLeft.m = secondsLeft - ((3600 * this.timeLeft.h) / 60)
 
-        
+
         this.timeLeft.m = Math.floor(secondsLeft / 60)
         this.timeLeft.s = secondsLeft - (this.timeLeft.h * 3600) - (60 * this.timeLeft.m)
-       
-       
+
+
         this.remainingTime = `${this.pad(this.timeLeft.h, 2)}:${this.pad(this.timeLeft.m, 2)}:${this.pad(this.timeLeft.s, 2)}`
         secondsLeft--;
-        
 
-     
+
+
       }
       else
-      this.audio.play();
+        this.audio.play();
       this.audio.loop = true;
-       
+
     }
 
     // run once when clicked
@@ -136,8 +135,8 @@ export class TemporizadorPage implements OnInit{
     // timers start 1 second later
     this.countDownTimer = setInterval(backwardsTimer, 1000)
     this.timer = setInterval(forwardsTimer, 1000)
-    
-   
+
+
   }
 
   resumeTimer() {
@@ -162,18 +161,18 @@ export class TemporizadorPage implements OnInit{
       m: '00',
       s: '00'
     }
-    
+
     this.remainingTime = `${this.pad(this.timeLeft.h, 2)}:${this.pad(this.timeLeft.m, 2)}:${this.pad(this.timeLeft.s, 2)}`;
   }
 
-  stopTimer(){
+  stopTimer() {
     clearInterval(this.countDownTimer);
     clearInterval(this.timer);
     clearInterval(this.overallTimer);
     this.audio.pause();
     this.stopAudio()
 
-    }
+  }
   progressTimer() {
     let countDownDate = new Date();
 
@@ -218,7 +217,7 @@ export class TemporizadorPage implements OnInit{
         this.storage.set('user_cabelomeu', user);
       })
   }
-  PlayAudio(){
+  PlayAudio() {
     let options: StreamingAudioOptions = {
       successCallback: () => { console.log('foi') },
       errorCallback: () => { console.log('err') },
@@ -227,7 +226,7 @@ export class TemporizadorPage implements OnInit{
     this.streamingMedia.playAudio('http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3', options);
 
   }
-  stopAudio(){
+  stopAudio() {
     this.streamingMedia.stopAudio()
   }
 }

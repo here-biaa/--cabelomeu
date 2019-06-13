@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TemporizadorPage } from './temporizador';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @NgModule({
   declarations: [

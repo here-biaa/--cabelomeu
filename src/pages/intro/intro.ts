@@ -22,7 +22,6 @@ export class IntroPage {
     uid: '',
     avatar: '',
     cabelo: '',
-    cronograma:''
   };
   hidratacao = true;
   nutricao = true;
@@ -44,7 +43,7 @@ export class IntroPage {
 
 
   ) {
-    this.getCurrentUser();
+    this.getCurrentUser(this.user);
   }
   Liso(){
     this.user.cabelo = 'Liso';
@@ -104,8 +103,10 @@ export class IntroPage {
   }
   VoltarSlide(){
     this.slides.slidePrev();
-
-  }
+    this.nutricao = true;
+    this.reconstrucao = true;
+    this.hidratacao = true;
+ }
   //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
@@ -117,17 +118,14 @@ export class IntroPage {
   }
   
   //Buscar dados do usuario no storage
-  getCurrentUser() {
+  getCurrentUser(user) {
     this.storage.get('user_cabelomeu')
       .then((user) => {
         this.user = user;
       })
   }
    abrirCronograma() {
-    this.storage.set('slideCompleto', this.user);
-        this.navCtrl.setRoot('TabsPage',
-        {
-          root:'calendarioTab'
-      });
+    this.storage.set('slideCompleto', true);
+        this.navCtrl.setRoot('TabsPage')
   }
 }
