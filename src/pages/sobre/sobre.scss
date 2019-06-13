@@ -1,7 +1,14 @@
 page-sobre {
+    .tamanho{
+        min-height:100%;
+        height: auto;
+    }
+    .titulo{
+        font-size: 18px;
+    }
     .texto{
     color:#000;
-    font-size: 1.4em;
+    font-size: 12px;
     text-align: justify;
 }
 }

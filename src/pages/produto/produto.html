@@ -3,7 +3,7 @@
   <ion-navbar color="imperial">
     <ion-title>Minha lista</ion-title>
   </ion-navbar>
-  
+
   <ion-toolbar>
     <ion-segment color="imperial">
       <ion-segment-button value="abreProduto()" (click)="abreProduto()">
@@ -16,7 +16,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  padding>
+<ion-content padding>
   <ion-list *ngIf="inicio">
     <ion-item *ngFor="let item of produtos">
       <small class="Logotipo">{{ item.nome }}</small><br>
@@ -33,25 +33,34 @@
 
   </ion-list>
 </ion-content>
-<ion-content *ngIf="notas" padding >
-  <br/>
+<ion-content *ngIf="notas" padding>
   <br />
   <br />
-  <ion-list >
+  <br />
+  <ion-list>
     <ion-item *ngFor="let item of anotacoes">
-      <small class="Logotipo">{{ item.titulo }}</small><br/><br/>
+      <small class="Logotipo">{{ item.titulo }}</small><br /><br />
+      <ion-icon class="options"color="imperial" (click)="openOptions()" item-end name="more" top></ion-icon>
       <small class="Logotipo">{{ item.date }}</small><br>
       <div>
         <ion-icon name="md-pricetags" item-start></ion-icon>
-        {{ item.pontas }}
+        <small>Pontas duplas:</small>{{ item.pontas }}
       </div>
       <div>
-        <ion-icon name="ios-flask-outline" item-start></ion-icon>
-        {{ item.oleosidade }}
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        <small>Oleosidade:</small>{{ item.oleosidade }}
       </div>
-      <ion-icon name="md-eye" color="imperial" item-end (click)="abreDetalhe(item)"></ion-icon>
+      <div>
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        <small>Definição: </small>
+      </div>
+      <div>
+        <ion-icon name="md-pricetags" item-start></ion-icon>
+        <small>Volume</small>
+      </div>
+      
     </ion-item>
-  
+
   </ion-list>
 
 </ion-content>

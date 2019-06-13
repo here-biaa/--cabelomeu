@@ -129,4 +129,5 @@ export class CreateAccountPage {
    Se o usuario ja tiver uma conta ele retornará a pag de login
    */
   haveAccount = () => this.navCtrl.setRoot('LoginPage');
+  abrirTermos = ()=> this.navCtrl.push('SobrePage');
 }

@@ -88,4 +88,35 @@ export class ProdutoPage {
         this.storage.set('user_cabelomeu', user);
       })
   }
+   openOptions(){
+    let actionsheet = this.actionctrl.create({
+      title: 'Produto',
+      buttons : [
+        {
+          text: 'Editar',
+          icon: 'md-create',
+          handler: () => {
+            this.Editar()
+          }
+        },
+        {
+          text:'Excluir',
+          icon: 'ios-trash',
+          role:'destructive',
+          handler: () => {
+            this.AlertConfirm()
+          }
+        },
+        {
+          text:'Ver receita',
+          icon: 'md-eye',
+          role:'destructive',
+          handler: () => {
+            this.verReceita()
+          },
+        }
+      ]
+    })
+    actionsheet.present();
+  }
 }
