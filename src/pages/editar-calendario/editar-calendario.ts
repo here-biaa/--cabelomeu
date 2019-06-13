@@ -98,7 +98,7 @@ eventSource;
       .then(res => {
         console.log(res);
         this.presentToast()
-        this.navCtrl.setRoot('calendarioPage', {events:this.eventSource});
+        this.navCtrl.setRoot('calendarioPage', {events:eventSource});
         this.getAndSaveCurrentUser(this.user)
 
   });
