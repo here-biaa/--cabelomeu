@@ -33,6 +33,7 @@ export class DetalhesProdutoPage {
     public actionctrl:ActionSheetController,
     private camera: Camera,
     private storageImages: ImagesUpload,
+  
 
   ) {
     this.produtos = this.navParams.get("produtos");

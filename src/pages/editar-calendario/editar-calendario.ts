@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { FirebaseProvider } from '../../providers/firebase';
 import { LoadingProvider } from '../../providers/loading';
 import * as moment from 'moment';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -26,13 +27,15 @@ btn=true;
 btnNotas = true;
 anotacoes;
 add;
+eventSource;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private firebaseProvider: FirebaseProvider,
     private loadingProvider: LoadingProvider,
     private toastCtrl: ToastController,
-   
+    private storage: Storage,
+
     ) 
   {
     moment.locale('pt-br');
@@ -90,15 +93,26 @@ add;
     this.btnNotas = false;
     this.add = item;
   }
-  Salvar(){
+  Salvar(eventSource){
     this.loadingProvider.dismiss()
       .then(res => {
         console.log(res);
         this.presentToast()
-        this.navCtrl.setRoot('calendarioPage');
+        this.navCtrl.setRoot('calendarioPage', {events:this.eventSource});
+        this.getAndSaveCurrentUser(this.user)
+
   });
      
 }
+  getAndSaveCurrentUser(uid) {
+    this.firebaseProvider.getCurrentUser(uid)
+      .subscribe((res) => {
+        this.loadingProvider.dismiss();
+        let user = res[0];
+        this.storage.set('user_cabelomeu', user);
+      })
+  }
+
   CadastrarProduto() {
     this.navCtrl.push('CadastrarProdutosPage')
   }
