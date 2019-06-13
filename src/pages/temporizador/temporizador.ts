@@ -6,6 +6,7 @@ import { LoadingProvider } from '../../providers/loading';
 import { FirebaseProvider } from '../../providers/firebase';
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase';
+import { StreamingMedia, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
 
 
 @IonicPage()
@@ -53,6 +54,7 @@ export class TemporizadorPage implements OnInit{
     public viewCtrl : ViewController,
     private storage: Storage,
     public platform: Platform,
+    private streamingMedia:StreamingMedia
     )
   {
     this.audio = new Audio();
@@ -123,10 +125,9 @@ export class TemporizadorPage implements OnInit{
      
       }
       else
-        this.audio.play();
+      this.audio.play();
       this.audio.loop = true;
-
-      
+       
     }
 
     // run once when clicked
@@ -170,6 +171,7 @@ export class TemporizadorPage implements OnInit{
     clearInterval(this.timer);
     clearInterval(this.overallTimer);
     this.audio.pause();
+    this.stopAudio()
 
     }
   progressTimer() {
@@ -216,5 +218,16 @@ export class TemporizadorPage implements OnInit{
         this.storage.set('user_cabelomeu', user);
       })
   }
+  PlayAudio(){
+    let options: StreamingAudioOptions = {
+      successCallback: () => { console.log('foi') },
+      errorCallback: () => { console.log('err') },
+      initFullscreen: false,
+    }
+    this.streamingMedia.playAudio('http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3', options);
 
+  }
+  stopAudio(){
+    this.streamingMedia.stopAudio()
+  }
 }

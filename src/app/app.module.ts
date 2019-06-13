@@ -85,6 +85,7 @@ import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-ca
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -108,7 +109,6 @@ import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-ca
     NativeAudio,
     StreamingMedia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StreamingMedia
 
   ]
 })
