@@ -102,7 +102,7 @@ export class LoginPage implements ErrorHandler{
     });
   } 
   passwordReset(){
-    this.loadingProvider.present().then(() => {
+    this.loadingProvider.dismiss().then(() => {
       let data = this.formEmail.value;
       this.authProvider.password(data)
            .then((res) => {
