@@ -52,6 +52,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { ModalPageModule } from '../pages/modal/modal.module';
 import { AnotacoesPageModule } from '../pages/anotacoes/anotacoes.module';
 import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-calendario.module';
+import { ListarNotasPageModule } from '../pages/listar-notas/listar-notas.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -74,6 +75,7 @@ import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-ca
     ModalPageModule,
     AnotacoesPageModule,
     EditarCalendarioPageModule,
+    ListarNotasPageModule, 
     //Calendario
     //Outros
     CommonModule,

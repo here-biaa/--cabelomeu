@@ -50,6 +50,9 @@ export class ConfiguracoesPage {
   abrirCadastroProduto(){
     this.navCtrl.push(CadastrarProdutosPage);
   }
+  abrirQuiz(){
+    this.navCtrl.push('IntroPage')
+  }
   abrirSobre(){
     this.navCtrl.push(SobrePage);
   }

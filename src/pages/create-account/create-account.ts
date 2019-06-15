@@ -75,9 +75,8 @@ export class CreateAccountPage {
         .then(res => {
           console.log(res);
           this.uid = res.user.uid;
-          console.log("ok");
-          this.createUserOnFirestore();
-
+          console.log("ok",res);
+     
           let user = firebase.auth().currentUser;
           user.sendEmailVerification();
           this.loadingProvider.dismiss();
@@ -86,7 +85,7 @@ export class CreateAccountPage {
             subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
-        
+          this.createUserOnFirestore();
         })
         //Error
         .catch((err) => {
@@ -103,15 +102,17 @@ export class CreateAccountPage {
 
   //Criando o usuario no firebase
   createUserOnFirestore = () => {
-    const data = {
+    let data = {
       name: this.validacao_form.value.name,
       email: this.validacao_form.value.email,
       pass: this.validacao_form.value.pass,
       uid: this.uid
     };
 
-    this.firebaseProvider.postUser(data).then(res => {
+    this.firebaseProvider.postUser(data)
+    .then(res => {
       this.navCtrl.setRoot('LoginPage')
+
     });
   }
 

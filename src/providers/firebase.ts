@@ -20,8 +20,7 @@ export class FirebaseProvider {
   postUser = data =>
     this.afs
       .collection("Users")
-      .doc(data.uid)
-      .update(data);
+      .add(data);
   
   //Create order on firestore
   postOrder = data => this.afs.collection("Orders").add(data);
