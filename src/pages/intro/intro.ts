@@ -68,7 +68,7 @@ export class IntroPage {
 
   }
   TipoCabelo(){
-    this.firebaseProvider.postUser(this.user)
+    this.firebaseProvider.saveUser(this.user)
       .then((res) => {
         this.loadingProvider.dismiss();
         this.slides.slideNext();
