@@ -47,32 +47,54 @@ export class IntroPage {
   }
   Liso(){
     this.user.cabelo = 'Liso';
-    this.TipoCabelo();
-  }
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+}
   Ondulado(){
     this.user.cabelo ='Ondulado';
-    this.TipoCabelo();
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+
   }
   Cacheado(){
     this.user.cabelo = 'Cacheado';
-    this.TipoCabelo();
-   }
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+    }
   Crespo(){
     this.user.cabelo = 'Crespo';
-    this.TipoCabelo();
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
 
   }
   Transicao(){
     this.user.cabelo = 'Transicao';
-    this.TipoCabelo();
-
-  }
-  TipoCabelo(){
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
-        this.loadingProvider.dismiss();
-        this.slides.slideNext();
-       })
+           this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
   }
   Salvar() {
     this.loadingProvider.dismiss();

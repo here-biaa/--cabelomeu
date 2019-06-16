@@ -36,7 +36,6 @@ export class ModalPage {
     {
       this.buildForm();
       this.getCurrentUser();
-      console.log(this.user)
     }
   buildForm() {
     this.validacao_form = this.formBuilder.group({
@@ -67,26 +66,35 @@ export class ModalPage {
     this.view.dismiss();
   }
   alterarSenha(){
-    if(this.user.pass == this.validacao_form.value.novaSenha)
+    if(this.user.pass == this.validacao_form.value.pass)
     {
       this.loadingProvider.dismiss();
       let user = firebase.auth().currentUser;
-      var newPassword = this.validacao_form.value.novaSenha;
-      user.updatePassword(newPassword)
-        .then(function () {
+      console.log(user)
+      let newPassword = this.validacao_form.value.novaSenha;
+
+      user.updatePassword(newPassword).then(function () {
+        this.loadingProvider.dismiss();
+        this.firebaseProvider.saveUser(this.user)
+        this.user.pass = this.validacao_form.value.novaSenha
+
         // Update successful.
         this.presentToast();
-          this.alertCtrl.create({
-            title: "Alerta de Segurança",
-            subTitle: "Para sua segurança é necessário que você faça login com sua nova senha!",
-            buttons: ["Ok"]
-          }).present();
-          this.logout()
-      },
-       )
+        this.alertCtrl.create({
+          title: "Alerta de Segurança",
+          subTitle: "Para sua segurança é necessário que você faça login com sua nova senha!",
+          buttons: ["Ok"]
+        }).present();
+        this.logout()
+      })
       .catch(function (error) {
         // An error happened.
-      });
+        this.alertCtrl.create({
+          title: "Opa",
+          subTitle: "Desculpa, este recurso nâo está operável no momento!",
+          buttons: ["Ok"]
+        }).present();
+      }); 
     }
     else
       this.alertCtrl.create({
@@ -117,6 +125,7 @@ export class ModalPage {
     this.storage.get('user_cabelomeu')
       .then((user) => {
         this.user = user;
+        console.log(this.user)
       })
   }
 

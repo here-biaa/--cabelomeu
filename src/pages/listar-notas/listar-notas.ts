@@ -10,6 +10,7 @@ import { FirebaseProvider } from '../../providers/firebase';
   templateUrl: 'listar-notas.html',
 })
 export class ListarNotasPage {
+  verItem;
   anotacoes;
   inicio=true;
   listagem =false;
@@ -67,7 +68,7 @@ export class ListarNotasPage {
     this.listagem = false;
 
   }
-  openOptions(item: any) {
+  openOptions(item:any){
     let actionsheet = this.actionctrl.create({
       title: 'Notas',
       buttons: [
@@ -76,7 +77,8 @@ export class ListarNotasPage {
           icon: 'md-eye',
           role: 'destructive',
           handler: () => {
-            this.verReceita(item)
+            item = this.verItem;
+            this.verReceita()
           }
         },
         {
@@ -120,9 +122,8 @@ export class ListarNotasPage {
 
     await alert.present();
   }
-  verReceita(item) {
+  verReceita() {
     this.inicio = false;
-    item = this.listagem;
     this.listagem = true;
   }
 
