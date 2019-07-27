@@ -93,9 +93,15 @@ export class LoginPage implements ErrorHandler {
           alert.present();
         })
     });
+<<<<<<< HEAD
   }
   passwordReset() {
     this.loadingProvider.present().then(() => {
+=======
+  } 
+  passwordReset(){
+    this.loadingProvider.dismiss().then(() => {
+>>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
       let data = this.formEmail.value;
       this.authProvider.password(data)
         .then((res) => {

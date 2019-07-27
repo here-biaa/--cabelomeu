@@ -124,10 +124,9 @@ export class TemporizadorPage implements OnInit {
 
       }
       else
-        this.audio.play();
+      this.audio.play();
       this.audio.loop = true;
-
-    }
+     }
 
     forwardsTimer()
     backwardsTimer()
@@ -169,6 +168,8 @@ export class TemporizadorPage implements OnInit {
     clearInterval(this.timer);
     clearInterval(this.overallTimer);
     this.audio.pause();
+    this.AlertConfirm()
+
     
   }
   progressTimer() {
@@ -225,4 +226,22 @@ export class TemporizadorPage implements OnInit {
   stopAudio() {
     this.streamingMedia.stopAudio()
   }
+   async AlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      title: 'Hora de retirar o produto',
+      message: 'Fim do tempo',
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

@@ -1,15 +1,14 @@
 <ion-header>
-
   <ion-navbar color="imperial">
     <ion-title>Minha lista</ion-title>
   </ion-navbar>
 
   <ion-toolbar>
     <ion-segment color="imperial">
-      <ion-segment-button value="abreProduto()" (click)="abreProduto()">
+      <ion-segment-button value="">
         Produtos
       </ion-segment-button>
-      <ion-segment-button value="abreNotas()" (click)="abreNotas()">
+      <ion-segment-button value='ListarNotasPage' (click)="abreNotas()">
         Notas
       </ion-segment-button>
     </ion-segment>
@@ -17,7 +16,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngIf="inicio">
+  <ion-list>
     <ion-item *ngFor="let item of produtos">
       <small class="Logotipo">{{ item.nome }}</small><br>
       <div>
@@ -32,34 +31,4 @@
     </ion-item>
 
   </ion-list>
-</ion-content>
-<ion-content *ngIf="notas" padding>
-  <br />
-  <br />
-  <br />
-  <br /><br />
-  <ion-list padding *ngFor="let item of anotacoes">
-    <div class="divTamanho">
-      <small class="Logotipo">{{ item.titulo }}</small>
-      <ion-icon class="options tamanhoIcon btnEnd" color="imperial" (click)="openOptions(item)" item-end name="more" top></ion-icon>
-      <p>Data do cadastro: {{ item.date }}</p>
-      <div class="no-padding">
-        <ion-icon name="md-pricetags" item-start><small slot="start" item-start> Pontas duplas:</small></ion-icon>
-        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{item.pontas}}" slot="end"></ion-checkbox>
-        <ion-icon name="md-pricetags" item-start><small> Oleosidade:</small></ion-icon>
-        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.oleosidade }}" slot="end"></ion-checkbox>
-        <ion-icon name="md-pricetags" item-start><small> Definição: </small></ion-icon>  
-        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.definicao }}" slot="end"></ion-checkbox>
-        <ion-icon name="md-pricetags" item-start><small> Volume</small></ion-icon>
-        <ion-checkbox class=" no-padding btnEnd" disabled="true" checked="{{ item.volume }}" slot="end"></ion-checkbox>
-        <hr>
-      </div>
-      <div *ngIf="receita">
-        <p class="Logotipo">{{item.nota}}</p>
-        <button padding class="transparent-bg" color="secondary" full (click)="FecharNota()">
-          Fechar <ion-icon name="close"></ion-icon></button>
-      </div>
-    </div>
-  </ion-list>
-
 </ion-content>

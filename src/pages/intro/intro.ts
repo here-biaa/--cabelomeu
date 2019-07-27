@@ -43,35 +43,64 @@ export class IntroPage {
 
 
   ) {
-    this.getCurrentUser(this.user);
+    this.getCurrentUser();
   }
   Liso(){
     this.user.cabelo = 'Liso';
-    this.Salvar()
-  }
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+}
   Ondulado(){
     this.user.cabelo ='Ondulado';
-    this.Salvar()
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+
   }
   Cacheado(){
     this.user.cabelo = 'Cacheado';
-    this.Salvar()
-   }
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
+
+    }
   Crespo(){
     this.user.cabelo = 'Crespo';
-    this.Salvar()
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+        this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
 
   }
   Transicao(){
     this.user.cabelo = 'Transicao';
-    this.Salvar()
+    this.firebaseProvider.saveUser(this.user)
+      .then((res) => {
+           this.loadingProvider.dismiss()
+
+      })
+    this.slides.slideNext();
 
   }
   Salvar() {
-    this.loadingProvider.present();
+    this.loadingProvider.dismiss();
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
-        this.getAndSaveCurrentUser(this.user.uid);
+        this.getAndSaveCurrentUser(this.user);
         this.slides.slideNext();
         this.hidratacao = true;
         this.nutricao = true;
@@ -107,6 +136,12 @@ export class IntroPage {
     this.reconstrucao = true;
     this.hidratacao = true;
  }
+ Quiz(){
+   this.Continuar()
+ }
+ App(){
+   this.navCtrl.setRoot('TabsPage')
+ }
   //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
@@ -117,14 +152,19 @@ export class IntroPage {
       })
   }
   
+<<<<<<< HEAD
   getCurrentUser(user) {
+=======
+  //Buscar dados do usuario no storage
+  getCurrentUser() {
+>>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
     this.storage.get('user_cabelomeu')
       .then((user) => {
         this.user = user;
+        console.log(this.user)
       })
   }
    abrirCronograma() {
-    this.storage.set('slideCompleto', true);
-        this.navCtrl.setRoot('TabsPage')
+    this.navCtrl.setRoot('TabsPage')
   }
 }

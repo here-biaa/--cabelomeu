@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, AlertController, Item } from 'ionic-angular';
-import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto';
-import * as firebase from 'firebase';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { LoadingProvider } from '../../providers/loading';
 import { Storage } from "@ionic/storage";
 import { FirebaseProvider } from '../../providers/firebase';
 
-
 @IonicPage()
 @Component({
-  selector: 'page-produto',
-  templateUrl: 'produto.html',
+  selector: 'page-listar-notas',
+  templateUrl: 'listar-notas.html',
 })
-export class ProdutoPage {
-  produtos;
-  user={
-    uid:''
+export class ListarNotasPage {
+  verItem;
+  anotacoes;
+  inicio=true;
+  listagem =false;
+  user = {
+    uid: ''
   };
- 
+
   constructor(
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
     public navParams: NavParams,
     private firebaseProvider: FirebaseProvider,
     private loadingProvider: LoadingProvider,
@@ -27,56 +27,34 @@ export class ProdutoPage {
     public actionctrl: ActionSheetController,
     public alertCtrl: AlertController,
 
-  ) {
-    this.loadingProvider.present().then(() => {
+    ) 
+    {
+    this.loadingProvider.present()
+    .then(() => {
       this.getCurrentUser();
-      this.getProdutos();
-    });
-  }
- 
-  abreDetalhe = produtos => this.navCtrl.push("DetalhesProdutoPage", { produtos });
+      this.getNotas();
+     });
 
-  refresh(refresher) {
-    refresher.complete();
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-  abreNotas() {
-    this.navCtrl.setRoot('ListarNotasPage')
-  }
-
-  abreProdutos() {
+    }
+  abreProdutos(){
     this.navCtrl.setRoot('ProdutoPage')
   }
+
   getCurrentUser = () => {
-    this.firebaseProvider.getCurrentUser(this.user)
-    this.storage.get("user_cabelomeu")
-    .then(user => {
-      this.user.uid = user.uid;
-      console.log(this.user)
+    this.storage.get("user_cabelomeu").then(user => {
+      this.user = user;
     });
   };
-
-  getProdutos = () => {
-    this.loadingProvider.dismiss();
-    this.firebaseProvider.getProdutos()
-    .subscribe(res => {
-      this.produtos = res;
-      console.log('Resposta',res)
-      console.log('Uid', this.user.uid)
-    })
- }
-<<<<<<< HEAD
-
+  //Listar notas
   getNotas = () => {
+    this.loadingProvider.dismiss()
     this.firebaseProvider.getNotas()
       .subscribe(res => {
         this.anotacoes = res;
       });
   }
 
-=======
   //Atualizar o usuario no local storage
->>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
       .subscribe((res) => {
@@ -85,21 +63,35 @@ export class ProdutoPage {
         this.storage.set('user_cabelomeu', user);
       })
   }
-   openOptions(item:any){
+  Inicio(){
+    this.inicio = true;
+    this.listagem = false;
+
+  }
+  openOptions(item:any){
     let actionsheet = this.actionctrl.create({
-      title: 'Produto',
-      buttons : [
+      title: 'Notas',
+      buttons: [
+        {
+          text: 'Ver receita',
+          icon: 'md-eye',
+          role: 'destructive',
+          handler: () => {
+            item = this.verItem;
+            this.verReceita()
+          }
+        },
         {
           text: 'Editar',
           icon: 'md-create',
           handler: () => {
-            
+
           }
         },
         {
-          text:'Excluir',
+          text: 'Excluir',
           icon: 'ios-trash',
-          role:'destructive',
+          role: 'destructive',
           handler: () => {
             this.AlertConfirm(item)
           }
@@ -130,12 +122,20 @@ export class ProdutoPage {
 
     await alert.present();
   }
-  
+  verReceita() {
+    this.inicio = false;
+    this.listagem = true;
+  }
+
   Excluir(item: any) {
     this.firebaseProvider.deletarNotas(item)
-      .then(res => { this.navCtrl.pop() }
+      .then(res => { 
+        this.inicio = true;
+        
+       }
 
       )
   };
+
 
 }
