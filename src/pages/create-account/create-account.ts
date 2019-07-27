@@ -33,14 +33,13 @@ export class CreateAccountPage {
   ) {
     this.buildForm();
   }
-  // Validação do formulário de cadastro
   buildForm() {
     this.validacao_form = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(3)
 
-      ])), 
+      ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -58,15 +57,16 @@ export class CreateAccountPage {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]))
     }, {
         Validators: PasswordValidator.isMatching
-    })};
+      })
+  };
 
   registrar() {
     if (this.validacao_form.valid) {
-         this.validacao_form.controls['name'].value,
+      this.validacao_form.controls['name'].value,
         this.validacao_form.controls['email'].value,
         this.validacao_form.controls['pass'].value;
-      }
-    this.loadingProvider.present().then(() =>{
+    }
+    this.loadingProvider.present().then(() => {
       let data = this.validacao_form.value;
       /* Puxando do provedor o metodo de registro*/
       this.authProvider
@@ -86,7 +86,7 @@ export class CreateAccountPage {
             subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
-        
+
         })
         //Error
         .catch((err) => {
@@ -101,7 +101,6 @@ export class CreateAccountPage {
     });
   }
 
-  //Criando o usuario no firebase
   createUserOnFirestore = () => {
     const data = {
       name: this.validacao_form.value.name,
@@ -124,10 +123,7 @@ export class CreateAccountPage {
       });
     });
   }
-  
-  /**
-   Se o usuario ja tiver uma conta ele retornará a pag de login
-   */
+
   haveAccount = () => this.navCtrl.setRoot('LoginPage');
-  abrirTermos = ()=> this.navCtrl.push('SobrePage');
+  abrirTermos = () => this.navCtrl.push('SobrePage');
 }

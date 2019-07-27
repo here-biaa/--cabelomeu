@@ -14,7 +14,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
     }),
   ],
   providers:[
-    NativeAudio
+    //NativeAudio
   ]
   
 })

@@ -129,10 +129,9 @@ export class TemporizadorPage implements OnInit {
 
     }
 
-    // run once when clicked
     forwardsTimer()
     backwardsTimer()
-    // timers start 1 second later
+
     this.countDownTimer = setInterval(backwardsTimer, 1000)
     this.timer = setInterval(forwardsTimer, 1000)
 
@@ -178,10 +177,8 @@ export class TemporizadorPage implements OnInit {
     this.overallTimer = setInterval(() => {
       let now = new Date().getTime();
 
-      // Find the distance between now an the count down date
       var distance = now - countDownDate.getTime();
 
-      // Time calculations for hours, minutes and seconds
 
       this.elapsed.h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.elapsed.m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -207,7 +204,7 @@ export class TemporizadorPage implements OnInit {
 
   updateMyDate($event) {
   }
-  //Atualizar o usuario no local storage
+  
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
       .subscribe((res) => {

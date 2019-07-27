@@ -14,10 +14,9 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
   user;
 
-  //paginas
   inicio =false;
   conteudo =true;
-  //slides
+  
   public lottieConfig;
   lottieConfig2;
   lottieConfig3: Object;
@@ -36,7 +35,6 @@ export class HomePage {
     private modalCtrl: ModalController
 
     ) {
-    //Slides
     this.lottieConfig = {
       path: 'assets/lottie/man_and_chat.json',
       renderer: 'canvas',
@@ -100,12 +98,10 @@ export class HomePage {
     this.slides.slideTo(slide, 1500, true);
     this.getAndSaveCurrentUser(this.user.uid);
    }
-  //Refresh page
   refresh(refresher) {
     refresher.complete();
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
-  //Get current user data
   getCurrentUser = () => {
     this.storage.get("user_cabelomeu").then(user => {
       this.user = user;
@@ -121,7 +117,6 @@ export class HomePage {
         this.storage.set('user_cabelomeu', user);
       })
   }
-//-----------HOME-----------//
 abrirHidratacao = () => this.navCtrl.push('EtapasCronoPage');
 abrirNutricao = () => this.navCtrl.push('EtapasCronoPage');
 abrirReconstrucao = () => this.navCtrl.push('EtapasCronoPage');

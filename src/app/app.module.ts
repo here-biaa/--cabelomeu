@@ -106,7 +106,6 @@ import { EditarCalendarioPageModule } from '../pages/editar-calendario/editar-ca
     //temporizador
     Insomnia,
     NavigationBar,
-    NativeAudio,
     StreamingMedia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 

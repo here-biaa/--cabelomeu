@@ -117,7 +117,6 @@ export class IntroPage {
       })
   }
   
-  //Buscar dados do usuario no storage
   getCurrentUser(user) {
     this.storage.get('user_cabelomeu')
       .then((user) => {
