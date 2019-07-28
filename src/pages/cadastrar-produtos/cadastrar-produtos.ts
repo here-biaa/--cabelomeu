@@ -56,7 +56,6 @@ amount = 0;
     });
   }
 
-  //Get current user data
   getCurrentUser() {
     this.storage.get('user_cabelomeu')
       .then((user) => {
@@ -80,7 +79,6 @@ amount = 0;
       }
     }
 
-  //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
       .subscribe((res) => {
@@ -90,7 +88,6 @@ amount = 0;
       })
   }
 
-  //Salvar alterações do usuario
   cadastrar() {
     let data = {
       nome: this.form.value.nome,
@@ -112,7 +109,7 @@ amount = 0;
       this.produto.obs =null
     });
 }
-//quando cadastrar o produto aparece 
+
 presentToast() {
   let toast = this.toastCtrl.create({
     message: 'Produto cadastrado',

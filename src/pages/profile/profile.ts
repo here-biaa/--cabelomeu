@@ -69,13 +69,11 @@ abrirModal() {
    this.abrirModal();
   }
   
-  //Atualizar a pagina
   refresh(refresher) {
     refresher.complete();
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
-  //Buscar dados do usuario no storage
   getCurrentUser() {
     this.storage.get('user_cabelomeu')
       .then((user) => {
@@ -83,7 +81,6 @@ abrirModal() {
       })
   }
 
-  //Salvar alterações do usuario
   save() {
     this.loadingProvider.dismiss();
     this.firebaseProvider.saveUser(this.user)
@@ -94,8 +91,6 @@ abrirModal() {
       })
   }
 
-
-//quando o usuario salvar as alteraçoes vai aparecer
   presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Perfil atualizado com sucesso',
@@ -111,7 +106,6 @@ abrirModal() {
   }
    
 
-  //Atualizar o usuario no local storage
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
       .subscribe((res) => {
@@ -121,12 +115,10 @@ abrirModal() {
       })
   }
 
-  //sair
   logout() {
     this.app.getRootNav().setRoot('LoginPage');
   }
 
-  //Subir imagem
   changeAvatar() {
     this.camera.getPicture({
       quality: 100,
@@ -225,7 +217,6 @@ abrirModal() {
     return shouldLeave;
   }
   
-  //alert ao sair da página sem salvar//
   confirmLeave(): Promise<Boolean> {
     let resolveLeaving;
     const canLeave = new Promise<Boolean>(resolve => resolveLeaving = resolve);
@@ -247,7 +238,7 @@ abrirModal() {
     alert.present();
     return canLeave
   }
-//folha de açao com opçoes da foto de perfil//
+  
   showactionsheet(){
     let actionsheet = this.actionctrl.create({
       title: 'Foto de perfil',

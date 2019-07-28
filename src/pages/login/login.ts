@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage implements ErrorHandler{
+export class LoginPage implements ErrorHandler {
   handleError(error: any): void {
     throw new Error("Method not implemented.");
   }
@@ -25,13 +25,11 @@ export class LoginPage implements ErrorHandler{
   password = false;
 
 
-  //Exibir form de login
   exibirLogin() {
     this.password = false;
     this.loggin = true;
   }
 
-  //Exibir form de recupercao de senha
   exibirPassword() {
     this.password = true;
     this.loggin = false;
@@ -48,7 +46,7 @@ export class LoginPage implements ErrorHandler{
     private storage: Storage
   ) {
     this.buildForm();
-    
+
   }
 
   buildForm() {
@@ -61,20 +59,17 @@ export class LoginPage implements ErrorHandler{
     })
   }
   login() {
-    this.loadingProvider.present().then(() =>{
+    this.loadingProvider.present().then(() => {
       let data = this.form.value;
       this.authProvider.login(data)
         //Successo
         .then((res) => {
-  
-            // Se o usuario verificar o email ele vai logar
-           res.user = firebase.auth().currentUser;
+
+          res.user = firebase.auth().currentUser;
           if (res.user.emailVerified) {
             console.log("email verified");
             this.getAndSaveCurrentUser(res.user.uid);
-            // 
           } else {
-            // Senão ele vai receber um alerta
             console.log("email not verified");
             this.loadingProvider.dismiss();
 
@@ -88,9 +83,7 @@ export class LoginPage implements ErrorHandler{
 
           }
         })
-        //Erro
         .catch(() => {
-          // Se o usuario digitar um email ou senha incorreta
           this.loadingProvider.dismiss();
           const alert = this.alertCtrl.create({
             title: 'Algo deu errado. ',
@@ -100,46 +93,50 @@ export class LoginPage implements ErrorHandler{
           alert.present();
         })
     });
+<<<<<<< HEAD
+  }
+  passwordReset() {
+    this.loadingProvider.present().then(() => {
+=======
   } 
   passwordReset(){
     this.loadingProvider.dismiss().then(() => {
+>>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
       let data = this.formEmail.value;
       this.authProvider.password(data)
-           .then((res) => {
-               this.alertCtrl.create({
-               title: "Verifique e confirme seu email",
-               subTitle: "Enviamos um link de redefinição de senha no seu email.",
-               buttons: ["Ok"]
-             });
-             this.navCtrl.setRoot('LoginPage');
+        .then((res) => {
+          this.alertCtrl.create({
+            title: "Verifique e confirme seu email",
+            subTitle: "Enviamos um link de redefinição de senha no seu email.",
+            buttons: ["Ok"]
+          });
+          this.navCtrl.setRoot('LoginPage');
 
-           })
-           .catch ((err) => {
-             console.log(err);
-        // Se o usuario digitar um email ou senha incorreta
-        this.loadingProvider.dismiss();
-        const alert = this.alertCtrl.create({
-          title: 'Algo deu errado. ',
-          subTitle: 'Usuário não encontrado .',
-          buttons: ['Ok']
-        });
-        alert.dismiss();
-      })      
-    })}
-  getAndSaveCurrentUser(uid){
-    this.firebaseProvider.getCurrentUser(uid)
-    .subscribe((res) => {
-      let user = res[0];
-      this.storage.set('user_cabelomeu', user).then(() =>{
-        this.loadingProvider.dismiss();
-        this.navCtrl.setRoot('IntroPage');
-      });
+        })
+        .catch((err) => {
+          console.log(err);
+
+          this.loadingProvider.dismiss();
+          const alert = this.alertCtrl.create({
+            title: 'Algo deu errado. ',
+            subTitle: 'Usuário não encontrado .',
+            buttons: ['Ok']
+          });
+          alert.dismiss();
+        })
     })
   }
+  getAndSaveCurrentUser(uid) {
+    this.firebaseProvider.getCurrentUser(uid)
+      .subscribe((res) => {
+        let user = res[0];
+        this.storage.set('user_cabelomeu', user).then(() => {
+          this.loadingProvider.dismiss();
+          this.navCtrl.setRoot('IntroPage');
+        });
+      })
+  }
 
-  /**
-   * Seta o root da aplicação na página de criar conta
-   */
   createAccount = () => this.navCtrl.setRoot('CreateAccountPage');
   loginFacebook = () => this.navCtrl.setRoot('FbLoginPage');
 

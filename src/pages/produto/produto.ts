@@ -36,7 +36,6 @@ export class ProdutoPage {
  
   abreDetalhe = produtos => this.navCtrl.push("DetalhesProdutoPage", { produtos });
 
-  //Refresh page
   refresh(refresher) {
     refresher.complete();
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
@@ -57,7 +56,6 @@ export class ProdutoPage {
     });
   };
 
-  //Listar produtos
   getProdutos = () => {
     this.loadingProvider.dismiss();
     this.firebaseProvider.getProdutos()
@@ -67,7 +65,18 @@ export class ProdutoPage {
       console.log('Uid', this.user.uid)
     })
  }
+<<<<<<< HEAD
+
+  getNotas = () => {
+    this.firebaseProvider.getNotas()
+      .subscribe(res => {
+        this.anotacoes = res;
+      });
+  }
+
+=======
   //Atualizar o usuario no local storage
+>>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
   getAndSaveCurrentUser(uid) {
     this.firebaseProvider.getCurrentUser(uid)
       .subscribe((res) => {

@@ -150,8 +150,12 @@ export class IntroPage {
       })
   }
   
+<<<<<<< HEAD
+  getCurrentUser(user) {
+=======
   //Buscar dados do usuario no storage
   getCurrentUser() {
+>>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
     this.storage.get('user_cabelomeu')
       .then((user) => {
         this.user = user;

@@ -46,10 +46,8 @@ eventSource;
   }
 
   abreDetalhe = produtos => this.navCtrl.push("DetalhesProdutoPage", { produtos });
-
  
-  //Listar produtos
-
+ 
   getProdutos = () => {
     this.loadingProvider.dismiss();
     this.firebaseProvider.getProdutos()
@@ -59,7 +57,6 @@ eventSource;
         console.log(resp)
       })
   }
-  //Listar notas
   getNotas = () => {
     this.firebaseProvider.getNotas()
       .subscribe(res => {

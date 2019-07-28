@@ -108,7 +108,6 @@ import { ListarNotasPageModule } from '../pages/listar-notas/listar-notas.module
     //temporizador
     Insomnia,
     NavigationBar,
-    NativeAudio,
     StreamingMedia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
