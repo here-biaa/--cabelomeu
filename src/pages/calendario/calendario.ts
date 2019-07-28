@@ -36,21 +36,21 @@ export class calendarioPage implements AfterViewInit,OnInit{
     for (let i = 0; i < 31; i++) {
       //primeira semana do crnograma
       this._daysConfig.push({
-        date: new Date(2019, 5, 17),
+        date: new Date(2019, 6, 30),
         subTitle:   'H',
         marked: true,
         cssClass: 'hidratacao',
       }
       )
         this._daysConfig.push({
-          date: new Date(2019, 5, 20),
+          date: new Date(2019, 7, 1),
           subTitle: 'N',
           marked: true,
           cssClass: 'nutricao',
         
         }),
         this._daysConfig.push({
-          date: new Date(2019, 5, 22),
+          date: new Date(2019, 7, 3),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao'
@@ -59,20 +59,20 @@ export class calendarioPage implements AfterViewInit,OnInit{
         //segunda semana do crnograma
 
       this._daysConfig.push({
-        date: new Date(2019, 5, 24),
+        date: new Date(2019, 7, 6),
         subTitle:   'N',
         marked: true,
         cssClass: 'nutricao'
       }),
         this._daysConfig.push({
-          date: new Date(2019, 5, 27),
+          date: new Date(2019, 7, 8),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao'
 
         }),
         this._daysConfig.push({
-          date: new Date(2019, 5, 29),
+          date: new Date(2019, 7, 10),
           subTitle: 'R',
           marked: true,
           cssClass: 'reconstrucao',
@@ -80,20 +80,20 @@ export class calendarioPage implements AfterViewInit,OnInit{
         //terceira semana do crnograma
 
         this._daysConfig.push({
-          date: new Date(2019, 6, 1),
+          date: new Date(2019, 7, 13),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao',
          
         }),
         this._daysConfig.push({
-          date: new Date(2019, 6, 4),
+          date: new Date(2019, 7, 15),
           subTitle: 'N',
           marked: true,
           cssClass: 'nutricao',
           })
         this._daysConfig.push({
-        date: new Date(2019, 6, 6),
+        date: new Date(2019, 7, 17),
         subTitle:   'H',
         marked: true,
         cssClass: 'hidratacao',
@@ -101,20 +101,20 @@ export class calendarioPage implements AfterViewInit,OnInit{
       }),
       //ultima semana do crnograma
         this._daysConfig.push({
-          date: new Date(2019, 6, 8),
+          date: new Date(2019, 7, 20),
           subTitle: 'N',
           marked: true,
           cssClass: 'nutricao'
         }),
         this._daysConfig.push({
-          date: new Date(2019, 6, 11),
+          date: new Date(2019, 7, 22),
           subTitle: 'H',
           marked: true,
           cssClass: 'hidratacao'
 
         })
       this._daysConfig.push({
-        date: new Date(2019, 6, 13),
+        date: new Date(2019, 7, 24),
         subTitle:   'R',
         marked: true,
         cssClass: 'reconstrucao',

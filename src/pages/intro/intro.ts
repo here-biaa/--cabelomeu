@@ -108,9 +108,7 @@ export class IntroPage {
 
 
       })
-
-    console.log(this.user)
-  }
+}
   Continuar(){
     this.slides.slideNext();
   }

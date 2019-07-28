@@ -19,8 +19,8 @@ export class MyApp {
 
     this.storage.get('user_cabelomeu')
       .then((user) => {
-        if (user) this.rootPage = 'TabsPage';
-        else this.rootPage = 'LoginPage';
+        if (user) this.rootPage = 'LoginPage';
+        else this.rootPage = 'IntroPage';
       });
 
     platform.ready().then(() => {

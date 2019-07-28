@@ -8,11 +8,15 @@
 .text-justify{
   text-align:justify!important;
 }
-  .btnEnd{
-          margin-left:90%;
-          padding:0;
-      }
-    
+.btnEnd{
+  margin-left:90%;
+  padding:0;
+  }
+.btnsEnd{
+  margin-left:75%;
+  padding:0;
+  }
+  
 .btn-imperial {
   background-color:$imperial;
   font-family: 'Segoe UI';
@@ -200,7 +204,10 @@
 
 //Background color
 .transparent-bg {
-  background: transparent !important
+  background: transparent !important;
+}
+.none-bg{
+  background: none!important;
 }
 
 //Loading spinner
