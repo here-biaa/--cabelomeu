@@ -85,7 +85,8 @@ abrirModal() {
     this.loadingProvider.dismiss();
     this.firebaseProvider.saveUser(this.user)
       .then((res) => {
-        this.presentToast()
+        this.presentToast();
+        this.navCtrl.setRoot('HomePage');
       })
   }
 

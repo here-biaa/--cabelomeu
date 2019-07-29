@@ -85,11 +85,6 @@ export class CreateAccountPage {
             subTitle: "Enviamos um e-mail de autenticação para você.",
             buttons: ["Ok"]
           }).present();
-<<<<<<< HEAD
-
-=======
-          this.createUserOnFirestore();
->>>>>>> b5ee7cae4457fc75a1b16f626f7b7ac06ad353b7
         })
         //Error
         .catch((err) => {

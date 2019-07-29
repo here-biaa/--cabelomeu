@@ -16,13 +16,14 @@ export class MyApp {
     splashScreen: SplashScreen,
     private storage: Storage,
   ) {
-
     this.storage.get('user_cabelomeu')
       .then((user) => {
         if (user) this.rootPage = 'TabsPage';
         else this.rootPage = 'LoginPage';
       });
 
+    
+        
     platform.ready().then(() => {
       /* this.storage.get('slideCompleto')
       .then((result) => {
